@@ -1,0 +1,35 @@
+*, ::before, ::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+}
+
+body {
+    height: 100%;
+    width: 100%;
+    display: grid;
+    place-content: center center;
+    background-color: black;
+}
+
+#game-board {
+    width: 100vh;
+    height: 100vmin;
+    border: solid black 1px;
+    background-color: slategray;
+    display: grid;
+    grid-template-columns: repeat(11, 1fr);
+    grid-template-rows: repeat(11, 1fr);
+}
+
+.player {
+    background: url("/assets/images/retro_developer.png") no-repeat center center/cover;
+}
+
+.mouse {
+    background: url("/assets/images/mouse.png") no-repeat center center/cover;
+    width: 25%;
+    height: 25%;
+}
