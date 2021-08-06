@@ -54,6 +54,15 @@ class Enemy extends Component {
         this.defense = defense;
         this.isDead = false;
     }
+    fall() {
+        setTimeout(() => {
+            if (this.yPos < 12) {
+                this.yPos++;
+            } else {
+                this.remove();
+            }
+        }, 1000);
+    }
     takeDamage(amount) {
         let damage = amount - this.defense;
         if (damage < 0) {
@@ -65,5 +74,21 @@ class Enemy extends Component {
         if (this.health <= 0) {
             this.isDead = true;
         }
+    }
+}
+
+class Projectile extends Component {
+    constructor(name, width, heigth, xPos, yPos, speed, attack) {
+        super(name, width, heigth, xPos, yPos, speed);
+        this.attack = attack;
+    }
+    shoot() {
+        setTimeout(() => {
+            if (this.yPos > 1) {
+                this.yPos--;
+            } else {
+                this.remove();
+            }
+        }, 1000);
     }
 }
