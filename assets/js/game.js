@@ -110,21 +110,21 @@ function movePlayer(event) {
 //     }
 // }
 
-function dropEnemies() {
-    let yPos = 0;
-    let xPos = Math.floor(Math.random() * 12);
-    function moveEnemies() {
-        const div = document.createElement('div');
-        div.setAttribute('class', 'player');
-        div.style.gridRowStart = yPos;
-        div.style.gridColumnStart = xPos;
-        gameBoard.appendChild(div);
-        if (yPos < 12) {
-            yPos++;
-        } else {
-            clearInterval(moveProjectile);
-            div.remove();
-        }
-    }
-    setInterval(moveEnemies, 500);
-}
+// function dropEnemies() {
+//     let yPos = 0;
+//     let xPos = Math.floor(Math.random() * 12);
+//     function moveEnemies() {
+//         const div = document.createElement('div');
+//         div.setAttribute('class', 'player');
+//         div.style.gridRowStart = yPos;
+//         div.style.gridColumnStart = xPos;
+//         gameBoard.appendChild(div);
+//         if (yPos < 12) {
+//             yPos++;
+//         } else {
+//             clearInterval(moveProjectile);
+//             div.remove();
+//         }
+//     }
+//     setInterval(moveEnemies, 500);
+// }
