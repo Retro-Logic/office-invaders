@@ -37,8 +37,8 @@
 //     }
 // }
 
-const player = new Player("player", 2, 2, 6, 10, 5, 3);
 const gameBoard = document.querySelector('#game-board');
+const player = new Player("player", 2, 2, 6, 10, 5, 3);
 let previousTime = 0;
 let currentTime = 0;
 
@@ -52,6 +52,7 @@ function gameLoop(currentTime) {
 
 window.requestAnimationFrame(gameLoop);
 document.addEventListener('keydown', movePlayer);
+document.addEventListener('keydown', shootProjectile);
 
 function draw() {
     gameBoard.innerHTML = '';
@@ -73,7 +74,29 @@ function movePlayer(event) {
             player.moveDown();
             break;
         case 'Enter':
-            player.shootProjectile();
+            player.shootMovement();
             break;
+    }
+}
+
+function shootProjectile(event) {
+    let yPos = player.yPos;
+    let xPos = player.xPos;
+    function moveProjectile() {
+        const div = document.createElement('div');
+        div.style.gridRowStart = yPos;
+        div.style.gridColumnStart = xPos + 1;
+        gameBoard.appendChild(div);
+        div.classList.remove('mouse');
+        if (yPos > 1) {
+            yPos--;
+        } else {
+            clearInterval(moveProjectile);
+            div.remove();
+        }
+        div.classList.add('mouse');
+    }
+    if (event.key === 'Enter') {
+        setInterval(moveProjectile, 1000 / player.speed);
     }
 }

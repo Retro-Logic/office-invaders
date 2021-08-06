@@ -27,3 +27,9 @@ body {
 .player {
     background: url("/assets/images/retro_developer.png") no-repeat center center/cover;
 }
+
+.mouse {
+    background: url("/assets/images/mouse.png") no-repeat center center/cover;
+    width: 25%;
+    height: 25%;
+}
