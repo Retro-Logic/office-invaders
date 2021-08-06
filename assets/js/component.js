@@ -41,6 +41,10 @@ class Player extends Component {
             this.yPos++;
         }
     }
+    shootProjectile() {
+        const playerDiv = document.querySelector('.player');
+        playerDiv.style.background = `url("/assets/images/retro_developer_shooting.png") no-repeat center center/cover`;
+    }
 }
 
 class Enemy extends Component {

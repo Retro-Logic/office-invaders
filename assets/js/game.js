@@ -37,7 +37,7 @@
 //     }
 // }
 
-const player = new Player("player", 2, 2, 6, 10, 25, 3);
+const player = new Player("player", 2, 2, 6, 10, 5, 3);
 const gameBoard = document.querySelector('#game-board');
 let previousTime = 0;
 let currentTime = 0;
@@ -71,6 +71,9 @@ function movePlayer(event) {
             break;
         case 'ArrowDown':
             player.moveDown();
+            break;
+        case 'Enter':
+            player.shootProjectile();
             break;
     }
 }
