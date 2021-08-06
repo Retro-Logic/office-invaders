@@ -66,5 +66,11 @@ function movePlayer(event) {
         case 'ArrowRight':
             player.moveRight();
             break;
+        case 'ArrowUp':
+            player.moveUp();
+            break;
+        case 'ArrowDown':
+            player.moveDown();
+            break;
     }
 }

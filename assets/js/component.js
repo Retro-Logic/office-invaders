@@ -31,6 +31,16 @@ class Player extends Component {
             this.xPos++;
         }
     }
+    moveUp() {
+        if (this.yPos > 1) {
+            this.yPos--;
+        }
+    }
+    moveDown() {
+        if (this.yPos < 10) {
+            this.yPos++;
+        }
+    }
 }
 
 class Enemy extends Component {
