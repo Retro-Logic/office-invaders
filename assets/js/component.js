@@ -10,8 +10,8 @@ class Component {
     draw(gameBoard) {
         const div = document.createElement('div');
         div.setAttribute('class', this.name);
-        div.style.gridRowStart = this.yPos;
-        div.style.gridColumnStart = this.xPos;
+        div.style.gridRow = `${this.yPos} / span ${this.heigth}`;
+        div.style.gridColumn = `${this.xPos} / span ${this.width}`;
         gameBoard.appendChild(div);
     }
 }
@@ -22,7 +22,7 @@ class Player extends Component {
         this.lives = lives;
     }
     moveLeft() {
-        if (this.xPos > 1) {
+        if (this.xPos > 0) {
             this.xPos--;
         }  
     }

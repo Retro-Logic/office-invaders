@@ -37,7 +37,7 @@
 //     }
 // }
 
-const player = new Player("player", 2, 2, 6, 11, 25, 3);
+const player = new Player("player", 2, 2, 6, 10, 25, 3);
 const gameBoard = document.querySelector('#game-board');
 let previousTime = 0;
 let currentTime = 0;
