@@ -27,17 +27,17 @@ class Player extends Component {
         }  
     }
     moveRight() {
-        if (this.xPos < 11) {
+        if (this.xPos < 12) {
             this.xPos++;
         }
     }
     moveUp() {
-        if (this.yPos > 1) {
+        if (this.yPos > 2) {
             this.yPos--;
         }
     }
     moveDown() {
-        if (this.yPos < 10) {
+        if (this.yPos < 11) {
             this.yPos++;
         }
     }

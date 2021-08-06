@@ -20,8 +20,8 @@ body {
     border: solid black 1px;
     background-color: slategray;
     display: grid;
-    grid-template-columns: repeat(11, 1fr);
-    grid-template-rows: repeat(11, 1fr);
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: repeat(12, 1fr);
 }
 
 .player {
