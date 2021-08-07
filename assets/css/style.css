@@ -29,28 +29,28 @@ body {
 }
 
 #player {
-    background: url("/assets/images/retro_developer.png") no-repeat center center/contain;
-    grid-row-start: 13;
+    background: url("/assets/images/retro_developer_trim.png") no-repeat center center/contain;
+    grid-row-start: 12;
     grid-row-end: span 2;
     grid-column-start: 7;
     grid-column-end: span 1;
 }
 
 .enemy {
-    grid-row-end: span 1;
+    grid-row-end: span 2;
     grid-column-end: span 1;
 }
 
 .manager {
-    background: url("/assets/images/retro_developer.png") no-repeat center center/contain;
+    background: url("/assets/images/retro_developer.png") no-repeat center center/cover;
 }
 
 .hr {
-    background: url("/assets/images/retro_developer.png") no-repeat center center/contain;
+    background: url("/assets/images/retro_developer.png") no-repeat center center/cover;
 }
 
 .ceo {
-    background: url("/assets/images/retro_developer.png") no-repeat center center/contain;
+    background: url("/assets/images/retro_developer.png") no-repeat center center/cover;
 }
 
 .mouse {
