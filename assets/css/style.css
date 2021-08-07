@@ -25,12 +25,12 @@ body {
     left: 50%;
     transform: translate(-50%, -50%);
     grid-template-columns: repeat(13, 1fr);
-    grid-template-rows: repeat(13, 1fr);
+    grid-template-rows: repeat(14, 1fr);
 }
 
 #player {
     background: url("/assets/images/retro_developer_trim.png") no-repeat center center/contain;
-    grid-row-start: 12;
+    grid-row-start: 13;
     grid-row-end: span 2;
     grid-column-start: 7;
     grid-column-end: span 1;
