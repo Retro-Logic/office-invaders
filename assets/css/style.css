@@ -20,16 +20,16 @@ body {
     border: solid black 1px;
     background-color: slategray;
     display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    grid-template-rows: repeat(12, 1fr);
+    grid-template-columns: repeat(13, 1fr);
+    grid-template-rows: repeat(13, 1fr);
 }
 
 #player {
     background: url("/assets/images/retro_developer.png") no-repeat center center/cover;
-    grid-row-start: 11;
+    grid-row-start: 12;
     grid-row-end: span 2;
     grid-column-start: 6;
-    grid-column-end: span 2;
+    grid-column-end: span 1;
 }
 
 .enemy {
@@ -37,7 +37,8 @@ body {
 }
 
 .mouse {
-    background: url("/assets/images/mouse.png") no-repeat center center/cover;
-    width: 25%;
-    height: 75%;
+    background: url("/assets/images/mouse.png") no-repeat 0% 50%;
+    background-size: 25% 75%;
+    /* width: 25%;
+    height: 75%; */
 }
