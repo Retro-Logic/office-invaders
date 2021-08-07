@@ -13,6 +13,7 @@ The target audience for the Office Invaders game are:
 -	Office workers who wish they could work from home but their bosses are not letting them.
 -	People who are fed up commuting for work every day.
 -	HR and bosses who should know better.
+
 User goals are : 
 -	To easily understand storyline and game rules.
 -	To have fun.
