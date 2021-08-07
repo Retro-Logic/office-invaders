@@ -36,7 +36,7 @@ document.addEventListener("keydown", (e) => {
       }
       break;
     case "ArrowRight":
-      if (xPos < 11) {
+      if (xPos < 13) {
         player.style.gridColumnStart = xPos + 1;
       }
       break;
@@ -112,7 +112,7 @@ let generateEnemies = setInterval(() => {
   let yPos = parseInt(
     window.getComputedStyle(enemy).getPropertyValue("grid-row-start")
   );
-  enemy.style.gridColumnStart = Math.floor(Math.random() * 13);
+  enemy.style.gridColumnStart = Math.floor(Math.random() * 14);
   enemy.style.gridRowStart = 1;
   gameBoard.appendChild(enemy);
 }, 2000);
@@ -125,7 +125,7 @@ let moveEnemies = setInterval(() => {
       let yPos = parseInt(
         window.getComputedStyle(enemy).getPropertyValue("grid-row-start")
       );
-      if (yPos >= 12) {
+      if (yPos >= 13) {
         alert("Game Over");
         clearInterval(moveEnemies);
       }

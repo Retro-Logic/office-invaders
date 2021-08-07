@@ -37,7 +37,9 @@ body {
 }
 
 .mouse {
-    background: url("/assets/images/mouse.png") no-repeat 0% 50%;
+    background: url("/assets/images/mouse.png") no-repeat center center;
+    /* background-image: url("/assets/images/mouse.png");
+    background-repeat: no-repeat; */
     background-size: 25% 75%;
     /* width: 25%;
     height: 75%; */
