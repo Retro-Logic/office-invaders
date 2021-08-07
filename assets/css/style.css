@@ -51,31 +51,26 @@ body {
 }
 
 .mouse {
-    background: url("/assets/images/mouse.png") no-repeat center center;
+    background: url("/assets/images/mouse.png") no-repeat center top;
     /* background-image: url("/assets/images/mouse.png");
     background-repeat: no-repeat; */
-    background-size: 25% 75%;
+    background-size: contain;
     /* width: 25%;
     height: 75%; */
 }
 
 .keyboard {
-    background: url("/assets/images/keyboard.png") no-repeat center center/cover;
-    width: 100%;
-    height: 75%;
-    margin-left: 37.5%;
+    background: url("/assets/images/keyboard.png") no-repeat center top;
+    background-size: contain;
+    /* margin-left: 37.5%; */
 }
 
 .computer {
-    background: url("/assets/images/computer.png") no-repeat center center/cover;
-    width: 100%;
-    height: 75%;
-    margin-left: 37.5%;
+    background: url("/assets/images/computer.png") no-repeat center top;
+    background-size: contain;
 }
-
 .coffee {
-    background: url("/assets/images/coffee.png") no-repeat center center/cover;
-    width: 75%;
-    height: 75%;
-    margin-left: 37.5%;
+    background: url("/assets/images/coffee.png") no-repeat center top;
+    background-size: contain;
+    /* margin-left: 37.5%; */
 }
