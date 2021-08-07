@@ -24,12 +24,20 @@ body {
     grid-template-rows: repeat(12, 1fr);
 }
 
-.player {
+#player {
+    background: url("/assets/images/retro_developer.png") no-repeat center center/cover;
+    grid-row-start: 11;
+    grid-row-end: span 2;
+    grid-column-start: 6;
+    grid-column-end: span 2;
+}
+
+.enemy {
     background: url("/assets/images/retro_developer.png") no-repeat center center/cover;
 }
 
 .mouse {
     background: url("/assets/images/mouse.png") no-repeat center center/cover;
     width: 25%;
-    height: 25%;
+    height: 75%;
 }

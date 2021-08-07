@@ -1,93 +1,103 @@
-// class Game {
-//     constructor() {
-//         this.currentTime = 0;
-//         this.previousTime = 0;
-//         this.player = new Player("player", 2, 2, 6, 11, 25);
-//         this.gameBoard = document.querySelector('#game-board');
-//         window.requestAnimationFrame((time)=>this.gameLoop(time));
-//     }
+// const player = new Player("player", 2, 2, 6, 11, 6, 25);
+// const enemy = new Enemy("enemy", 1, 1, 0, 0, 6, 3);
+// const mouse = new Projectile("mouse", 1, 3, player.xPos + 1, player.yPos, 5, 50);
+// let previousTime = 0;
+// let currentTime = 0;
+// let newShoot = false;
 
-//     gameLoop(time) {
-//         window.requestAnimationFrame((time)=>this.gameLoop(time));
-//         let timeDelta = this.startFrame(time) / 1000;
-//         if (timeDelta < 1 / this.player.speed) return;
-//         this.previousTime = this.currentTime;
-//         this.draw();
-//     }
-
-//     startFrame(time) {
-//         this.currentTime = time - this.previousTime;
-//         return this.currentTime;
-//     }
-
-//     draw() {
-//         this.gameBoard.innerHTML = '';
-//         this.player.draw(this.gameBoard);
-//     }
-
-//     movePlayer(event) {
-//         switch(event.key) {
-//             case 'ArrowLeft':
-//                 this.player.moveLeft();
-//                 break;
-//             case 'ArrowRight':
-//                 this.player.moveRight();
-//                 break;
-//         }
-//     }
+// function gameLoop(currentTime) {
+//     window.requestAnimationFrame(gameLoop);
+//     const timeDelta = (currentTime - previousTime) / 1000;
+//     if (timeDelta < 1 / player.speed) return;
+//     previousTime = currentTime;
+//     let playerDiv = document.querySelector('.player');
+//     let mouseDiv = document.querySelector('.mouse');
+//     draw();
+//     playerDiv.remove();
+//     mouseDiv.remove();
 // }
 
+// window.requestAnimationFrame(gameLoop);
+
 const gameBoard = document.querySelector('#game-board');
-const player = new Player("player", 2, 2, 6, 11, 6, 3);
-const enemy = new Enemy("player", 1, 1, 0, 0, 6, 3);
-const mouse = new Projectile("mouse", 1, 1, player.xPos, player.yPos, 3, 50);
-let previousTime = 0;
-let currentTime = 0;
-let newShoot = false;
+const player = document.querySelector('#player');
 
-function gameLoop(currentTime) {
-    window.requestAnimationFrame(gameLoop);
-    const timeDelta = (currentTime - previousTime) / 1000;
-    if (timeDelta < 1 / player.speed) return;
-    previousTime = currentTime;
-    draw();
-}
-
-window.requestAnimationFrame(gameLoop);
-document.addEventListener('keydown', movePlayer, true);
-// document.addEventListener('keydown', shootProjectile, true);
-
-function draw() {
-    gameBoard.innerHTML = '';
-    player.draw(gameBoard);
-    enemy.draw(gameBoard);
-    enemy.fall();
-    if (newShoot) {
-        mouse.draw(gameBoard);
-        mouse.shoot();
-    }
-}
-
-function movePlayer(event) {
-    switch(event.key) {
+document.addEventListener('keydown', (e) => {
+    let yPos = parseInt(window.getComputedStyle(player).getPropertyValue('grid-row-start'));
+    let xPos = parseInt(window.getComputedStyle(player).getPropertyValue('grid-column-start'));
+    switch(e.key) {
         case 'ArrowLeft':
-            player.moveLeft();
+            if (xPos > 0) {
+                player.style.gridColumnStart = xPos - 1;
+            }
             break;
         case 'ArrowRight':
-            player.moveRight();
+            if (xPos < 11) {
+                player.style.gridColumnStart = xPos + 1;
+            }
             break;
         case 'ArrowUp':
-            player.moveUp();
-            break;
-        case 'ArrowDown':
-            player.moveDown();
-            break;
-        case ' ':
-            player.shootMovement();
-            newShoot = true;
+            let projectile = document.createElement("div");
+            projectile.classList.add("mouse");
+            projectile.style.gridRowStart = yPos;
+            projectile.style.gridColumnStart = xPos + 1;
+            gameBoard.appendChild(projectile);
+            let movebullet = setInterval(() => {
+                let projectiles = document.getElementsByClassName("mouse");
+                if (projectiles !== undefined) {
+                    for (let i =0; i < projectiles.length; i++) {
+                        let projectile = projectiles[i];
+                        let yPos = parseInt(
+                            window.getComputedStyle(projectile).getPropertyValue('grid-row-start')
+                        );
+                        projectile.style.gridRowStart = yPos - 1;
+                        if (yPos <= 1) {
+                            projectile.remove();
+                            clearInterval(movebullet);
+                        }
+                    }
+                }
+            }, 150);
             break;
     }
-}
+});
+
+let generateEnemies = setInterval(() => {
+    let enemy = document.createElement("div");
+    enemy.classList.add("enemy");
+    let xPos = parseInt(window.getComputedStyle(enemy).getPropertyValue('grid-column-start'));
+    let yPos = parseInt(window.getComputedStyle(enemy).getPropertyValue('grid-row-start'));
+    enemy.style.gridColumnStart = Math.floor(Math.random() * 12);
+    enemy.style.gridRowStart = 1;
+    gameBoard.appendChild(enemy);
+}, 2000);
+  
+let moveEnemies = setInterval(() => {
+    let enemies = document.getElementsByClassName("enemy");
+    if (enemies !== undefined) {
+      for (let i = 0; i < enemies.length; i++) {
+        let enemy = enemies[i]; 
+        let yPos = parseInt(window.getComputedStyle(enemy).getPropertyValue('grid-row-start'));
+        if (yPos >= 12) {
+          alert("Game Over");
+          clearInterval(moveEnemies);
+        }
+        enemy.style.gridRowStart = yPos + 1;
+      }
+    }
+}, 500);
+
+
+// document.addEventListener('keydown', shootProjectile, true);
+
+// function draw() {
+//     // gameBoard.innerHTML = '';
+//     player.draw(gameBoard);
+//     // enemy.draw(gameBoard);
+//     // enemy.fall();
+//     // mouse.draw(gameBoard);
+//     // mouse.shoot();
+// }
 
 // function shootProjectile(event) {
 //     let yPos = player.yPos;
