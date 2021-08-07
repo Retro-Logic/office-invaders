@@ -122,7 +122,7 @@ document.addEventListener("keydown", (e) => {
       'url("/assets/images/retro_developer_shooting.png") no-repeat center center/contain';
       setTimeout(() => {
         player.style.background = 
-        'url("/assets/images/retro_developer.png") no-repeat center center/contain';
+        'url("/assets/images/retro_developer_trim.png") no-repeat center center/contain';
       }, 250);
       break;
   }
