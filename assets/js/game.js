@@ -19,74 +19,118 @@
 
 // window.requestAnimationFrame(gameLoop);
 
-const gameBoard = document.querySelector('#game-board');
-const player = document.querySelector('#player');
+const gameBoard = document.querySelector("#game-board");
+const player = document.querySelector("#player");
 
-document.addEventListener('keydown', (e) => {
-    let yPos = parseInt(window.getComputedStyle(player).getPropertyValue('grid-row-start'));
-    let xPos = parseInt(window.getComputedStyle(player).getPropertyValue('grid-column-start'));
-    switch(e.key) {
-        case 'ArrowLeft':
-            if (xPos > 0) {
-                player.style.gridColumnStart = xPos - 1;
+document.addEventListener("keydown", (e) => {
+  let yPos = parseInt(
+    window.getComputedStyle(player).getPropertyValue("grid-row-start")
+  );
+  let xPos = parseInt(
+    window.getComputedStyle(player).getPropertyValue("grid-column-start")
+  );
+  switch (e.key) {
+    case "ArrowLeft":
+      if (xPos > 0) {
+        player.style.gridColumnStart = xPos - 1;
+      }
+      break;
+    case "ArrowRight":
+      if (xPos < 11) {
+        player.style.gridColumnStart = xPos + 1;
+      }
+      break;
+    case "ArrowUp":
+      let projectile = document.createElement("div");
+      projectile.classList.add("mouse");
+      projectile.style.gridRowStart = yPos;
+      // projectile.style.gridColumnStart = xPos + 1;
+      projectile.style.gridColumnStart = xPos;
+      gameBoard.appendChild(projectile);
+
+      let movebullet = setInterval(() => {
+        let projectiles = document.getElementsByClassName("mouse");
+        if (projectiles !== undefined) {
+          for (let i = 0; i < projectiles.length; i++) {
+            let projectile = projectiles[i];
+            let yPos = parseInt(
+              window
+                .getComputedStyle(projectile)
+                .getPropertyValue("grid-row-start")
+            );
+            projectile.style.gridRowStart = yPos - 1;
+            if (yPos <= 1) {
+              projectile.remove();
+              clearInterval(movebullet);
             }
-            break;
-        case 'ArrowRight':
-            if (xPos < 11) {
-                player.style.gridColumnStart = xPos + 1;
-            }
-            break;
-        case 'ArrowUp':
-            let projectile = document.createElement("div");
-            projectile.classList.add("mouse");
-            projectile.style.gridRowStart = yPos;
-            projectile.style.gridColumnStart = xPos + 1;
-            gameBoard.appendChild(projectile);
-            let movebullet = setInterval(() => {
-                let projectiles = document.getElementsByClassName("mouse");
-                if (projectiles !== undefined) {
-                    for (let i =0; i < projectiles.length; i++) {
-                        let projectile = projectiles[i];
-                        let yPos = parseInt(
-                            window.getComputedStyle(projectile).getPropertyValue('grid-row-start')
-                        );
-                        projectile.style.gridRowStart = yPos - 1;
-                        if (yPos <= 1) {
-                            projectile.remove();
-                            clearInterval(movebullet);
-                        }
-                    }
+            let enemies = document.getElementsByClassName("enemy");
+            for (let j = 0; j < enemies.length; j++) {
+              let enemy = enemies[j];
+              if (enemy != undefined) {
+                // var enemybound = enemy.getBoundingClientRect();
+                // var projectilebound = projectile.getBoundingClientRect();
+
+                //Condition to check whether the enemy and the projectile are at the same position..!
+                //If so,then we have to destroy that enemy
+
+                if (projectile.style.gridRowStart === enemy.style.gridRowStart 
+                  && projectile.style.gridColumnStart === enemy.style.gridColumnStart ) {
+                // remove on life of the enemy and remove projectile
+                  enemy.dataset.life = enemy.dataset["life"] - 1;
+                  projectile.parentElement.removeChild(projectile);
+
+                // check if enemy has any life left, if zero remove enemy
+                  if(enemy.dataset["life"] == 0){
+                      enemy.parentElement.removeChild(enemy); 
+                  }
+                  //Scoreboard
+                  // document.getElementById("points").innerHTML =
+                  //   parseInt(document.getElementById("points").innerHTML) + 1;
                 }
-            }, 150);
-            break;
-    }
+              }
+            }
+          }
+        }
+      }, 450);
+      break;
+  }
 });
 
 let generateEnemies = setInterval(() => {
-    let enemy = document.createElement("div");
-    enemy.classList.add("enemy");
-    let xPos = parseInt(window.getComputedStyle(enemy).getPropertyValue('grid-column-start'));
-    let yPos = parseInt(window.getComputedStyle(enemy).getPropertyValue('grid-row-start'));
-    enemy.style.gridColumnStart = Math.floor(Math.random() * 12);
-    enemy.style.gridRowStart = 1;
-    gameBoard.appendChild(enemy);
-}, 2000);
-  
-let moveEnemies = setInterval(() => {
-    let enemies = document.getElementsByClassName("enemy");
-    if (enemies !== undefined) {
-      for (let i = 0; i < enemies.length; i++) {
-        let enemy = enemies[i]; 
-        let yPos = parseInt(window.getComputedStyle(enemy).getPropertyValue('grid-row-start'));
-        if (yPos >= 12) {
-          alert("Game Over");
-          clearInterval(moveEnemies);
-        }
-        enemy.style.gridRowStart = yPos + 1;
-      }
-    }
-}, 500);
+  let enemy = document.createElement("div");
+  enemy.classList.add("enemy");
 
+  //defining the life of the enemy
+  enemy.dataset.life = 2;
+
+  let xPos = parseInt(
+    window.getComputedStyle(enemy).getPropertyValue("grid-column-start")
+  );
+  let yPos = parseInt(
+    window.getComputedStyle(enemy).getPropertyValue("grid-row-start")
+  );
+//   enemy.style.gridColumnStart = Math.floor(Math.random() * 12);  
+  enemy.style.gridColumnStart = Math.max(1,Math.floor(Math.random() * 12));
+  enemy.style.gridRowStart = 1;
+  gameBoard.appendChild(enemy);
+}, 2000);
+
+let moveEnemies = setInterval(() => {
+  let enemies = document.getElementsByClassName("enemy");
+  if (enemies !== undefined) {
+    for (let i = 0; i < enemies.length; i++) {
+      let enemy = enemies[i];
+      let yPos = parseInt(
+        window.getComputedStyle(enemy).getPropertyValue("grid-row-start")
+      );
+      if (yPos >= 12) {
+        alert("Game Over");
+        clearInterval(moveEnemies);
+      }
+      enemy.style.gridRowStart = yPos + 1;
+    }
+  }
+}, 1500);
 
 // document.addEventListener('keydown', shootProjectile, true);
 
