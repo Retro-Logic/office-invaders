@@ -44,8 +44,10 @@ document.addEventListener("keydown", (e) => {
       let projectile = document.createElement("div");
       projectile.classList.add("mouse");
       projectile.style.gridRowStart = yPos;
+      // projectile.style.gridColumnStart = xPos + 1;
       projectile.style.gridColumnStart = xPos;
       gameBoard.appendChild(projectile);
+
       let movebullet = setInterval(() => {
         let projectiles = document.getElementsByClassName("mouse");
         if (projectiles !== undefined) {
@@ -61,9 +63,38 @@ document.addEventListener("keydown", (e) => {
               projectile.remove();
               clearInterval(movebullet);
             }
+            let enemies = document.getElementsByClassName("enemy");
+            for (let j = 0; j < enemies.length; j++) {
+              let enemy = enemies[j];
+              if (enemy != undefined) {
+                // var enemybound = enemy.getBoundingClientRect();
+                // var projectilebound = projectile.getBoundingClientRect();
+
+                //Condition to check whether the enemy and the projectile are at the same position..!
+                //If so,then we have to destroy that enemy
+
+                if (
+                  projectile.style.gridRowStart === enemy.style.gridRowStart &&
+                  projectile.style.gridColumnStart ===
+                    enemy.style.gridColumnStart
+                ) {
+                  // remove on life of the enemy and remove projectile
+                  enemy.dataset.life = enemy.dataset["life"] - 1;
+                  projectile.parentElement.removeChild(projectile);
+
+                  // check if enemy has any life left, if zero remove enemy
+                  if (enemy.dataset["life"] == 0) {
+                    enemy.parentElement.removeChild(enemy);
+                  }
+                  //Scoreboard
+                  // document.getElementById("points").innerHTML =
+                  //   parseInt(document.getElementById("points").innerHTML) + 1;
+                }
+              }
+            }
           }
         }
-      }, 150);
+      }, 450);
       break;
   }
 });
@@ -71,6 +102,10 @@ document.addEventListener("keydown", (e) => {
 let generateEnemies = setInterval(() => {
   let enemy = document.createElement("div");
   enemy.classList.add("enemy");
+
+  //defining the life of the enemy
+  enemy.dataset.life = 2;
+
   let xPos = parseInt(
     window.getComputedStyle(enemy).getPropertyValue("grid-column-start")
   );
@@ -97,7 +132,7 @@ let moveEnemies = setInterval(() => {
       enemy.style.gridRowStart = yPos + 1;
     }
   }
-}, 500);
+}, 1500);
 
 // document.addEventListener('keydown', shootProjectile, true);
 
