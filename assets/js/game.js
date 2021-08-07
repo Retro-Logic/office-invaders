@@ -1,24 +1,3 @@
-// const player = new Player("player", 2, 2, 6, 11, 6, 25);
-// const enemy = new Enemy("enemy", 1, 1, 0, 0, 6, 3);
-// const mouse = new Projectile("mouse", 1, 3, player.xPos + 1, player.yPos, 5, 50);
-// let previousTime = 0;
-// let currentTime = 0;
-// let newShoot = false;
-
-// function gameLoop(currentTime) {
-//     window.requestAnimationFrame(gameLoop);
-//     const timeDelta = (currentTime - previousTime) / 1000;
-//     if (timeDelta < 1 / player.speed) return;
-//     previousTime = currentTime;
-//     let playerDiv = document.querySelector('.player');
-//     let mouseDiv = document.querySelector('.mouse');
-//     draw();
-//     playerDiv.remove();
-//     mouseDiv.remove();
-// }
-
-// window.requestAnimationFrame(gameLoop);
-
 const gameBoard = document.querySelector("#game-board");
 const player = document.querySelector("#player");
 let lives = 3;
@@ -44,13 +23,28 @@ document.addEventListener("keydown", (e) => {
       break;
     case "ArrowUp":
       let projectile = document.createElement("div");
-      projectile.classList.add("mouse");
+      let projectileList = [
+        {
+          class: "mouse"
+        },
+        {
+          class: "keyboard"
+        },
+        {
+          class: "computer"
+        },
+        {
+          class: "coffee"
+        }
+      ]
+      currentProjectile = projectileList[Math.floor(Math.random() * (projectileList.length))];
+      projectile.classList.add(currentProjectile.class);
       projectile.style.gridRowStart = yPos;
       projectile.style.gridColumnStart = xPos;
       gameBoard.appendChild(projectile);
 
-      let movebullet = setInterval(() => {
-        let projectiles = document.getElementsByClassName("mouse");
+      let moveProjectile = setInterval(() => {
+        let projectiles = document.getElementsByClassName(currentProjectile.class);
         if (projectiles !== undefined) {
           for (let i = 0; i < projectiles.length; i++) {
             let projectile = projectiles[i];
@@ -62,7 +56,7 @@ document.addEventListener("keydown", (e) => {
             projectile.style.gridRowStart = yPos - 1;
             if (yPos <= 1) {
               projectile.remove();
-              clearInterval(movebullet);
+              clearInterval(moveProjectile);
             }
             let enemies = document.getElementsByClassName("enemy");
             for (let j = 0; j < enemies.length; j++) {
@@ -99,7 +93,22 @@ document.addEventListener("keydown", (e) => {
 
 let generateEnemies = setInterval(() => {
   let enemy = document.createElement("div");
-  enemy.classList.add("enemy");
+  let enemyList = [
+    {
+      class: "manager",
+      defense: 5
+    },
+    {
+      class: "enemy",
+      defense: 3
+    },
+    {
+      class: "hr",
+      defense: 10
+    }
+  ]
+  currentEnemy = enemyList[Math.floor(Math.random() * (enemyList.length))];
+  enemy.classList.add(currentEnemy.class);
   //defining the life of the enemy
   enemy.dataset.life = 2;
   let xPos = parseInt(
@@ -135,54 +144,3 @@ let moveEnemies = setInterval(() => {
     }
   }
 }, 1000);
-
-// document.addEventListener('keydown', shootProjectile, true);
-
-// function draw() {
-//     // gameBoard.innerHTML = '';
-//     player.draw(gameBoard);
-//     // enemy.draw(gameBoard);
-//     // enemy.fall();
-//     // mouse.draw(gameBoard);
-//     // mouse.shoot();
-// }
-
-// function shootProjectile(event) {
-//     let yPos = player.yPos;
-//     let xPos = player.xPos;
-//     function moveProjectile() {
-//         const div = document.createElement('div');
-//         div.setAttribute('class', 'mouse');
-//         div.style.gridRowStart = yPos;
-//         div.style.gridColumnStart = xPos + 1;
-//         gameBoard.appendChild(div);
-//         if (yPos > 1) {
-//             yPos--;
-//         } else {
-//             clearInterval(moveProjectile);
-//             div.remove();
-//         }
-//     }
-//     if (event.key === ' ') {
-//         setInterval(moveProjectile, 1000 / player.speed);
-//     }
-// }
-
-// function dropEnemies() {
-//     let yPos = 0;
-//     let xPos = Math.floor(Math.random() * 12);
-//     function moveEnemies() {
-//         const div = document.createElement('div');
-//         div.setAttribute('class', 'player');
-//         div.style.gridRowStart = yPos;
-//         div.style.gridColumnStart = xPos;
-//         gameBoard.appendChild(div);
-//         if (yPos < 12) {
-//             yPos++;
-//         } else {
-//             clearInterval(moveProjectile);
-//             div.remove();
-//         }
-//     }
-//     setInterval(moveEnemies, 500);
-// }
