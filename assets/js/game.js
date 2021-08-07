@@ -121,16 +121,16 @@ let moveEnemies = setInterval(() => {
       let yPos = parseInt(
         window.getComputedStyle(enemy).getPropertyValue("grid-row-start")
       );
-      if (yPos >= 13) {
-        if (lives < 1) {
-          alert("Game Over");
-          clearInterval(moveEnemies);
-        } else {
-          lives -= 1;
-          enemy.remove();
-          alert("lives left: " + lives);
-        }
-      }
+      // if (yPos >= 13) {
+      //   if (lives < 1) {
+      //     alert("Game Over");
+      //     clearInterval(moveEnemies);
+      //   } else {
+      //     lives -= 1;
+      //     enemy.remove();
+      //     alert("lives left: " + lives);
+      //   }
+      // }
       enemy.style.gridRowStart = yPos + 1;
     }
   }
