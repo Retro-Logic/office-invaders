@@ -49,7 +49,7 @@ document.addEventListener("keydown", (e) => {
       projectile.style.gridColumnStart = xPos;
       gameBoard.appendChild(projectile);
 
-      let movebullet = setInterval(() => {
+      let moveProjectile = setInterval(() => {
         let projectiles = document.getElementsByClassName("mouse");
         if (projectiles !== undefined) {
           for (let i = 0; i < projectiles.length; i++) {
@@ -62,7 +62,7 @@ document.addEventListener("keydown", (e) => {
             projectile.style.gridRowStart = yPos - 1;
             if (yPos <= 1) {
               projectile.remove();
-              clearInterval(movebullet);
+              clearInterval(moveProjectile);
             }
             let enemies = document.getElementsByClassName("enemy");
             for (let j = 0; j < enemies.length; j++) {
@@ -96,7 +96,23 @@ document.addEventListener("keydown", (e) => {
 
 let generateEnemies = setInterval(() => {
   let enemy = document.createElement("div");
-  enemy.classList.add("enemy");
+  let enemyList = [
+    {
+      class: "manager",
+      defense: 5
+    },
+    {
+      class: "enemy",
+      defense: 3
+    },
+    {
+      class: "hr",
+      defense: 10
+    }
+  ]
+  currentEnemy = enemyList[Math.floor(Math.random() * (enemyList.length))];
+  enemy.classList.add(currentEnemy.class);
+  console.log(currentEnemy.class);
   //defining the life of the enemy
   enemy.dataset.life = 2;
   let xPos = parseInt(
