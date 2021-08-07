@@ -14,6 +14,10 @@ body {
     background-color: black;
 }
 
+#game-area {
+    border: 1px solid red;
+    background-color: antiquewhite;
+}
 #game-board {
     width: 100vmin;
     height: calc(100vmin - 20%);
@@ -30,8 +34,8 @@ body {
 
 #player {
     background: url("/assets/images/retro_developer_trim.png") no-repeat center center/contain;
-    grid-row-start: 13;
-    grid-row-end: span 1;
+    grid-row-start: 12;
+    grid-row-end: span 2;
     grid-column-start: 7;
     grid-column-end: span 1;
 }
@@ -42,15 +46,18 @@ body {
 }
 
 .manager {
-    background: url("/assets/images/retro_developer.png") no-repeat center center/contain;
+    background: url("/assets/images/retro_developer_trim.png") no-repeat center;
+    background-size: cover;
 }
 
 .hr {
-    background: url("/assets/images/retro_developer.png") no-repeat center center/contain;
+    background: url("/assets/images/retro_developer_trim.png") no-repeat center;
+    background-size: cover;
 }
 
 .ceo {
-    background: url("/assets/images/retro_developer.png") no-repeat center center/contain;
+    background: url("/assets/images/retro_developer_trim.png") no-repeat center;
+    background-size: contain;
 }
 
 .mouse {

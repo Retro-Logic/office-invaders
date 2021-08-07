@@ -4,20 +4,19 @@ let lives = 3;
 let points = 0;
 let level = 1;
 let projectileList = [
-  { class: "mouse" }, 
-  { class: "keyboard" }, 
-  { class: "computer" }, 
-  { class: "coffee" }
-]
+  { class: "mouse" },
+  { class: "keyboard" },
+  { class: "computer" },
+  { class: "coffee" },
+];
 let enemyList = [
   { class: "manager", life: 2 },
   { class: "hr", life: 3 },
-  { class: "ceo", life: 5 }
-]
+  { class: "ceo", life: 5 },
+];
 
-
-let generateEnemies = setInterval(() => {
-  let enemy = document.createElement("div");
+const generateEnemies = setInterval(() => {
+  const enemy = document.createElement("div");
   currentEnemy = enemyList[Math.floor(Math.random() * enemyList.length)];
   enemy.classList.add(currentEnemy.class);
   enemy.classList.add("enemy");
@@ -29,14 +28,13 @@ let generateEnemies = setInterval(() => {
   let yPos = parseInt(
     window.getComputedStyle(enemy).getPropertyValue("grid-row-start")
   );
-  enemy.style.gridColumnStart = Math.floor(Math.max(1,Math.random() * 13));
+  enemy.style.gridColumnStart = Math.floor(Math.max(1, Math.random() * 13));
   enemy.style.gridRowStart = 1;
   gameBoard.appendChild(enemy);
-}, 2000/level);
+}, 2000 / level);
 
-
-let moveEnemies = setInterval(() => {
-  let enemies = document.getElementsByClassName("enemy");
+const moveEnemies = setInterval(() => {
+  const enemies = document.getElementsByClassName("enemy");
   if (enemies !== undefined) {
     for (let i = 0; i < enemies.length; i++) {
       let enemy = enemies[i];
@@ -58,21 +56,20 @@ let moveEnemies = setInterval(() => {
   }
 }, 1000);
 
-
-let moveProjectiles = setInterval(() => {
-  let projectiles = document.getElementsByClassName("projectile");
+const moveProjectiles = setInterval(() => {
+  const projectiles = document.getElementsByClassName("projectile");
   if (projectiles !== undefined) {
     for (let i = 0; i < projectiles.length; i++) {
-      let projectile = projectiles[i];
-      let yPos = parseInt(
+      const projectile = projectiles[i];
+      const yPos = parseInt(
         window.getComputedStyle(projectile).getPropertyValue("grid-row-start")
       );
-      console.log(projectile.style.gridColumnStart)
+      console.log(projectile.style.gridColumnStart);
       projectile.style.gridRowStart = yPos - 1;
       if (yPos <= 1) {
         projectile.remove();
       }
-      let enemies = document.getElementsByClassName("enemy");
+      const enemies = document.getElementsByClassName("enemy");
       for (let j = 0; j < enemies.length; j++) {
         let enemy = enemies[j];
         if (enemy != undefined) {
@@ -89,6 +86,7 @@ let moveProjectiles = setInterval(() => {
             if (enemy.dataset["life"] == 0) {
               enemy.parentElement.removeChild(enemy);
             }
+
             points += 1;
             //Scoreboard
             // document.getElementById("points").innerHTML =
@@ -99,7 +97,6 @@ let moveProjectiles = setInterval(() => {
     }
   }
 }, 50);
-
 
 document.addEventListener("keydown", (e) => {
   let yPos = parseInt(
@@ -125,13 +122,13 @@ document.addEventListener("keydown", (e) => {
   }
 });
 
-
 generateProjectile = (xPos, yPos) => {
   let projectile = document.createElement("div");
-  currentProjectile = projectileList[Math.floor(Math.random() * projectileList.length)];
+  currentProjectile =
+    projectileList[Math.floor(Math.random() * projectileList.length)];
   projectile.classList.add(currentProjectile.class);
   projectile.classList.add("projectile");
   projectile.style.gridRowStart = yPos;
   projectile.style.gridColumnStart = xPos;
   gameBoard.appendChild(projectile);
-}
+};
