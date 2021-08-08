@@ -4,6 +4,10 @@ const scorePoints = document.querySelector("#point-score");
 const playerLives = document.querySelector("#player-lives");
 const gameLevel = document.querySelector("#player-level");
 
+const kill = new Audio("./assets/sounds/kill_enemy.wav");
+const throwing = new Audio("./assets/sounds/throw_projectile.wav");
+const gameSound = new Audio("./assets/sounds/soundtrack.mp3");
+
 let lives = 3;
 let points = 0;
 let level = 1;
@@ -84,6 +88,7 @@ function moveEnemies() {
 }
 
 function startGame() {
+  gameSound.play();
   generateEnemies();
   moveEnemies();
 }
@@ -130,11 +135,12 @@ const handleCollision = (enemy, projectile) => {
   enemy.dataset.life = enemy.dataset["life"] - 1;
 
   if (parseInt(enemy.dataset["life"]) === 0) {
+    kill.play();
     points += +enemy.dataset["points"];
     scorePoints.innerHTML = points;
     enemy.remove();
 
-    // Increase game speed when points reach a treashold
+    // Increase game speed when points reach a treshold
     if (points > level * 50) {
       level++;
       gameLevel.innerHTML = level;
@@ -222,6 +228,7 @@ document.addEventListener("keydown", (e) => {
 });
 
 generateProjectile = (xPos, yPos) => {
+  throwing.play();
   const projectile = document.createElement("div");
   currentProjectile = projectileList[Math.floor(Math.random() * projectileList.length)];
   projectile.classList.add(currentProjectile.class, "projectile");
