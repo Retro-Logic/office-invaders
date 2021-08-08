@@ -44,7 +44,7 @@ Font choices
 -	Primary font used for navigation on the page is [VT323](https://fonts.google.com/specimen/VT323). It is used in all areas as it is easy to read and complements retro game very well. Same font was used in all other sections to keep the same style.
 
 Icons
--	Social Media Icons ([Youtube](https://www.youtube.com/), [Facebook](https://www.facebook.com/), [GitHub](https://www.github.com/) and [LinkedIn](https://www.linkedin.com/feed/)) are added on the bottom right corner on the game boarder page where user will be able to find further Information and history of the game. Social Media Accounts are not created but show that the user will be able to click on the icons and find further details about the game there in the future.
+-	Social Media Icons ([Youtube](https://www.youtube.com/), [Facebook](https://www.facebook.com/), [GitHub](https://www.github.com/) and [LinkedIn](https://www.linkedin.com/feed/)) are added on the bottom center of the game boarder page where user will be able to find further Information and history of the game. Social Media Accounts are not created but show that the user will be able to click on the icons and find further details about the game there in the future.
 
 ## Colour scheme and styling
 
