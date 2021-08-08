@@ -13,39 +13,63 @@ body {
     width: 100%;
     display: grid;
     place-content: center center;
-    background-color: black;
+    
 }
 
 #game-area {
-    border: solid black 1px;
+    background-color: black;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    display: grid;
+    justify-content: center;
+    /* top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); */
+}
+
+#game-board {
     background-color: slategray;
-    width: 40rem;
+    width: 100vmin;
+    height: calc(100vmin - 20%);
+    display: grid;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-}
-#game-board {
-    /* border: 1px solid red; */
-    height: 40rem;
-    display: grid;
-    /* position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);*/
     grid-template-columns: repeat(13, 1fr);
     grid-template-rows: repeat(14, 1fr);
 }
+
 #score-board {
+    width: 100vmin;
+    height: 10%;
     display: flex;
     justify-content: space-around;
-    padding: 0.6rem;
+    justify-self: center;
     font-family: 'VT323', monospace;
+    color: red;
+    letter-spacing: 1px;
+    margin-top: 2.5%;
+    font-size: 150%;
 }
 
+.score-title {
+    padding-top: 1%;
+}
+
+.start-message {
+    font-family: 'VT323', monospace;
+    grid-row-start: 7;
+    grid-row-end: span 3;
+    grid-column-start: 5;
+    grid-column-end: span 7;
+    letter-spacing: 2px;
+    font-size: 200%;
+}
 
 #player {
-    background: url("/assets/images/retro_developer.png") no-repeat center center/contain;
+    background: url("../images/retro_developer.png") no-repeat center center/contain;
     grid-row-start: 13;
     grid-row-end: span 2;
     grid-column-start: 7;
@@ -59,19 +83,19 @@ body {
 }
 
 .manager {
-    background: url("/assets/images/angry-boss.png") no-repeat center center/cover;
+    background: url("../images/angry-boss.png") no-repeat center center/cover;
 }
 
 .hr {
-    background: url("/assets/images/angry-boss.png") no-repeat center center/cover;
+    background: url("../images/angry-boss.png") no-repeat center center/cover;
 }
 
 .ceo {
-    background: url("/assets/images/angry-boss.png") no-repeat center center/cover;
+    background: url("../images/angry-boss.png") no-repeat center center/cover;
 }
 
 .mouse {
-    background: url("/assets/images/mouse.png") no-repeat center top;
+    background: url("../images/mouse.png") no-repeat center top;
     /* background-image: url("/assets/images/mouse.png");
     background-repeat: no-repeat; */
     background-size: contain;
@@ -80,17 +104,20 @@ body {
 }
 
 .keyboard {
-    background: url("/assets/images/keyboard.png") no-repeat center top;
+    background: url("../images/keyboard.png") no-repeat center top;
     background-size: contain;
     /* margin-left: 37.5%; */
 }
 
 .computer {
-    background: url("/assets/images/computer.png") no-repeat center top;
-    background-size: contain;
+    background: url("../images/computer.png") no-repeat center top;
+    background-size: cover;
+    grid-row-end: span 2;
+    grid-column-end: span 2;
 }
+
 .coffee {
-    background: url("/assets/images/coffee.png") no-repeat center top;
+    background: url("../images/coffee.png") no-repeat center top;
     background-size: contain;
     /* margin-left: 37.5%; */
 }
