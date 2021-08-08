@@ -33,7 +33,6 @@ body {
     src: url(../fonts/BNMachine.ttf);
 }
 
-
 header {
     text-align: center;
     text-transform: uppercase;
@@ -64,7 +63,6 @@ footer {
     flex-shrink: 0;
     display: grid;
     place-content: center center;
-    height: 10%;
     padding: 1rem;
 }
 
