@@ -48,8 +48,8 @@ Icons
 
 ## Colour scheme and styling
 
--	Colors that are used match retro game style from the 90's. Colors that are used are #85EB40 / #F5DF7E / #B6967C / #CCDCF5 / #6C40EB
--  Styling 
+-	Implemented palette consits of 5 colors;  #85EB40 / #F5DF7E / #B6967C / #CCDCF5 / #6C40EB. Colors that are used match retro game style from the 90's. 
+-  Styling - Squared box with the bold line on the bottom were applied to make navigation separated. Buttons are clickable and will lead the user to each section on the page.
 
   
 ## Wireframes
