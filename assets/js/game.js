@@ -96,7 +96,20 @@ const moveProjectiles = setInterval(() => {
             projectile.style.gridColumnStart === enemy.style.gridColumnStart
           ) {
             // remove on life of the enemy and remove projectile
+            console.log(enemy.style);
+
             enemy.dataset.life = enemy.dataset["life"] - 1;
+
+            // Reduce opacity of enemy
+            switch (enemy.className.split(" ")[0]) {
+              case "manager":
+                enemy.style.opacity -= 0.4;
+              case "hr":
+                enemy.style.opacity -= 0.3;
+              case "ceo":
+                enemy.style.opacity -= 0.2;
+            }
+
             projectile.parentElement.removeChild(projectile);
             // check if enemy has any life left, if zero remove enemy
             if (enemy.dataset["life"] == 0) {
@@ -151,9 +164,8 @@ document.addEventListener("keydown", (e) => {
 generateProjectile = (xPos, yPos) => {
   let projectile = document.createElement("div");
   currentProjectile =
-    projectileList[Math.floor(Math.random() * projectileList.length)];
-  projectile.classList.add(currentProjectile.class);
-  projectile.classList.add("projectile");
+  projectileList[Math.floor(Math.random() * projectileList.length)];
+  projectile.classList.add(currentProjectile.class, 'projectile');
   projectile.style.gridRowStart = yPos;
   projectile.style.gridColumnStart = xPos;
   gameBoard.appendChild(projectile);
