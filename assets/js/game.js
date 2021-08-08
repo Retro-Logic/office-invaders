@@ -124,6 +124,7 @@ const gameOver = () => {
   alert("Game Over 👎");
   playing = false;
   points = 0;
+  level = 1;
   lives = 3;
   saveToLocalStorage();
   topScores();
