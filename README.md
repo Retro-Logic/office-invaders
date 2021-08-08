@@ -59,7 +59,7 @@ Under the photo PLAY button / button can also be inside of the picture.
 - Last wireframe includes credits to all the people who were part of this project.
 
 # Technologies used
-
+- [HTML5](https://en.wikipedia.org/wiki/HTML5)
  
 
   
