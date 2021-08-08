@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Audiowide&family=Black+Ops+One&family=Changa:wght@300&family=Exo+2:wght@300&family=Play&family=Press+Start+2P&family=Special+Elite&family=VT323&display=swap');
+@import url('https://fonts.googleapis.com/css2?&family=Play&family=Press+Start+2P&family=VT323&display=swap');
 
 /* {
     color: #85EB40;
@@ -56,7 +56,6 @@ main {
 
 article {
     padding: 2rem;
-    position: relative;
 }
 
 footer {
@@ -103,6 +102,7 @@ h3 {
 a {
     text-decoration: none;
 }
+
 footer a {
     color: #CCDCF5;
 }
@@ -115,8 +115,9 @@ p, article > ul {
 
 button {
     display: block;
-    padding: 2rem;
     width: 100%;
+    height: 5rem;
+    box-sizing: border-box;
     margin-bottom: 1rem;
     border-bottom: 0.25rem solid black;
     background-color: #B6967C;
@@ -124,14 +125,23 @@ button {
 
 button:hover {
     cursor: pointer;
-    color: red;
+    font-weight: bolder;
+    border-bottom: 0.4rem solid black;
 }
 
 button#play-btn {
     background-color: #85EB40;
 }
+
 button#return-btn {
     margin-top: 2rem;
+}
+
+a#home-btn {
+    color: #CCDCF5;
+}
+a#home-btn:hover {
+    color: #85EB40;
 }
 
 #content {
@@ -176,7 +186,8 @@ button#return-btn {
     grid-auto-flow: column;
     align-content: end;
     justify-content: space-around;
-    font-family: 'VT323', monospace;
+    font-family: 'Press Start 2P', cursive;
+    /* font-family: 'VT323', monospace; */
     color: black;
     letter-spacing: 1px;
 }
@@ -219,7 +230,7 @@ footer > #socials {
     height: auto;
 }
 
-footer > #socials a:hover {
+#socials a:hover {
     color: #CCDCF5;
 }
 
