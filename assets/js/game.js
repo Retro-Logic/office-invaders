@@ -110,7 +110,6 @@ const updateLife = () => {
   } else {
     lives -= 1;
     document.getElementById('player-lives-' + lives).style.opacity = '0';
-    console.log(document.getElementById('player-lives-' + lives));
   }
 };
 
