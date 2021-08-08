@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
 *, ::before, ::after {
     box-sizing: border-box;
     margin: 0;
@@ -15,22 +17,32 @@ body {
 }
 
 #game-area {
-    border: 1px solid red;
-    background-color: antiquewhite;
-}
-#game-board {
-    width: 100vmin;
-    height: calc(100vmin - 20%);
     border: solid black 1px;
     background-color: slategray;
-    display: grid;
+    width: 40rem;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+#game-board {
+    /* border: 1px solid red; */
+    height: 40rem;
+    display: grid;
+    /* position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);*/
     grid-template-columns: repeat(13, 1fr);
     grid-template-rows: repeat(14, 1fr);
 }
+#score-board {
+    display: flex;
+    justify-content: space-around;
+    padding: 0.6rem;
+    font-family: 'VT323', monospace;
+}
+
 
 #player {
     background: url("/assets/images/retro_developer_trim.png") no-repeat center center/contain;

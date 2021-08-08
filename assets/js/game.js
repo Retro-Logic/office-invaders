@@ -1,5 +1,7 @@
 const gameBoard = document.querySelector("#game-board");
 const player = document.querySelector("#player");
+const scorePoints = document.querySelector("#point-score");
+const playerLives = document.querySelector("#player-lives");
 let lives = 3;
 let points = 0;
 let level = 1;
@@ -14,6 +16,13 @@ let enemyList = [
   { class: "hr", life: 3 },
   { class: "ceo", life: 5 },
 ];
+const calculateLives = () => {
+  const html = "♥ ";
+  return html.repeat(lives);
+};
+
+scorePoints.innerHTML = points;
+playerLives.innerHTML = calculateLives();
 
 const generateEnemies = setInterval(() => {
   const enemy = document.createElement("div");
@@ -35,6 +44,7 @@ const generateEnemies = setInterval(() => {
 
 const moveEnemies = setInterval(() => {
   const enemies = document.getElementsByClassName("enemy");
+
   if (enemies !== undefined) {
     for (let i = 0; i < enemies.length; i++) {
       let enemy = enemies[i];
@@ -42,13 +52,17 @@ const moveEnemies = setInterval(() => {
         window.getComputedStyle(enemy).getPropertyValue("grid-row-start")
       );
       if (yPos > 12) {
-        // if (lives < 1) {
-        //   // alert("Game Over");
-        //   // clearInterval(moveEnemies);
-        // } else {
-        //   lives -= 1;
+        if (lives < 1) {
+          // alert("Game Over");
+          console.log("Game Over 👎");
+          // clearInterval(moveEnemies);
+        } else {
+          lives -= 1;
+          playerLives.innerHTML = calculateLives();
+        }
         enemy.remove();
-        // alert("lives left: " + lives);
+        console.log(`lives left: ${lives}`);
+        // alert(`lives left: ${lives}`);
         // }
       }
       enemy.style.gridRowStart = yPos + 1;
@@ -89,8 +103,7 @@ const moveProjectiles = setInterval(() => {
 
             points += 1;
             //Scoreboard
-            // document.getElementById("points").innerHTML =
-            //   parseInt(document.getElementById("points").innerHTML) + 1;
+            scorePoints.innerHTML = points;
           }
         }
       }
@@ -118,11 +131,11 @@ document.addEventListener("keydown", (e) => {
       break;
     case "ArrowUp":
       generateProjectile(xPos, yPos);
-      player.style.background = 
-      'url("/assets/images/retro_developer_shooting.png") no-repeat center center/contain';
+      player.style.background =
+        'url("/assets/images/retro_developer_shooting.png") no-repeat center center/contain';
       setTimeout(() => {
-        player.style.background = 
-        'url("/assets/images/retro_developer_trim.png") no-repeat center center/contain';
+        player.style.background =
+          'url("/assets/images/retro_developer_trim.png") no-repeat center center/contain';
       }, 250);
       break;
   }
