@@ -44,12 +44,12 @@ Font choices
 -	Primary font used for navigation on the page is [VT323](https://fonts.google.com/specimen/VT323). It is used in all areas as it is easy to read and complements retro game very well. Same font was used in all other sections to keep the same style.
 
 Icons
--	Social Media Icons ([Youtube](https://www.youtube.com/), [Facebook](https://www.facebook.com/), [GitHub](https://www.github.com/) and [LinkedIn](https://www.linkedin.com/feed/)) are added on the bottom right corner on the game boarder page where user will be able to find further Information and history of the game. Social Media Accounts are not created but show that the user will be able to click on the icons and find further details about the game there in the future.
+-	Social Media Icons ([Youtube](https://www.youtube.com/), [Facebook](https://www.facebook.com/), [GitHub](https://www.github.com/) and [LinkedIn](https://www.linkedin.com/feed/)) are added on the bottom center of the game boarder page where user will be able to find further Information and history of the game. Social Media Accounts are not created but show that the user will be able to click on the icons and find further details about the game there in the future.
 
 ## Colour scheme and styling
 
--	Colors that are used match retro game style from the 90's. Colors that are used are #85EB40 / #F5DF7E / #B6967C / #CCDCF5 / #6C40EB
--  Styling 
+-	Implemented palette consits of 5 colors;  #85EB40 / #F5DF7E / #B6967C / #CCDCF5 / #6C40EB. Colors that are used match retro game style from the 90's. 
+-  Styling - Squared box with the bold line on the bottom were applied to make navigation separated. Buttons are clickable and will lead the user to each section on the page.
 
   
 ## Wireframes
@@ -61,14 +61,13 @@ Icons
  All three include:
 - Navigation bar which consists of the Main Menu : Storyline / How to Play / Credits / Sound on/off.
 
-- CREDITS - Will consist of the Information about the game, how it was developed and inspiration for the theme.
+- CREDITS - Consist of the Information about the game, how it was developed and inspiration for the theme.
 - SOUND ON/OFF - There will be an audio implemented and will be muted when the page loads. User will be able to turn on or turn off the sound.
-In the middle of the page we have name of the game OFFICE INVADERS and picture of the main character versus the angry HR/manager.
+In the middle of the page we have name of the game OFFICE INVADERS.
 - PLAY button - Will be added, user will click on it and the game will start.
-- FIND US ON - Fictive part on the bottom right social platforms Icons for the people who are still in early stage of the course and can work on adding icons
+- FIND US ON - Fictive part on the bottom right social platforms Icons.
 - Fourth wireframe - STORYLINE - Game story and all the Information user needs to understand the theme of the game.
-- Fifth wireframe consists of instructions on how to play the game, what arrow keys to use to move around and which key to press to shoot projectiles into into the enemies. 
-  HOW TO PLAY will bring us to the page with all the Information on how to play the game. 
+- Fifth wireframe consists of instructions on how to play the game, what arrow keys to use to move around and which key to press to shoot projectiles into the enemies. 
 - Sixth wireframe includes credits to all the people who were part of this project.
 
 # Languages used
@@ -80,12 +79,14 @@ In the middle of the page we have name of the game OFFICE INVADERS and picture o
   
 # Testing
 
-During the development there were some issues where the character would not move the way we would like so the team tested this and understood main issues which needed to be corrected for the game to run smoothly. Tested on different Web browsers.
+During the development there were some issues where the character would not move the way we would like so the team tested this and understood main issues which needed to be corrected for the game to run smoothly. Game is tested on different Web browsers.
+
+***run our html, css and js files from validators *** and add to README.MD
 
 ## User stories
 
 - As a user I would like to see multiplatyer option as well.
-- End user goal: Playing the game with friends and damily.
+- End user goal: Playing the game with friends and family.
 - Business goal: Implementing new features and multiplayer options to the game.
 
 ## Features
