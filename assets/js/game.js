@@ -89,7 +89,7 @@ function moveEnemies() {
         }
       }
       moveEnemies();
-    }, 750);
+    },750);
   }
 }
 
@@ -101,7 +101,8 @@ function startGame() {
 
 const gameOver = () => {
   alert("Game Over 👎");
-  location.reload();
+  playing = false;
+  topScores();
 };
 
 const updateLife = () => {
@@ -234,11 +235,11 @@ document.addEventListener("keydown", (e) => {
   }
   if (e.key === " ") {
     playing = !playing;
-    if(playing){
+    if (playing) {
       gameSound.play();
       generateEnemies();
       moveEnemies();
-    }else{
+    } else {
       gameSound.pause();
     }
   }
@@ -253,3 +254,35 @@ generateProjectile = (xPos, yPos) => {
   projectile.style.gridColumnStart = xPos;
   gameBoard.appendChild(projectile);
 };
+
+
+const topScores = async () => {
+  const table = await fetch(`https://office-invaders-default-rtdb.europe-west1.firebasedatabase.app/highscores.json`);
+  const data = await table.json();
+
+  const scores = Object.values(data)
+  const topScores = scores.sort((a, b) => { return b.points - a.points })
+  console.log(topScores)
+  console.log(`Player points: ${points}. Press enter to reload`)
+
+  const newRecord = {
+    name: "New Player",
+    points: points,
+  };
+
+  const response = await fetch('https://office-invaders-default-rtdb.europe-west1.firebasedatabase.app/highscores.json', {
+    method: 'POST',
+    body: JSON.stringify(newRecord),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  }
+  )
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key == "Enter") {
+      location.reload();
+    }
+  })
+
+}
