@@ -8,7 +8,7 @@ Office Invaders game is a project created by Retro Logic team for the purpose of
     * Design Choices
      * Colour Scheme and Styling
      * Wireframes
-- Languages used
+- [Languages used]
 - Testing
      * User stories
      * Features
