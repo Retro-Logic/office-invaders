@@ -30,12 +30,15 @@ main {
     grid-column-gap: 1.5rem;
     background-color: azure;
 }
+
 article {
     padding: 2rem;
 }
+
 footer {
     text-align: right;
 }
+
 h1 {
     /* font-family: 'Audiowide', cursive; */
     /* font-family: 'Black Ops One', cursive; */
@@ -45,6 +48,7 @@ h1 {
     letter-spacing: .1rem;
 
 }
+
 h2, button, h3 {
     /* font-family: 'VT323', monospace; */
     font-family: 'Press Start 2P', cursive;
@@ -53,8 +57,8 @@ h2, button, h3 {
 
 a {
     text-decoration: none;
-
 }
+
 p {
     /* font-family: 'Changa', sans-serif; */
     /* font-family: 'Play', sans-serif; */
@@ -62,6 +66,7 @@ p {
     font-family: 'Exo 2', sans-serif;
     font-size: 1.2rem;
 }
+
 button {
     display: block;
     padding: 2rem;
@@ -70,11 +75,14 @@ button {
     border-bottom: 0.25rem solid black;
 }
 
+button:hover {
+    cursor: pointer;
+}
+
 #content {
     grid-area: 1/2/3/3;
 
     overflow: scroll;
-
 }
 
 #game-area {
