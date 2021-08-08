@@ -45,6 +45,7 @@ main {
     grid-template-columns: 30% 70%;
     grid-template-rows: 2(1fr);
     grid-column-gap: 1.5rem;
+    align-items: center;
     background-color: #CCDCF5;
 }
 
@@ -107,7 +108,6 @@ p {
 button {
     display: block;
     padding: 2rem;
-    margin: 1rem ;
     width: 100%;
     border-bottom: 0.25rem solid black;
     background-color: #B6967C;
