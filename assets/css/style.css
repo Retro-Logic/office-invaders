@@ -23,9 +23,6 @@ body {
     position: absolute;
     display: grid;
     justify-content: center;
-    /* top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%); */
 }
 
 #game-board {
@@ -96,17 +93,12 @@ body {
 
 .mouse {
     background: url("../images/mouse.png") no-repeat center top;
-    /* background-image: url("/assets/images/mouse.png");
-    background-repeat: no-repeat; */
     background-size: contain;
-    /* width: 25%;
-    height: 75%; */
 }
 
 .keyboard {
     background: url("../images/keyboard.png") no-repeat center top;
     background-size: contain;
-    /* margin-left: 37.5%; */
 }
 
 .computer {
@@ -115,8 +107,8 @@ body {
     grid-row-end: span 2;
     grid-column-end: span 2;
 }
+
 .coffee {
     background: url("../images/coffee.png") no-repeat center top;
     background-size: contain;
-    /* margin-left: 37.5%; */
 }

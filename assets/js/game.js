@@ -109,7 +109,6 @@ const moveProjectiles = setInterval(() => {
             // check if enemy has any life left, if zero remove enemy
             if (parseInt(enemy.dataset["life"]) === 0) {
               enemy.remove();
-              console.log("enemy removed")
               // enemy.parentElement.removeChild(enemy);
             }
             points += 1;
@@ -150,10 +149,10 @@ document.addEventListener("keydown", (e) => {
     case "ArrowUp":
       generateProjectile(xPos, yPos);
       player.style.background =
-        'url("/assets/images/retro_developer_shooting.png") no-repeat center center/contain';
+        'url("../images/retro_developer_shooting.png") no-repeat center center/contain';
       setTimeout(() => {
         player.style.background =
-          'url("/assets/images/retro_developer.png") no-repeat center center/contain';
+          'url("../images/retro_developer.png") no-repeat center center/contain';
       }, 250);
       break;
   }
