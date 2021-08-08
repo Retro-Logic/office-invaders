@@ -111,7 +111,16 @@ During the development there were some issues where the character would not move
 
 # Credits
 
-- Content and Media - Storytelling sculpter David Bowers. Image source [Shutterstock](https://www.shutterstock.com/home)
+- Content and Media - Storytelling sculpter David Bowers. 
+- Image source:
+    * [Shutterstock](https://www.shutterstock.com/home) and [Pngtree](https://pngtree.com/) for Characters
+     * [Pixilart](https://www.pixilart.com/) To edit and create pixeled images.
+- [Game Souds](https://gamesounds.xyz/)
+- Videos as inspiration for the game
+ * [How to code the snake game in JavaScript](https://www.youtube.com/watch?v=QTcIXok9wNY&amp;t=873s)
+ * [Space Invaders in JavaScript](https://www.youtube.com/watch?v=3Nz4Yp7Y_uA)
+ * [Learn JavaScript by building 7 games](https://www.youtube.com/watch?v=lhNdUVh3qCc&t=2593s)
+ * [HTML5 Canvas and and JavaScript Game Tutorial](https://www.youtube.com/watch?v=eI9idPTT0c4)
 - Retro-Logic Team
 
 
