@@ -3,18 +3,18 @@
 Office Invaders game is a project created by Retro Logic team for the purpose of hackaton Retro Game challenge by Code Institute. It is reincarnation of 'Space Invaders' game but gives contemporary and relevant meaning to the story. The game is designed to attract mass audience but mainly people who understand 'office life' and cannot wait for that shorthand to show 5 o’clock. This is a game in which employee can finally end the office tyranny and start living again without commuting and loosing their precious time. You can view live game on this [link](https://retro-logic.github.io/office-invaders/game.html).
 
 # Table of Contents
-- User Experience
-    * Goals
-    * Design Choices
-     * Colour Scheme and Styling
-     * Wireframes
-- Languages used
-- Testing
-     * User stories
-     * Features
-     * Code
-- Deployment
-- Credits
+- [User Experience](#user-experience)
+    * [Goals](#goals)
+    * [Design Choices](#design-choices)
+     * [Colour Scheme and Styling](#colour-scheme-and-styling)
+     * [Wireframes](#wireframes)
+- [Languages used](#languages-used)
+- [Testing](#testing)
+     * [User stories](#user-stories)
+     * [Features](#features)
+     * [Code](#code)
+- [Deployment](#deployments)
+- [Credits](#xredits)
 
 
 # User Experience 
@@ -93,21 +93,24 @@ During the development there were some issues where the character would not move
 
 ## Features
 
-- Home Page 
-- Storyline 
-- Credits
-- Play!
+- Home Page is easy to read and includes name of the game colored yellow to stand out and a pitch just below the title. We can see the main character and one of the 'bad guys' you need to find against. Navigation bar is on the left handside and has easy to read font. Social media Icons can be seen in the bottom left corner. Home Page is simple and easy to navigate. There are no distraction and no scrolling.
+- Storyline, How to Play and Credits - all three have same style and are self explanatory. Each wil open in its own container and have the same font style.
+- Play! - when user clicks on it voard game will open.
 
 
-  ## Code
+ ## Code
+ Code used was inspired by couple of tutorial:
+ - [How to code the snake game in JavaScript](https://www.youtube.com/watch?v=QTcIXok9wNY&amp;t=873s)
+ - [Space Invaders in JavaScript](https://www.youtube.com/watch?v=3Nz4Yp7Y_uA)
+ - [Learn JavaScript by building 7 games](https://www.youtube.com/watch?v=lhNdUVh3qCc&t=2593s)
+ - [HTML5 Canvas and and JavaScript Game Tutorial](https://www.youtube.com/watch?v=eI9idPTT0c4)
 
 # Deployment
 
 # Credits
 
-- Content – text, images, data, YouTube, Shutterstock photos.
-- Media - animations, images
-  
+- Content and Media - Storytelling sculpter David Bowers. Image source [Shutterstock](https://www.shutterstock.com/home)
+- Retro-Logic Team
 
 
   
