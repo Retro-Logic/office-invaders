@@ -48,6 +48,7 @@ main {
     flex: 1 auto;
     padding: 3rem;
     display: grid;
+    align-content: center;
     grid-template-columns: 30% 70%;
     grid-template-rows: 2(1fr);
     grid-column-gap: 1.5rem;
