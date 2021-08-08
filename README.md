@@ -8,7 +8,7 @@ Office Invaders game is a project created by Retro Logic team for the purpose of
     * Design Choices
      * Colour Scheme and Styling
      * Wireframes
-- [Languages used]
+- Languages used
 - Testing
      * User stories
      * Features
@@ -70,7 +70,7 @@ Under the photo PLAY button / button can also be inside of the picture.
 - Fifth wireframe consists of instructions on how to play the game, what arrow keys tot use to move around and which key to press to shoot projectiles into enemies. 
 - Last wireframe includes credits to all the people who were part of this project.
 
-# Languages used (#languages-used)
+# Languages used
 - [HTML5](https://en.wikipedia.org/wiki/HTML5)
 - [CSS3](https://en.wikipedia.org/wiki/CSS)
 - [JavaScript](https://en.wikipedia.org/wiki/JavaScript) 
