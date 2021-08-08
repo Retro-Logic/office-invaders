@@ -93,6 +93,8 @@ body {
 
 .mouse {
     background: url("../images/mouse.png") no-repeat center top;
+    /* background-image: url("/assets/images/mouse.png");
+    background-repeat: no-repeat; */
     background-size: contain;
 }
 

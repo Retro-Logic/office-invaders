@@ -2,25 +2,20 @@ const gameBoard = document.querySelector("#game-board");
 const player = document.querySelector("#player");
 const scorePoints = document.querySelector("#point-score");
 const playerLives = document.querySelector("#player-lives");
-
 let lives = 3;
 let points = 0;
 let level = 1;
-let firstTime = true;
-
 let projectileList = [
   { class: "mouse" },
   { class: "keyboard" },
   { class: "computer" },
   { class: "coffee" },
 ];
-
 let enemyList = [
   { class: "manager", life: 2 },
   { class: "hr", life: 3 },
   { class: "ceo", life: 5 },
 ];
-
 const calculateLives = () => {
   const html = "♥ ";
   return html.repeat(lives);
@@ -29,91 +24,133 @@ const calculateLives = () => {
 scorePoints.innerHTML = points;
 playerLives.innerHTML = calculateLives();
 
-function startGame() {
-  setInterval(() => {
-    const enemy = document.createElement("div");
-    currentEnemy = enemyList[Math.floor(Math.random() * enemyList.length)];
-    enemy.classList.add(currentEnemy.class);
-    enemy.classList.add("enemy");
-    //defining the life of the enemy
-    enemy.dataset.life = currentEnemy.life;
-    let xPos = parseInt(
-      window.getComputedStyle(enemy).getPropertyValue("grid-column-start")
-    );
-    let yPos = parseInt(
-      window.getComputedStyle(enemy).getPropertyValue("grid-row-start")
-    );
-    enemy.style.gridColumnStart = Math.floor(Math.max(1, Math.random() * 13));
-    enemy.style.gridRowStart = 1;
-    gameBoard.appendChild(enemy);
-  }, 2000 / level);
-  
-  setInterval(() => {
-    const enemies = document.getElementsByClassName("enemy");
-    if (enemies !== undefined) {
-      for (let i = 0; i < enemies.length; i++) {
-        let enemy = enemies[i];
-        let yPos = parseInt(
-          window.getComputedStyle(enemy).getPropertyValue("grid-row-start")
-        );
-        if (yPos > 12) {
-          if (lives < 1) {
-            alert("Game Over 👎");
-            location.reload();
-          } else {
-            lives -= 1;
-            playerLives.innerHTML = calculateLives();
-          }
-          enemy.remove();
-        }
-        enemy.style.gridRowStart = yPos + 1;
-      }
-    }
-  }, 750);
-}
+const generateEnemies = setInterval(() => {
+  const enemyType = enemyList[Math.floor(Math.random() * enemyList.length)];
+  const enemy = document.createElement("div");
 
-const moveProjectiles = setInterval(() => {
+  // set enemy component attributes
+  enemy.classList.add(enemyType.class, "enemy");
+  enemy.style.opacity = 1;
+  enemy.dataset.life = enemyType.life;
+
+  enemy.style.gridColumnStart = Math.floor(Math.max(1, Math.random() * 13));
+  enemy.style.gridRowStart = 1;
+
+  // add to board
+  gameBoard.appendChild(enemy);
+}, 2000 / level);
+
+const gameOver = () => {
+  console.log("Game Over 👎");
+  // clearInterval(moveEnemies);
+};
+
+const updateLife = () => {
+  if (lives < 1) {
+    gameOver();
+  } else {
+    lives -= 1;
+    playerLives.innerHTML = calculateLives();
+    console.log(`lives left: ${lives}`);
+  }
+};
+
+/**
+ * Loops every 3/4 second
+ * Gets all enemy components
+ * Gets y position and moves down one
+ * Remove component if outside boundaries
+ */
+const moveEnemies = setInterval(() => {
+  const enemies = document.getElementsByClassName("enemy");
+
+  if (enemies !== undefined) {
+    for (let i = 0; i < enemies.length; i++) {
+      const enemy = enemies[i];
+      const yPos = parseInt(
+        window.getComputedStyle(enemy).getPropertyValue("grid-row-start")
+      );
+
+      // check if reached bottom
+      if (yPos > 12) {
+        updateLife();
+        enemy.remove();
+      }
+      enemy.style.gridRowStart = yPos + 1;
+    }
+  }
+}, 750);
+
+/**
+ * @param component
+ * get components position on y axis
+ * update Y positon moving up 1
+ * Remove component if outside boundaries
+ */
+const updatePosY = (component) => {
+  const yPos = parseInt(
+    window.getComputedStyle(component).getPropertyValue("grid-row-start")
+  );
+  component.style.gridRowStart = yPos - 1;
+  if (yPos <= 1) {
+    component.remove();
+  }
+};
+
+/**
+ * Removes life from enemy component
+ * Remove enemy if no more life left
+ * Else, decrement opacity of enemy type
+ * Remove projectile
+ * Update score
+ */
+const handleCollision = (enemy, projectile) => {
+  enemy.dataset.life = enemy.dataset["life"] - 1;
+
+  if (parseInt(enemy.dataset["life"]) === 0) {
+    enemy.remove();
+  }
+
+  switch (enemy.className.split(" ")[0]) {
+    case "manager":
+      enemy.style.opacity -= 0.3;
+    case "hr":
+      enemy.style.opacity -= 0.22;
+    case "ceo":
+      enemy.style.opacity -= 0.15;
+  }
+
+  projectile.parentElement.removeChild(projectile);
+
+  points += 1;
+  scorePoints.innerHTML = points;
+};
+
+/**
+ * Loops every half second
+ * Gets all enemy components and projectile components
+ * Loops projectiles and updates Y position
+ * Check if new position collides with any enemy components
+ * Calls handleCollision() if true
+ */
+const shootEnemies = setInterval(() => {
   const projectiles = document.getElementsByClassName("projectile");
+  const enemies = document.getElementsByClassName("enemy");
+
   if (projectiles !== undefined) {
     for (let i = 0; i < projectiles.length; i++) {
       const projectile = projectiles[i];
-      const yPos = parseInt(
-        window.getComputedStyle(projectile).getPropertyValue("grid-row-start")
-      );
-      projectile.style.gridRowStart = yPos - 1;
-      if (yPos <= 1) {
-        projectile.remove();
-      }
-      const enemies = document.getElementsByClassName("enemy");
-      for (let j = 0; j < enemies.length; j++) {
-        let enemy = enemies[j];
-        if (enemy != undefined) {
-          //Condition to check whether the enemy and the projectile are at the same position..!
-          //If so,then we have to destroy that enemy
+      updatePosY(projectile);
+
+      if (enemies != undefined) {
+        for (let j = 0; j < enemies.length; j++) {
+          const enemy = enemies[j];
+
           if (
             projectile.style.gridRowStart === enemy.style.gridRowStart &&
             projectile.style.gridColumnStart === enemy.style.gridColumnStart
           ) {
-            // remove on life of the enemy and remove projectile
-            enemy.dataset.life = enemy.dataset["life"] - 1;
-            // Reduce opacity of enemy
-            switch (enemy.className.split(" ")[0]) {
-              case "manager":
-                enemy.style.opacity -= 0.4;
-              case "hr":
-                enemy.style.opacity -= 0.3;
-              case "ceo":
-                enemy.style.opacity -= 0.2;
-            }
-            projectile.parentElement.removeChild(projectile);
-            // check if enemy has any life left, if zero remove enemy
-            if (parseInt(enemy.dataset["life"]) === 0) {
-              enemy.remove();
-              // enemy.parentElement.removeChild(enemy);
-            }
-            points += 1;
-            //Scoreboard
-            scorePoints.innerHTML = points;
+            handleCollision(enemy, projectile);
           }
         }
       }
@@ -129,13 +166,6 @@ document.addEventListener("keydown", (e) => {
     window.getComputedStyle(player).getPropertyValue("grid-column-start")
   );
   switch (e.key) {
-    case 'Enter':
-      if (firstTime) {
-        startGame();
-        document.querySelector('.start-message').remove();
-        firstTime = false;
-      }
-      break;
     case "ArrowLeft":
       if (xPos > 0) {
         player.style.gridColumnStart = xPos - 1;
@@ -149,20 +179,20 @@ document.addEventListener("keydown", (e) => {
     case "ArrowUp":
       generateProjectile(xPos, yPos);
       player.style.background =
-        'url("../images/retro_developer_shooting.png") no-repeat center center/contain';
+        'url("../assets/images/retro_developer_shooting.png") no-repeat center center/contain';
       setTimeout(() => {
         player.style.background =
-          'url("../images/retro_developer.png") no-repeat center center/contain';
+          'url("../assets/images/retro_developer.png") no-repeat center center/contain';
       }, 250);
       break;
   }
 });
 
 generateProjectile = (xPos, yPos) => {
-  let projectile = document.createElement("div");
+  const projectile = document.createElement("div");
   currentProjectile =
-  projectileList[Math.floor(Math.random() * projectileList.length)];
-  projectile.classList.add(currentProjectile.class, 'projectile');
+    projectileList[Math.floor(Math.random() * projectileList.length)];
+  projectile.classList.add(currentProjectile.class, "projectile");
   projectile.style.gridRowStart = yPos;
   projectile.style.gridColumnStart = xPos;
   gameBoard.appendChild(projectile);
