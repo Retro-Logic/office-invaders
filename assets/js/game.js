@@ -39,9 +39,12 @@ gameLevel.innerHTML = level;
 
 
 function generateEnemies() {
-  if (playing) {
-    var speed = 2000 / level;
-    setTimeout(() => {
+
+  var speed = 2000 / level;
+  const generate = setTimeout(() => {
+    if (!playing) {
+      clearInterval(generate)
+    } else {
       const enemyType = enemyList[Math.floor(Math.random() * enemyList.length)];
       const enemy = document.createElement("div");
 
@@ -57,8 +60,8 @@ function generateEnemies() {
       // add to board
       gameBoard.appendChild(enemy);
       generateEnemies();
-    }, speed + 750);
-  }
+    }
+  }, speed + 750);
 }
 
 /**
@@ -69,10 +72,11 @@ function generateEnemies() {
  */
 
 function moveEnemies() {
-  if (playing) {
-    setTimeout(() => {
+  const move = setTimeout(() => {
+    if (!playing) {
+      clearInterval(move)
+    } else {
       const enemies = document.getElementsByClassName("enemy");
-
       if (enemies !== undefined) {
         for (let i = 0; i < enemies.length; i++) {
           const enemy = enemies[i];
@@ -89,8 +93,8 @@ function moveEnemies() {
         }
       }
       moveEnemies();
-    },750);
-  }
+    }
+  }, 750);
 }
 
 function startGame() {
@@ -233,15 +237,20 @@ document.addEventListener("keydown", (e) => {
         break;
     }
   }
+  
   if (e.key === " ") {
-    playing = !playing;
-    if (playing) {
-      gameSound.play();
-      generateEnemies();
-      moveEnemies();
-    } else {
-      gameSound.pause();
-    }
+    const gamePaused = document.getElementById('game-paused');
+    gamePaused.classList.remove('hidden');
+    playing = false;
+    gameSound.pause();
+  }
+
+  if(!playing && e.key === "r") {
+    const gamePaused = document.getElementById('game-paused');
+    gamePaused.classList.add('hidden');
+    playing = true;
+    startGame();
+    gameSound.play();
   }
 });
 
@@ -268,6 +277,7 @@ const topScores = async () => {
   const newRecord = {
     name: "New Player",
     points: points,
+    level: level
   };
 
   const response = await fetch('https://office-invaders-default-rtdb.europe-west1.firebasedatabase.app/highscores.json', {

@@ -273,4 +273,15 @@ footer > #socials a:hover {
     background: url("../images/coffee.png") no-repeat center top/contain;
 }
 
+#game-paused{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
 
+
+.hidden{
+    display: none;
+}
