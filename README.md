@@ -59,6 +59,8 @@ Icons
 
 ## Wireframes
 ![image](https://user-images.githubusercontent.com/87389388/128642541-9c87b78c-983d-4cd6-8169-112b6f54cf9a.png)
+![image](https://user-images.githubusercontent.com/87389388/128642587-e6420d78-0b3e-4cf4-9fa8-0b95c6833854.png)
+
 All wireframes are created with [Balsamiq](https://balsamiq.com/) during the Scope Plane part of the design and planning process for this project. It consists of 6 pages.
 
 - First three pages are three prototypes of how the main page should look like.
