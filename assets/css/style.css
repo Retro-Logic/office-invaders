@@ -65,8 +65,9 @@ footer {
     display: grid;
     place-content: center center;
     height: 10%;
-    /* padding: 1.5rem; */
+    padding: 1rem;
 }
+
 header,footer {
     background-color: #6C40EB;
 }
