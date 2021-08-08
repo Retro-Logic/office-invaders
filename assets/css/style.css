@@ -69,7 +69,7 @@ body {
 }
 
 #player {
-    background: url("/assets/images/retro_developer.png") no-repeat center center/contain;
+    background: url("./assets/images/retro_developer.png") no-repeat center center/contain;
     grid-row-start: 13;
     grid-row-end: span 2;
     grid-column-start: 7;
@@ -83,19 +83,19 @@ body {
 }
 
 .manager {
-    background: url("/assets/images/angry-boss.png") no-repeat center center/cover;
+    background: url("assets/images/angry-boss.png") no-repeat center center/cover;
 }
 
 .hr {
-    background: url("/assets/images/angry-boss.png") no-repeat center center/cover;
+    background: url("assets/images/angry-boss.png") no-repeat center center/cover;
 }
 
 .ceo {
-    background: url("/assets/images/angry-boss.png") no-repeat center center/cover;
+    background: url("assets/images/angry-boss.png") no-repeat center center/cover;
 }
 
 .mouse {
-    background: url("/assets/images/mouse.png") no-repeat center top;
+    background: url("assets/images/mouse.png") no-repeat center top;
     /* background-image: url("/assets/images/mouse.png");
     background-repeat: no-repeat; */
     background-size: contain;
@@ -104,19 +104,19 @@ body {
 }
 
 .keyboard {
-    background: url("/assets/images/keyboard.png") no-repeat center top;
+    background: url("assets/images/keyboard.png") no-repeat center top;
     background-size: contain;
     /* margin-left: 37.5%; */
 }
 
 .computer {
-    background: url("/assets/images/computer.png") no-repeat center top;
+    background: url("assets/images/computer.png") no-repeat center top;
     background-size: cover;
     grid-row-end: span 2;
     grid-column-end: span 2;
 }
 .coffee {
-    background: url("/assets/images/coffee.png") no-repeat center top;
+    background: url("assets/images/coffee.png") no-repeat center top;
     background-size: contain;
     /* margin-left: 37.5%; */
 }
