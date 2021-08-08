@@ -27,14 +27,14 @@ let enemyList = [
   { class: "ceo", life: 5, points: 5 },
 ];
 
-const calculateLives = () => {
-  const html = "♥ ";
-  return html.repeat(lives);
-};
+// const calculateLives = () => {
+//   const html = "♥ ";
+//   return html.repeat(lives);
+// };
 
 
 scorePoints.innerHTML = points;
-playerLives.innerHTML = calculateLives();
+// playerLives.innerHTML = calculateLives();
 gameLevel.innerHTML = level;
 
 
@@ -109,8 +109,7 @@ const updateLife = () => {
     gameOver();
   } else {
     lives -= 1;
-    playerLives.innerHTML = calculateLives();
-    console.log(`lives left: ${lives}`);
+    document.getElementById('player-lives-' + lives).style.opacity = '0';
   }
 };
 
