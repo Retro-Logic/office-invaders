@@ -34,22 +34,26 @@
             </div>
         </div>
         <div id="game-board">
+            <h2 class="start-message">Press Enter To Fight</h2>
+            <div id="player"></div>
             <div id="game-paused" class="hidden">
                 <h1>GAME PAUSED</h1>
                 <p><em>Press "r" to return</em></p>
             </div>
-            <div id="top-scores-form" class="hidden">
-                <h3>Top SCORE - Well done!!!</h3>
-                <p>You got the position</p>
-                <p>Level</p>
-                <p>Total points</p>
-                <input id="top-score-name" type="text" name="name" placeholder="Add your name">
+            <div id="game-over" class="hidden">
+                <h3>GAME OVER</h3>
+                <p class="level-reached"></p>
+                <p class="total-points">s</p>
+                <p class="final-position">dadsa</p>
+                <input id="player-name" type="text" name="name" placeholder="Add your name">
                 <div>
-                    <button onclick="topScorer()">Confirm</button>
+                    <button onclick="submitName()">Confirm</button>
                 </div>
             </div>
-            <h2 class="start-message">Press Enter To Fight</h2>
-            <div id="player"></div>
+            <div id="high-scores" class="hidden">
+                <h3>HIGH SCORE</h3>
+                <ul id="top-ten"></ul>
+            </div>
         </div>
         <div id="socials">
             <a href="https://www.youtube.com" aria-label="Go to YouTube page" target="_blank" rel="noopener""><i class="
