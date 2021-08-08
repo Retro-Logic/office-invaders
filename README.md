@@ -48,8 +48,8 @@ Icons
 
 ## Colour scheme and styling
 
--	Colors used are to match the style of the main character.
--  Styling
+-	Colors that are used match retro game style from the 90's. Colors that are used are #85EB40 / #F5DF7E / #B6967C / #CCDCF5 / #6C40EB
+-  Styling 
 
   
 ## Wireframes
