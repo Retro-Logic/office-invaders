@@ -128,6 +128,7 @@ const gameOver = () => {
   lives = 3;
   saveToLocalStorage();
   topScores();
+  location.reload();
 };
 
 const updateLife = () => {
