@@ -162,7 +162,7 @@ button:hover {
 }
 
 #game-board {
-    background-color: slategray;
+    background-color: #B6967C;
     outline: 2px solid black;
     width: 100vmin;
     height: calc(100vmin - 20%);
