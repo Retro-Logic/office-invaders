@@ -57,7 +57,10 @@ article {
 footer {
     text-align: right;
     flex-shrink: 0;
-    padding: 1.5rem;
+    display: grid;
+    place-content: center center;
+    height: 10%;
+    /* padding: 1.5rem; */
 }
 header,footer {
     background-color: #6C40EB;
