@@ -99,7 +99,11 @@ During the development there were some issues where the character would not move
 
 
  ## Code
- Code used was inspired by this tutorial of [The Snake Game](https://www.youtube.com/watch?v=QTcIXok9wNY&amp;t=873s)
+ Code used was inspired by couple of tutorial:
+ - [How to code the snake game in JavaScript](https://www.youtube.com/watch?v=QTcIXok9wNY&amp;t=873s)
+ - [Space Invaders in JavaScript](https://www.youtube.com/watch?v=3Nz4Yp7Y_uA)
+ - [Learn JavaScript by building 7 games](https://www.youtube.com/watch?v=lhNdUVh3qCc&t=2593s)
+ - [HTML5 Canvas and and JavaScript Game Tutorial](https://www.youtube.com/watch?v=eI9idPTT0c4)
 
 # Deployment
 
