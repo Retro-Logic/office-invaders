@@ -70,6 +70,8 @@ In the middle of the page we have name of the game OFFICE INVADERS.
 - Fifth wireframe consists of instructions on how to play the game, what arrow keys to use to move around and which key to press to shoot projectiles into the enemies. 
 - Sixth wireframe includes credits to all the people who were part of this project.
 
+- Second Wireframe is the fine team decided to go ahead with. Social Media Icons were positioned to the center. Font and further Styling has been added.
+
 # Languages used
 - [HTML5](https://en.wikipedia.org/wiki/HTML5)
 - [CSS3](https://en.wikipedia.org/wiki/CSS)
