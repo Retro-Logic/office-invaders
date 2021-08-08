@@ -137,10 +137,12 @@ button#return-btn {
     margin-top: 2rem;
 }
 
-a#home-btn {
-    color: #CCDCF5;
+
+#home-btn:hover, #home-btn:visited {
+    color: #000;
 }
-a#home-btn:hover {
+
+#home-btn:hover {
     color: #85EB40;
 }
 
