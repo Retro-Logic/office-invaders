@@ -41,7 +41,7 @@ User goals are:
 ## Design Choices
 
 Font choices
--	Primary font used for Navigation is [VT323] (https://fonts.google.com/specimen/VT323) was used in all areas of the main page as it is easy to read and complements retro game very well. Same font was used in all other sections to keep the same style.
+-	Primary font used for Navigation is [VT323](https://fonts.google.com/specimen/VT323) was used in all areas of the main page as it is easy to read and complements retro game very well. Same font was used in all other sections to keep the same style.
 
 Icons
 -	Social Media Icons are added on the bottom right corner where user can find further Information and history of the game. Social Media Accounts are note created but show that the user will be able to click on the icons and find further details about the game there in the future.
