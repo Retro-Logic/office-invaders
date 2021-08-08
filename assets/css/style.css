@@ -197,6 +197,10 @@ button#return-btn {
     letter-spacing: 1px;
 }
 
+#score-board h3 {
+    margin-bottom: 0;
+}
+
 #game-board {
     background-color: #B6967C;
     outline: 2px solid black;
