@@ -55,7 +55,7 @@ Icons
 ## Wireframes
 
 
-Balsamiq was used to design all wireframes. It consists of 6 pages. 
+[Balsamiq](https://balsamiq.com/) was used to design all wireframes. It consists of 6 pages. 
 
 - First three pages are three prototypes of how the main page should look like. All three include Navigation bar with main menu, storyline, how to play, credits, sound on/off and find us.
 - Navigation bar is on the left hand side of the page. It consists of Main Menu : Storyline / How to Play / Credits / Sound on/off 
