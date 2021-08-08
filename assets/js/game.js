@@ -136,6 +136,7 @@ document.addEventListener("keydown", (e) => {
     case 'Enter':
       if (firstTime) {
         startGame();
+        document.querySelector('.start-message').remove();
         firstTime = false;
       }
       break;
