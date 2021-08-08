@@ -24,19 +24,22 @@ const calculateLives = () => {
 scorePoints.innerHTML = points;
 playerLives.innerHTML = calculateLives();
 
+/**
+ * Select random enemy type
+ * Create an enemy component
+ * Set attributes of the enemy component including the enemy type as css class
+ * Adds enemy to the markup
+ */
 const generateEnemies = setInterval(() => {
   const enemyType = enemyList[Math.floor(Math.random() * enemyList.length)];
   const enemy = document.createElement("div");
 
-  // set enemy component attributes
   enemy.classList.add(enemyType.class, "enemy");
   enemy.style.opacity = 1;
   enemy.dataset.life = enemyType.life;
-
   enemy.style.gridColumnStart = Math.floor(Math.max(1, Math.random() * 13));
   enemy.style.gridRowStart = 1;
 
-  // add to board
   gameBoard.appendChild(enemy);
 }, 2000 / level);
 
