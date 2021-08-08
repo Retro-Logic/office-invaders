@@ -21,33 +21,6 @@ const calculateLives = () => {
   return html.repeat(lives);
 };
 
-scorePoints.innerHTML = points;
-playerLives.innerHTML = calculateLives();
-
-/**
- * Select random enemy type
- * Create an enemy component
- * Set attributes of the enemy component including the enemy type as css class
- * Adds enemy to the markup
- */
-const generateEnemies = setInterval(() => {
-  const enemyType = enemyList[Math.floor(Math.random() * enemyList.length)];
-  const enemy = document.createElement("div");
-
-  enemy.classList.add(enemyType.class, "enemy");
-  enemy.style.opacity = 1;
-  enemy.dataset.life = enemyType.life;
-  enemy.style.gridColumnStart = Math.floor(Math.max(1, Math.random() * 13));
-  enemy.style.gridRowStart = 1;
-
-  gameBoard.appendChild(enemy);
-}, 2000 / level);
-
-const gameOver = () => {
-  console.log("Game Over 👎");
-  // clearInterval(moveEnemies);
-};
-
 const updateLife = () => {
   if (lives < 1) {
     gameOver();
@@ -55,48 +28,6 @@ const updateLife = () => {
     lives -= 1;
     playerLives.innerHTML = calculateLives();
     console.log(`lives left: ${lives}`);
-  }
-};
-
-/**
- * Loops every 3/4 second
- * Gets all enemy components
- * Gets y position and moves down one
- * Remove component if outside boundaries
- */
-const moveEnemies = setInterval(() => {
-  const enemies = document.getElementsByClassName("enemy");
-
-  if (enemies !== undefined) {
-    for (let i = 0; i < enemies.length; i++) {
-      const enemy = enemies[i];
-      const yPos = parseInt(
-        window.getComputedStyle(enemy).getPropertyValue("grid-row-start")
-      );
-
-      // check if reached bottom
-      if (yPos > 12) {
-        updateLife();
-        enemy.remove();
-      }
-      enemy.style.gridRowStart = yPos + 1;
-    }
-  }
-}, 750);
-
-/**
- * @param component
- * get components position on y axis
- * update Y positon moving up 1
- * Remove component if outside boundaries
- */
-const updatePosY = (component) => {
-  const yPos = parseInt(
-    window.getComputedStyle(component).getPropertyValue("grid-row-start")
-  );
-  component.style.gridRowStart = yPos - 1;
-  if (yPos <= 1) {
-    component.remove();
   }
 };
 
@@ -128,6 +59,72 @@ const handleCollision = (enemy, projectile) => {
   points += 1;
   scorePoints.innerHTML = points;
 };
+
+/**
+ * @param component = projectile
+ * get components position on y axis
+ * update Y positon moving up 1
+ * Remove component if outside boundaries
+ */
+const updatePosY = (component) => {
+  const yPos = parseInt(
+    window.getComputedStyle(component).getPropertyValue("grid-row-start")
+  );
+  component.style.gridRowStart = yPos - 1;
+  if (yPos <= 1) {
+    component.remove();
+  }
+};
+
+/**
+ * Select random enemy type
+ * Create an enemy component
+ * Set attributes of the enemy component including the enemy type as css class
+ * Adds enemy to the markup
+ */
+const generateEnemies = setInterval(() => {
+  const enemyType = enemyList[Math.floor(Math.random() * enemyList.length)];
+  const enemy = document.createElement("div");
+
+  enemy.classList.add(enemyType.class, "enemy");
+  enemy.style.opacity = 1;
+  enemy.dataset.life = enemyType.life;
+  enemy.style.gridColumnStart = Math.floor(Math.max(1, Math.random() * 13));
+  enemy.style.gridRowStart = 1;
+
+  gameBoard.appendChild(enemy);
+}, 2000 / level);
+
+const gameOver = () => {
+  console.log("Game Over 👎");
+  // clearInterval(moveEnemies);
+};
+
+/**
+ * Loops every 3/4 second
+ * Gets all enemy components
+ * Gets y position and moves down one
+ * Remove component if outside boundaries
+ */
+const moveEnemies = setInterval(() => {
+  const enemies = document.getElementsByClassName("enemy");
+
+  if (enemies !== undefined) {
+    for (let i = 0; i < enemies.length; i++) {
+      const enemy = enemies[i];
+      const yPos = parseInt(
+        window.getComputedStyle(enemy).getPropertyValue("grid-row-start")
+      );
+
+      // check if reached bottom
+      if (yPos > 12) {
+        updateLife();
+        enemy.remove();
+      }
+      enemy.style.gridRowStart = yPos + 1;
+    }
+  }
+}, 750);
 
 /**
  * Loops every half second
@@ -200,3 +197,6 @@ generateProjectile = (xPos, yPos) => {
   projectile.style.gridColumnStart = xPos;
   gameBoard.appendChild(projectile);
 };
+
+scorePoints.innerHTML = points;
+playerLives.innerHTML = calculateLives();
