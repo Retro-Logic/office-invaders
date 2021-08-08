@@ -93,6 +93,11 @@ During the development there were some issues where the character would not move
 
 ## Features
 
+- Home Page 
+- Storyline 
+- Credits
+- Play!
+
 
   ## Code
 
