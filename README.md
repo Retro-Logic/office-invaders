@@ -1,6 +1,6 @@
 # Introduction
 
-Office Invaders game is a project created by Retro Logic team for the purpose of hackaton Retro Game challenge by Code Institute. The game is designed to attract mass audience but mainly people who understand 'office life' and cannot wait for that shorthand to show 5 o’clock. This is a game in which employee can finally end the office tyranny and start living again without commuting and loosing their precious time. You can view live game on this [link](https://retro-logic.github.io/office-invaders/).
+Office Invaders game is a project created by Retro Logic team for the purpose of hackaton Retro Game challenge by Code Institute. The game is designed to attract mass audience but mainly people who understand 'office life' and cannot wait for that shorthand to show 5 o’clock. This is a game in which employee can finally end the office tyranny and start living again without commuting and loosing their precious time. You can view live game on this [link](https://retro-logic.github.io/office-invaders/game.html).
 
 # Table of Contents
 - User Experience
@@ -55,7 +55,7 @@ Icons
 ## Wireframes
 
 
-Balsamiq was used to design all wireframes. It consists of 6 pages. 
+[Balsamiq](https://balsamiq.com/) was used to design all wireframes. It consists of 6 pages. 
 
 - First three pages are three prototypes of how the main page should look like. All three include Navigation bar with main menu, storyline, how to play, credits, sound on/off and find us.
 - Navigation bar is on the left hand side of the page. It consists of Main Menu : Storyline / How to Play / Credits / Sound on/off 
