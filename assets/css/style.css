@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Audiowide&family=Black+Ops+One&family=Changa:wght@300&family=Exo+2:wght@300&family=Play&family=Press+Start+2P&family=Special+Elite&family=VT323&display=swap');
 
 *, ::before, ::after {
     box-sizing: border-box;
@@ -11,6 +11,70 @@
 body {
     height: 100%;
     width: 100%;
+}
+
+@font-face {
+    font-family: 'BN Machine';
+    src: url(BNMachine.ttf);
+}
+
+header {
+    text-align: center;
+    text-transform: uppercase;
+}
+main {
+    padding: 3rem;
+    display: grid;
+    grid-template-columns: 30% 70%;
+    grid-template-rows: 2(1fr);
+    grid-column-gap: 1.5rem;
+    background-color: azure;
+}
+article {
+    padding: 2rem;
+}
+footer {
+    text-align: right;
+}
+h1 {
+    /* font-family: 'Audiowide', cursive; */
+    /* font-family: 'Black Ops One', cursive; */
+    font-family: 'BN Machine', sans-serif;
+    font-size: 3rem;
+    margin: 0;
+    letter-spacing: .1rem;
+
+}
+h2, button, h3 {
+    /* font-family: 'VT323', monospace; */
+    font-family: 'Press Start 2P', cursive;
+    font-size: 1rem;
+}
+
+a {
+    text-decoration: none;
+
+}
+p {
+    /* font-family: 'Changa', sans-serif; */
+    /* font-family: 'Play', sans-serif; */
+    /* font-family: 'Special Elite', cursive; */
+    font-family: 'Exo 2', sans-serif;
+    font-size: 1.2rem;
+}
+button {
+    display: block;
+    padding: 2rem;
+    margin: 1rem ;
+    width: 100%;
+    border-bottom: 0.25rem solid black;
+}
+
+#content {
+    grid-area: 1/2/3/3;
+
+    overflow: scroll;
+
 }
 
 #game-area {
@@ -121,3 +185,5 @@ body {
 .coffee {
     background: url("../images/coffee.png") no-repeat center top/contain;
 }
+
+
