@@ -3,13 +3,14 @@ const player = document.querySelector("#player");
 const scorePoints = document.querySelector("#point-score");
 const playerLives = document.querySelector("#player-lives");
 const gameLevel = document.querySelector("#player-level");
+const storedScore = localStorage.getItem("points");
 
 const kill = new Audio("./assets/sounds/kill_enemy.wav");
 const throwing = new Audio("./assets/sounds/throw_projectile.wav");
 const gameSound = new Audio("./assets/sounds/soundtrack.mp3");
 
 let lives = 3;
-let points = 0;
+let points;
 let level = 1;
 let firstTime = true;
 let playing = true;
@@ -27,16 +28,19 @@ let enemyList = [
   { class: "ceo", life: 5, points: 5 },
 ];
 
-// const calculateLives = () => {
-//   const html = "♥ ";
-//   return html.repeat(lives);
-// };
+window.onload = () => {
+  if (localStorage.points) {
+    points = storedScore;
+  } else {
+    points = 0;
+  }
+  scorePoints.innerHTML = points;
+  gameLevel.innerHTML = level;
+}
 
-
-scorePoints.innerHTML = points;
-// playerLives.innerHTML = calculateLives();
-gameLevel.innerHTML = level;
-
+const saveToLocalStorage = () => {
+  localStorage.setItem("points", points);
+}
 
 function generateEnemies() {
 
@@ -70,7 +74,6 @@ function generateEnemies() {
  * Gets y position and moves down one
  * Remove component if outside boundaries
  */
-
 function moveEnemies() {
   const move = setTimeout(() => {
     if (!playing) {
@@ -106,6 +109,8 @@ function startGame() {
 const gameOver = () => {
   alert("Game Over 👎");
   playing = false;
+  points = 0;
+  saveToLocalStorage();
   topScores();
 };
 
@@ -148,8 +153,8 @@ const handleCollision = (enemy, projectile) => {
     kill.play();
     points += parseInt(enemy.dataset["points"]);
     scorePoints.innerHTML = points;
+    saveToLocalStorage();
     enemy.remove();
-
     // Increase game speed when points reach a treshold
     if (points > level * 50) {
       level++;
@@ -294,5 +299,4 @@ const topScores = async () => {
       location.reload();
     }
   })
-
 }
