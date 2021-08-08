@@ -1,5 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Audiowide&family=Black+Ops+One&family=Changa:wght@300&family=Exo+2:wght@300&family=Play&family=Press+Start+2P&family=Special+Elite&family=VT323&display=swap');
 
+/* {
+    color: #85EB40;
+    color: #F5DF7E;
+    color: #B6967C;
+    color: #CCDCF5;
+    color: #6C40EB;
+} */
+
 *, ::before, ::after {
     box-sizing: border-box;
     margin: 0;
@@ -8,85 +16,139 @@
     outline: 0;
 }
 
-body {
+html {
     height: 100%;
     width: 100%;
 }
 
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+}
+
 @font-face {
     font-family: 'BN Machine';
-    src: url(BNMachine.ttf);
+    src: url(../fonts/BNMachine.ttf);
 }
+
 
 header {
     text-align: center;
     text-transform: uppercase;
+    padding: 1.5rem;
 }
 main {
+    flex: 1 auto;
     padding: 3rem;
     display: grid;
     grid-template-columns: 30% 70%;
     grid-template-rows: 2(1fr);
     grid-column-gap: 1.5rem;
-    background-color: azure;
+    background-color: #CCDCF5;
 }
 
 article {
     padding: 2rem;
+    position: relative;
 }
 
 footer {
     text-align: right;
+    flex-shrink: 0;
+    padding: 1.5rem;
+}
+header,footer {
+    background-color: #6C40EB;
 }
 
 h1 {
-    /* font-family: 'Audiowide', cursive; */
-    /* font-family: 'Black Ops One', cursive; */
     font-family: 'BN Machine', sans-serif;
-    font-size: 3rem;
+    font-size: 3.4rem;
     margin: 0;
     letter-spacing: .1rem;
-
+    color: #85EB40;
+    margin-bottom: 0.5rem;
+    -webkit-text-stroke: 1px black;
+        text-shadow:
+            3px 3px 0 #000,
+          -1px -1px 0 #000,  
+           1px -1px 0 #000,
+           -1px 1px 0 #000,
+            1px 1px 0 #000;
 }
 
-h2, button, h3 {
+h2, button, h3, h4 {
     /* font-family: 'VT323', monospace; */
     font-family: 'Press Start 2P', cursive;
-    font-size: 1rem;
+}
+
+h4 {
+    font-size: 2.5rem;
+}
+
+h3 {
+    margin-bottom: 1rem;
 }
 
 a {
     text-decoration: none;
 }
+footer a {
+    color: #CCDCF5;
+}
 
-p {
-    /* font-family: 'Changa', sans-serif; */
-    /* font-family: 'Play', sans-serif; */
-    /* font-family: 'Special Elite', cursive; */
-    font-family: 'Exo 2', sans-serif;
+p, article > ul {
+    font-family: 'Play', sans-serif;
     font-size: 1.2rem;
 }
 
 button {
     display: block;
     padding: 2rem;
-    margin: 1rem ;
     width: 100%;
+    margin-bottom: 1rem;
     border-bottom: 0.25rem solid black;
+    background-color: #B6967C;
 }
 
 button:hover {
     cursor: pointer;
 }
 
-#content {
-    grid-area: 1/2/3/3;
-
-    overflow: scroll;
+button#play-btn {
+    background-color: #85EB40;
+}
+button#return-btn {
+    margin-top: 2rem;
 }
 
+#content {
+    grid-area: 1/2/3/3;
+}
+
+#content > article > ul {
+    list-style-type: none;
+}
+
+#content > article {
+    position: relative;
+}
+
+#game-subtitle {
+    color: #CCDCF5;
+    font-size: 1.2rem;
+}
+
+#hero-image {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+
 #game-area {
-    background-color: off-white;
+    background:url("../images/office_bg.png") no-repeat center center/cover;
     width: 100%;
     height: 100%;
     position: absolute;
@@ -105,11 +167,10 @@ button:hover {
     font-family: 'VT323', monospace;
     color: black;
     letter-spacing: 1px;
-    font-size: 150%;
 }
 
 #game-board {
-    background-color: slategray;
+    background-color: #B6967C;
     outline: 2px solid black;
     width: 100vmin;
     height: calc(100vmin - 20%);
@@ -131,10 +192,23 @@ button:hover {
     align-self: end;
     grid-auto-flow: column;
     align-content: start;
-    justify-content: end;
+    justify-content: center;
     font-family: 'VT323', monospace;
     letter-spacing: 1px;
     font-size: 200%;
+}
+
+#socials a {
+    color: black;
+}
+
+footer > #socials {
+    width: 100%;
+    height: auto;
+}
+
+footer > #socials a:hover {
+    color: #CCDCF5;
 }
 
 .fa-facebook, .fa-github,
@@ -159,6 +233,11 @@ button:hover {
     grid-column-start: 7;
     grid-column-end: span 1;
     z-index:1;
+}
+
+.hero-character {
+    height: 20rem;
+    width: auto;
 }
 
 .enemy {
