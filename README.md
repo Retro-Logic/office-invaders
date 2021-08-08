@@ -109,9 +109,8 @@ During the development there were some issues where the character would not move
 
 # Credits
 
-- Content – text, images, data, YouTube, Shutterstock photos.
-- Media - animations, images
-  
+- Content and Media - Storytelling sculpter David Bowers. Image source [Shutterstock](https://www.shutterstock.com/home)
+- Retro-Logic Team
 
 
   
