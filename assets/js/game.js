@@ -146,7 +146,7 @@ const handleCollision = (enemy, projectile) => {
 
   if (parseInt(enemy.dataset["life"]) === 0) {
     kill.play();
-    points += +enemy.dataset["points"];
+    points += parseInt(enemy.dataset["points"]);
     scorePoints.innerHTML = points;
     enemy.remove();
 
