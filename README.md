@@ -44,7 +44,7 @@ User goals are:
 
 Font choices
 
-- Primary font used for navigation on the page is [VT323](https://fonts.google.com/specimen/VT323). It is used in all areas as it is easy to read and complements retro game very well. Same font was used in all other sections to keep the same style.
+- Primary font used for navigation on the page is [Press Start 2P](https://fonts.google.com/specimen/Press+Start+2P). It is used in all areas as it is easy to read and complements retro game very well. Same font was used in all other sections to keep the same style.
 
 Icons
 
