@@ -93,8 +93,6 @@ body {
 
 .mouse {
     background: url("../images/mouse.png") no-repeat center top;
-    /* background-image: url("/assets/images/mouse.png");
-    background-repeat: no-repeat; */
     background-size: contain;
 }
 
@@ -105,9 +103,9 @@ body {
 
 .computer {
     background: url("../images/computer.png") no-repeat center top;
-    background-size: cover;
-    grid-row-end: span 2;
-    grid-column-end: span 2;
+    background-size: contain;
+    /* grid-row-end: span 2;
+    grid-column-end: span 2; */
 }
 
 .coffee {

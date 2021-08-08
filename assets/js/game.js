@@ -2,23 +2,88 @@ const gameBoard = document.querySelector("#game-board");
 const player = document.querySelector("#player");
 const scorePoints = document.querySelector("#point-score");
 const playerLives = document.querySelector("#player-lives");
+
 let lives = 3;
 let points = 0;
 let level = 1;
+let firstTime = true;
+
 let projectileList = [
   { class: "mouse" },
   { class: "keyboard" },
   { class: "computer" },
   { class: "coffee" },
 ];
+
 let enemyList = [
   { class: "manager", life: 2 },
   { class: "hr", life: 3 },
   { class: "ceo", life: 5 },
 ];
+
 const calculateLives = () => {
   const html = "♥ ";
   return html.repeat(lives);
+};
+
+scorePoints.innerHTML = points;
+playerLives.innerHTML = calculateLives();
+
+function generateEnemies() {
+  setInterval(() => {
+    const enemyType = enemyList[Math.floor(Math.random() * enemyList.length)];
+    const enemy = document.createElement("div");
+  
+    // set enemy component attributes
+    enemy.classList.add(enemyType.class, "enemy");
+    enemy.style.opacity = 1;
+    enemy.dataset.life = enemyType.life;
+  
+    enemy.style.gridColumnStart = Math.floor(Math.max(1, Math.random() * 13));
+    enemy.style.gridRowStart = 1;
+  
+    // add to board
+    gameBoard.appendChild(enemy);
+  }, 2000 / level);
+}
+
+/**
+ * Loops every 3/4 second
+ * Gets all enemy components
+ * Gets y position and moves down one
+ * Remove component if outside boundaries
+ */
+
+function moveEnemies() {
+  setInterval(() => {
+    const enemies = document.getElementsByClassName("enemy");
+  
+    if (enemies !== undefined) {
+      for (let i = 0; i < enemies.length; i++) {
+        const enemy = enemies[i];
+        const yPos = parseInt(
+          window.getComputedStyle(enemy).getPropertyValue("grid-row-start")
+        );
+  
+        // check if reached bottom
+        if (yPos > 12) {
+          updateLife();
+          enemy.remove();
+        }
+        enemy.style.gridRowStart = yPos + 1;
+      }
+    }
+  }, 750);
+}
+
+function startGame() {
+  generateEnemies();
+  moveEnemies();
+}
+
+const gameOver = () => {
+  alert("Game Over 👎");
+  location.reload();
 };
 
 const updateLife = () => {
@@ -28,6 +93,22 @@ const updateLife = () => {
     lives -= 1;
     playerLives.innerHTML = calculateLives();
     console.log(`lives left: ${lives}`);
+  }
+};
+
+/**
+ * @param component
+ * get components position on y axis
+ * update Y positon moving up 1
+ * Remove component if outside boundaries
+ */
+const updatePosY = (component) => {
+  const yPos = parseInt(
+    window.getComputedStyle(component).getPropertyValue("grid-row-start")
+  );
+  component.style.gridRowStart = yPos - 1;
+  if (yPos <= 1) {
+    component.remove();
   }
 };
 
@@ -61,72 +142,6 @@ const handleCollision = (enemy, projectile) => {
 };
 
 /**
- * @param component = projectile
- * get components position on y axis
- * update Y positon moving up 1
- * Remove component if outside boundaries
- */
-const updatePosY = (component) => {
-  const yPos = parseInt(
-    window.getComputedStyle(component).getPropertyValue("grid-row-start")
-  );
-  component.style.gridRowStart = yPos - 1;
-  if (yPos <= 1) {
-    component.remove();
-  }
-};
-
-/**
- * Select random enemy type
- * Create an enemy component
- * Set attributes of the enemy component including the enemy type as css class
- * Adds enemy to the markup
- */
-const generateEnemies = setInterval(() => {
-  const enemyType = enemyList[Math.floor(Math.random() * enemyList.length)];
-  const enemy = document.createElement("div");
-
-  enemy.classList.add(enemyType.class, "enemy");
-  enemy.style.opacity = 1;
-  enemy.dataset.life = enemyType.life;
-  enemy.style.gridColumnStart = Math.floor(Math.max(1, Math.random() * 13));
-  enemy.style.gridRowStart = 1;
-
-  gameBoard.appendChild(enemy);
-}, 2000 / level);
-
-const gameOver = () => {
-  console.log("Game Over 👎");
-  // clearInterval(moveEnemies);
-};
-
-/**
- * Loops every 3/4 second
- * Gets all enemy components
- * Gets y position and moves down one
- * Remove component if outside boundaries
- */
-const moveEnemies = setInterval(() => {
-  const enemies = document.getElementsByClassName("enemy");
-
-  if (enemies !== undefined) {
-    for (let i = 0; i < enemies.length; i++) {
-      const enemy = enemies[i];
-      const yPos = parseInt(
-        window.getComputedStyle(enemy).getPropertyValue("grid-row-start")
-      );
-
-      // check if reached bottom
-      if (yPos > 12) {
-        updateLife();
-        enemy.remove();
-      }
-      enemy.style.gridRowStart = yPos + 1;
-    }
-  }
-}, 750);
-
-/**
  * Loops every half second
  * Gets all enemy components and projectile components
  * Loops projectiles and updates Y position
@@ -145,7 +160,6 @@ const shootEnemies = setInterval(() => {
       if (enemies != undefined) {
         for (let j = 0; j < enemies.length; j++) {
           const enemy = enemies[j];
-
           if (
             projectile.style.gridRowStart === enemy.style.gridRowStart &&
             projectile.style.gridColumnStart === enemy.style.gridColumnStart
@@ -166,6 +180,13 @@ document.addEventListener("keydown", (e) => {
     window.getComputedStyle(player).getPropertyValue("grid-column-start")
   );
   switch (e.key) {
+    case 'Enter':
+      if (firstTime) {
+        startGame();
+        document.querySelector('.start-message').remove();
+        firstTime = false;
+      }
+      break;
     case "ArrowLeft":
       if (xPos > 0) {
         player.style.gridColumnStart = xPos - 1;
@@ -190,13 +211,9 @@ document.addEventListener("keydown", (e) => {
 
 generateProjectile = (xPos, yPos) => {
   const projectile = document.createElement("div");
-  currentProjectile =
-    projectileList[Math.floor(Math.random() * projectileList.length)];
+  currentProjectile = projectileList[Math.floor(Math.random() * projectileList.length)];
   projectile.classList.add(currentProjectile.class, "projectile");
   projectile.style.gridRowStart = yPos;
   projectile.style.gridColumnStart = xPos;
   gameBoard.appendChild(projectile);
 };
-
-scorePoints.innerHTML = points;
-playerLives.innerHTML = calculateLives();
