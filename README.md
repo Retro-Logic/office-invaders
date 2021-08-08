@@ -58,13 +58,13 @@ Icons
 [Balsamiq](https://balsamiq.com/) was used to design all wireframes. It consists of 6 pages. 
 
 - First three pages are three prototypes of how the main page should look like. All three include Navigation bar with main menu, storyline, how to play, credits, sound on/off and find us.
-- Navigation bar is on the left hand side of the page. It consists of Main Menu : Storyline / How to Play / Credits / Sound on/off 
+- Navigation bar will be added and it consists of Main Menu : Storyline / How to Play / Credits / Sound on/off 
 - STORYLINE - Game story and all the Information user needs to understand the theme of the game.
-- HOW TO PLAY - This will bring us to the new page with all the Information on how to play the game. 
+- HOW TO PLAY - This will bring us to the page with all the Information on how to play the game. 
 - CREDITS - Will consist of the Information about the game, how it was developed and inspiration for the theme.
 - SOUND ON/OFF - There will be an audio implemented and will be muted when the page loads. User will be able to turn on or turn off the sound.
-In the middle of the page we have name of the game OFFICE INVADERS and picture of the main character with the main weapon in his hands (mouse).
-Under the photo PLAY button / button can also be inside of the picture.
+In the middle of the page we have name of the game OFFICE INVADERS and picture of the main character versus the abgry HR/manager.
+PLAY button will be added as well.
 - FIND US ON - Fictive part on the bottom right social platforms Icons for the people who are still in early stage of the course and can work on adding icons
 - Fourth wireframe is a storyline of the game which gives user more theme insight.
 - Fifth wireframe consists of instructions on how to play the game, what arrow keys tot use to move around and which key to press to shoot projectiles into enemies. 
