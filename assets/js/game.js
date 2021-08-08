@@ -8,6 +8,7 @@ const storedLevel = localStorage.getItem("level");
 const storedLives = localStorage.getItem("lives");
 
 const kill = new Audio("./assets/sounds/kill_enemy.wav");
+const damage = new Audio("./assets/sounds/damage.wav");
 const throwing = new Audio("./assets/sounds/throw_projectile.wav");
 const gameSound = new Audio("./assets/sounds/soundtrack.mp3");
 
@@ -136,6 +137,7 @@ const updateLife = () => {
     gameOver();
   } else {
     lives -= 1;
+    damage.play();
     saveToLocalStorage();
     document.getElementById('player-lives-' + lives).style.opacity = '0';
   }
@@ -166,7 +168,6 @@ const updatePosY = (component) => {
  */
 const handleCollision = (enemy, projectile) => {
   enemy.dataset.life = enemy.dataset["life"] - 1;
-
   if (parseInt(enemy.dataset["life"]) === 0) {
     kill.play();
     points += parseInt(enemy.dataset["points"]);
@@ -180,7 +181,6 @@ const handleCollision = (enemy, projectile) => {
       gameLevel.innerHTML = level;
     }
   }
-
   switch (enemy.className.split(" ")[0]) {
     case "manager":
       enemy.style.opacity -= 0.3;
@@ -189,7 +189,6 @@ const handleCollision = (enemy, projectile) => {
     case "ceo":
       enemy.style.opacity -= 0.15;
   }
-
   projectile.remove();
 };
 
@@ -203,12 +202,10 @@ const handleCollision = (enemy, projectile) => {
 const shootEnemies = setInterval(() => {
   const projectiles = document.getElementsByClassName("projectile");
   const enemies = document.getElementsByClassName("enemy");
-
   if (projectiles !== undefined) {
     for (let i = 0; i < projectiles.length; i++) {
       const projectile = projectiles[i];
       updatePosY(projectile);
-
       if (enemies != undefined) {
         for (let j = 0; j < enemies.length; j++) {
           const enemy = enemies[j];
