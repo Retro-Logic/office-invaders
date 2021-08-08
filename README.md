@@ -1,4 +1,4 @@
-# Game project - OFFICE INVADERS
+# Introduction - hackaton project
 
 Office Invaders game is designed to attract mass audience but mainly people who understand “office life” and cannot wait for that shorthand to show 5 o’clock. This is the game in which employee can finally end the office tyranny and start living again without commuting and loosing that precious time. 
 
