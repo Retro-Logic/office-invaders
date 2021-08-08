@@ -124,6 +124,8 @@ const handleCollision = (enemy, projectile) => {
 
   if (parseInt(enemy.dataset["life"]) === 0) {
     enemy.remove();
+    points += 1;
+    scorePoints.innerHTML = points;
   }
 
   switch (enemy.className.split(" ")[0]) {
@@ -135,10 +137,7 @@ const handleCollision = (enemy, projectile) => {
       enemy.style.opacity -= 0.15;
   }
 
-  projectile.parentElement.removeChild(projectile);
-
-  points += 1;
-  scorePoints.innerHTML = points;
+  projectile.remove();
 };
 
 /**
