@@ -85,11 +85,9 @@ During the development there were some issues where the character would not move
 # Credits
 
 - Content – text, images, data, YouTube, Shutterstock photos.
-
+- Media - animations, images
   
-## Media
 
-- Animations, Images
 
   
 
