@@ -80,35 +80,29 @@ body {
 }
 
 .manager {
-    background: url("../images/manager.png") no-repeat center center/cover;
+    background: url("../images/manager.png") no-repeat center center/contain;
 }
 
 .hr {
-    background: url("../images/angry-boss.png") no-repeat center center/cover;
+    background: url("../images/hr.png") no-repeat center center/contain;
 }
 
 .ceo {
-    background: url("../images/angry-boss.png") no-repeat center center/cover;
+    background: url("../images/ceo.png") no-repeat center center/contain;
 }
 
 .mouse {
-    background: url("../images/mouse.png") no-repeat center top;
-    background-size: contain;
+    background: url("../images/mouse.png") no-repeat center top/contain;
 }
 
 .keyboard {
-    background: url("../images/keyboard.png") no-repeat center top;
-    background-size: contain;
+    background: url("../images/keyboard.png") no-repeat center top/contain;
 }
 
 .computer {
-    background: url("../images/computer.png") no-repeat center top;
-    background-size: contain;
-    /* grid-row-end: span 2;
-    grid-column-end: span 2; */
+    background: url("../images/computer.png") no-repeat center top/contain;
 }
 
 .coffee {
-    background: url("../images/coffee.png") no-repeat center top;
-    background-size: contain;
+    background: url("../images/coffee.png") no-repeat center top/contain;
 }
