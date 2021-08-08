@@ -55,7 +55,7 @@ main {
 }
 
 article {
-    padding: 2rem;
+    padding: 0 2rem;
 }
 
 footer {
@@ -307,4 +307,9 @@ footer > #socials {
 
 .hidden{
     display: none;
+}
+
+
+@media screen {
+    
 }
