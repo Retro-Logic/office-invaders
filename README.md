@@ -56,22 +56,29 @@ Under the photo PLAY button / button can also be inside of the picture.
 - Fifth wireframe consists of instructions on how to play the game, what arrow keys tot use to move around and which key to press to shoot projectiles into enemies. 
 - Last wireframe includes credits to all the people who were part of this project.
 
+# Technologies used
+
+ 
 
   
+# Testing
+
+During the development there were some issues where the character would not move the way we would like so the team tested this and understood main issues which needed to be corrected for the game to run smoothly. Tested on different Web browsers.
+
 ## User stories
 
 - As a user I would like to see multiplatyer option as well.
 - End user goal: Playing the game with friends and damily.
 - Business goal: Implementing new features and multiplayer options to the game.
 
+## Features
 
 
+  ## Code
 
-  
-## Testing
+# Deployment
 
-During the development there were some issues where the character would not move the way we would like so the team tested this and understood main issues which needed to be corrected for the game to run smoothly. Tested on different Web browsers.
-## Credits
+# Credits
 
 - Content – text, images, data, YouTube, Shutterstock photos.
 
@@ -80,10 +87,8 @@ During the development there were some issues where the character would not move
 
 - Animations, Images
 
+# Testing
   
-## Features
 
-
-  ## Code
 
 
