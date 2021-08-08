@@ -89,7 +89,6 @@ During the development there were some issues where the character would not move
 
 - Animations, Images
 
-# Testing
   
 
 
