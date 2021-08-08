@@ -2,20 +2,25 @@ const gameBoard = document.querySelector("#game-board");
 const player = document.querySelector("#player");
 const scorePoints = document.querySelector("#point-score");
 const playerLives = document.querySelector("#player-lives");
+
 let lives = 3;
 let points = 0;
 let level = 1;
+let firstTime = true;
+
 let projectileList = [
   { class: "mouse" },
   { class: "keyboard" },
   { class: "computer" },
   { class: "coffee" },
 ];
+
 let enemyList = [
   { class: "manager", life: 2 },
   { class: "hr", life: 3 },
   { class: "ceo", life: 5 },
 ];
+
 const calculateLives = () => {
   const html = "♥ ";
   return html.repeat(lives);
@@ -24,51 +29,48 @@ const calculateLives = () => {
 scorePoints.innerHTML = points;
 playerLives.innerHTML = calculateLives();
 
-const generateEnemies = setInterval(() => {
-  const enemy = document.createElement("div");
-  currentEnemy = enemyList[Math.floor(Math.random() * enemyList.length)];
-  enemy.classList.add(currentEnemy.class);
-  enemy.classList.add("enemy");
-  //defining the life of the enemy
-  enemy.dataset.life = currentEnemy.life;
-  let xPos = parseInt(
-    window.getComputedStyle(enemy).getPropertyValue("grid-column-start")
-  );
-  let yPos = parseInt(
-    window.getComputedStyle(enemy).getPropertyValue("grid-row-start")
-  );
-  enemy.style.gridColumnStart = Math.floor(Math.max(1, Math.random() * 13));
-  enemy.style.gridRowStart = 1;
-  gameBoard.appendChild(enemy);
-}, 2000 / level);
-
-const moveEnemies = setInterval(() => {
-  const enemies = document.getElementsByClassName("enemy");
-
-  if (enemies !== undefined) {
-    for (let i = 0; i < enemies.length; i++) {
-      let enemy = enemies[i];
-      let yPos = parseInt(
-        window.getComputedStyle(enemy).getPropertyValue("grid-row-start")
-      );
-      if (yPos > 12) {
-        if (lives < 1) {
-          // alert("Game Over");
-          console.log("Game Over 👎");
-          // clearInterval(moveEnemies);
-        } else {
-          lives -= 1;
-          playerLives.innerHTML = calculateLives();
+function startGame() {
+  setInterval(() => {
+    const enemy = document.createElement("div");
+    currentEnemy = enemyList[Math.floor(Math.random() * enemyList.length)];
+    enemy.classList.add(currentEnemy.class);
+    enemy.classList.add("enemy");
+    //defining the life of the enemy
+    enemy.dataset.life = currentEnemy.life;
+    let xPos = parseInt(
+      window.getComputedStyle(enemy).getPropertyValue("grid-column-start")
+    );
+    let yPos = parseInt(
+      window.getComputedStyle(enemy).getPropertyValue("grid-row-start")
+    );
+    enemy.style.gridColumnStart = Math.floor(Math.max(1, Math.random() * 13));
+    enemy.style.gridRowStart = 1;
+    gameBoard.appendChild(enemy);
+  }, 2000 / level);
+  
+  setInterval(() => {
+    const enemies = document.getElementsByClassName("enemy");
+    if (enemies !== undefined) {
+      for (let i = 0; i < enemies.length; i++) {
+        let enemy = enemies[i];
+        let yPos = parseInt(
+          window.getComputedStyle(enemy).getPropertyValue("grid-row-start")
+        );
+        if (yPos > 12) {
+          if (lives < 1) {
+            alert("Game Over 👎");
+            location.reload();
+          } else {
+            lives -= 1;
+            playerLives.innerHTML = calculateLives();
+          }
+          enemy.remove();
         }
-        enemy.remove();
-        console.log(`lives left: ${lives}`);
-        // alert(`lives left: ${lives}`);
-        // }
+        enemy.style.gridRowStart = yPos + 1;
       }
-      enemy.style.gridRowStart = yPos + 1;
     }
-  }
-}, 750);
+  }, 750);
+}
 
 const moveProjectiles = setInterval(() => {
   const projectiles = document.getElementsByClassName("projectile");
@@ -100,7 +102,6 @@ const moveProjectiles = setInterval(() => {
             if (enemy.dataset["life"] == 0) {
               enemy.parentElement.removeChild(enemy);
             }
-
             points += 1;
             //Scoreboard
             scorePoints.innerHTML = points;
@@ -119,6 +120,12 @@ document.addEventListener("keydown", (e) => {
     window.getComputedStyle(player).getPropertyValue("grid-column-start")
   );
   switch (e.key) {
+    case 'Enter':
+      if (firstTime) {
+        startGame();
+        firstTime = false;
+      }
+      break;
     case "ArrowLeft":
       if (xPos > 0) {
         player.style.gridColumnStart = xPos - 1;

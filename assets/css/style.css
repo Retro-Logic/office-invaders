@@ -13,36 +13,39 @@ body {
     width: 100%;
     display: grid;
     place-content: center center;
-    background-color: black;
+    
 }
 
 #game-area {
-    border: solid black 1px;
+    background-color: black;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    /* top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); */
+}
+
+#game-board {
     background-color: slategray;
-    width: 40rem;
+    width: 100vmin;
+    height: calc(100vmin - 20%);
+    display: grid;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-}
-#game-board {
-    /* border: 1px solid red; */
-    height: 40rem;
-    display: grid;
-    /* position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);*/
     grid-template-columns: repeat(13, 1fr);
     grid-template-rows: repeat(14, 1fr);
 }
+
 #score-board {
     display: flex;
     justify-content: space-around;
     padding: 0.6rem;
     font-family: 'VT323', monospace;
+    background-color: red;
 }
-
 
 #player {
     background: url("/assets/images/retro_developer.png") no-repeat center center/contain;
