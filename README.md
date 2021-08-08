@@ -5,9 +5,9 @@ Office Invaders game is a project created by Retro Logic team for the purpose of
 ## Table of contents
 
 
-## UX
+## User Experience
 
-Goals
+
 Visitor goals:
 
 The target audience for the Office Invaders game are: 
