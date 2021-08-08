@@ -137,8 +137,13 @@ button#return-btn {
     margin-top: 2rem;
 }
 
+#home-btn {
+    display: grid;
+    align-self: start;
+    color: #000;
+}
 
-#home-btn:hover, #home-btn:visited {
+#home-btn:visited {
     color: #000;
 }
 
@@ -168,7 +173,6 @@ button#return-btn {
     justify-content: space-around;
     align-items: center;
 }
-
 
 #game-area {
     background-color: #6C40EB;
