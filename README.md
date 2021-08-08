@@ -1,6 +1,6 @@
-# Introduction - hackaton project
+# Introduction
 
-Office Invaders game is designed to attract mass audience but mainly people who understand “office life” and cannot wait for that shorthand to show 5 o’clock. This is the game in which employee can finally end the office tyranny and start living again without commuting and loosing that precious time. 
+Office Invaders game is a project created by Retro Logic team for the purpose of hackaton Retro Game challenge by Code Institute. The game is designed to attract mass audience but mainly people who understand 'office life' and cannot wait for that shorthand to show 5 o’clock. This is a game in which employee can finally end the office tyranny and start living again without commuting and loosing their precious time. 
 
 
 ## UX
