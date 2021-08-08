@@ -32,17 +32,17 @@ let enemyList = [
 
 window.onload = () => {
   if (localStorage.points) {
-    points = storedScore;
+    points = parseInt(storedScore);
   } else {
     points = 0;
   }
   if (localStorage.level) {
-    level = storedLevel;
+    level = parseInt(storedLevel);
   } else {
     level = 1;
   }
   if (localStorage.lives) {
-    lives = storedLives;
+    lives = parseInt(storedLives);
   } else {
     lives = 3;
   }
