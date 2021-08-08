@@ -111,7 +111,9 @@ body {
 
 .computer {
     background: url("/assets/images/computer.png") no-repeat center top;
-    background-size: contain;
+    background-size: cover;
+    grid-row-end: span 2;
+    grid-column-end: span 2;
 }
 .coffee {
     background: url("/assets/images/coffee.png") no-repeat center top;
