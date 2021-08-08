@@ -55,20 +55,21 @@ Icons
 ## Wireframes
 
 
-[Balsamiq](https://balsamiq.com/) was used to design all wireframes. It consists of 6 pages. 
+ All wireframes are created with [Balsamiq](https://balsamiq.com/) during the Scope Plane part of the design and planning process for this project.                     It consists of 6 pages. 
 
-- First three pages are three prototypes of how the main page should look like. All three include Navigation bar with main menu, storyline, how to play, credits, sound on/off and find us.
-- Navigation bar will be added and it consists of Main Menu : Storyline / How to Play / Credits / Sound on/off 
-- STORYLINE - Game story and all the Information user needs to understand the theme of the game.
-- HOW TO PLAY - This will bring us to the page with all the Information on how to play the game. 
+- First three pages are three prototypes of how the main page should look like. 
+ All three include:
+- Navigation bar which consists of the Main Menu : Storyline / How to Play / Credits / Sound on/off.
+
 - CREDITS - Will consist of the Information about the game, how it was developed and inspiration for the theme.
 - SOUND ON/OFF - There will be an audio implemented and will be muted when the page loads. User will be able to turn on or turn off the sound.
-In the middle of the page we have name of the game OFFICE INVADERS and picture of the main character versus the abgry HR/manager.
-PLAY button will be added as well.
+In the middle of the page we have name of the game OFFICE INVADERS and picture of the main character versus the angry HR/manager.
+- PLAY button - Will be added, user will click on it and the game will start.
 - FIND US ON - Fictive part on the bottom right social platforms Icons for the people who are still in early stage of the course and can work on adding icons
-- Fourth wireframe is a storyline of the game which gives user more theme insight.
-- Fifth wireframe consists of instructions on how to play the game, what arrow keys tot use to move around and which key to press to shoot projectiles into enemies. 
-- Last wireframe includes credits to all the people who were part of this project.
+- Fourth wireframe - STORYLINE - Game story and all the Information user needs to understand the theme of the game.
+- Fifth wireframe consists of instructions on how to play the game, what arrow keys to use to move around and which key to press to shoot projectiles into into the enemies. 
+  HOW TO PLAY will bring us to the page with all the Information on how to play the game. 
+- Sixth wireframe includes credits to all the people who were part of this project.
 
 # Languages used
 - [HTML5](https://en.wikipedia.org/wiki/HTML5)
