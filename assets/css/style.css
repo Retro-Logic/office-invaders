@@ -131,10 +131,14 @@ button:hover {
     align-self: end;
     grid-auto-flow: column;
     align-content: start;
-    justify-content: end;
+    justify-content: center;
     font-family: 'VT323', monospace;
     letter-spacing: 1px;
     font-size: 200%;
+}
+
+#socials a {
+    color: black;
 }
 
 .fa-facebook, .fa-github,
