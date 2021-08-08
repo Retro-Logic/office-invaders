@@ -237,7 +237,7 @@ document.addEventListener("keydown", (e) => {
         break;
     }
   }
-  
+
   if (e.key === " ") {
     const gamePaused = document.getElementById('game-paused');
     gamePaused.classList.remove('hidden');
@@ -245,7 +245,7 @@ document.addEventListener("keydown", (e) => {
     gameSound.pause();
   }
 
-  if(!playing && e.key === "r") {
+  if (!playing && e.key === "r") {
     const gamePaused = document.getElementById('game-paused');
     gamePaused.classList.add('hidden');
     playing = true;
@@ -266,13 +266,6 @@ generateProjectile = (xPos, yPos) => {
 
 
 const topScores = async () => {
-  const table = await fetch(`https://office-invaders-default-rtdb.europe-west1.firebasedatabase.app/highscores.json`);
-  const data = await table.json();
-
-  const scores = Object.values(data)
-  const topScores = scores.sort((a, b) => { return b.points - a.points })
-  console.log(topScores)
-  console.log(`Player points: ${points}. Press enter to reload`)
 
   const newRecord = {
     name: "New Player",
@@ -289,6 +282,23 @@ const topScores = async () => {
   }
   )
 
+  const table = await fetch(`https://office-invaders-default-rtdb.europe-west1.firebasedatabase.app/highscores.json`);
+  const data = await table.json();
+  if (data) {
+    const scores = Object.values(data)
+    const topScores = scores.sort((a, b) => { return b.level - a.level || b.points - a.points })
+    var position = null
+    for (i = 0; i < topScores.length; i++) {
+      if (!position) {
+        if (level >= topScores[i].level && points >= topScores[i].points) {
+          console.log(`Your position is ${i + 1}`)
+          position = i+1;
+        }
+      }
+    }
+    console.log(topScores)
+    console.log(`Player points: ${points}. Press enter to reload`)
+  }
   document.addEventListener("keydown", (e) => {
     if (e.key == "Enter") {
       location.reload();
