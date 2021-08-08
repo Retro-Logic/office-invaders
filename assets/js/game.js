@@ -16,7 +16,9 @@ let points;
 let level;
 let firstTime = true;
 let playing = true;
+let gameover = false;
 let playerName = "";
+let topScores = [];
 
 let projectileList = [
   { class: "mouse" },
@@ -124,10 +126,8 @@ function startGame() {
 const gameOver = () => {
   alert("Game Over 👎");
   playing = false;
-  points = 0;
-  lives = 3;
-  saveToLocalStorage();
-  topScores();
+  gameover = true;
+  gameOverHandler();
 };
 
 const updateLife = () => {
@@ -169,7 +169,6 @@ const handleCollision = (enemy, projectile) => {
   if (parseInt(enemy.dataset["life"]) === 0) {
     kill.play();
     points = points + parseInt(enemy.dataset["points"]);
-    console.log(typeof(points))
     scorePoints.innerHTML = points;
     saveToLocalStorage();
     enemy.remove();
@@ -262,14 +261,14 @@ document.addEventListener("keydown", (e) => {
     }
   }
 
-  if (e.key === " ") {
+  if (!gameover && e.key === " ") {
     const gamePaused = document.getElementById('game-paused');
     gamePaused.classList.remove('hidden');
     playing = false;
     gameSound.pause();
   }
 
-  if (!playing && e.key === "r") {
+  if (!gameover && !playing && e.key === "r") {
     const gamePaused = document.getElementById('game-paused');
     gamePaused.classList.add('hidden');
     playing = true;
@@ -289,54 +288,70 @@ generateProjectile = (xPos, yPos) => {
 };
 
 
-const topScores = async () => {
+const gameOverHandler = async () => {
   const table = await fetch(`https://office-invaders-default-rtdb.europe-west1.firebasedatabase.app/highscores.json`);
   const data = await table.json();
   if (data) {
     const scores = Object.values(data)
-    const topScores = scores.sort((a, b) => { return b.level - a.level || b.points - a.points })
-    var position = null
-    for (i = 0; i < topScores.length; i++) {
-      if (!position) {
-        if (level >= topScores[i].level && points >= topScores[i].points) {
-          console.log(`Your position is ${i + 1}`)
-          position = i + 1;
-        }
-        if (position > 11) {
-          const topScorerForm = document.getElementById('top-scores-form');
-          topScorerForm.classList.remove('hidden');
+    topScores = scores.sort((a, b) => { return b.level - a.level || b.points - a.points })
+  }
 
-          if (playerName !== "") {
-            topScorerForm.classList.add('hidden');
-            const newRecord = {
-              name: playerName,
-              points: points,
-              level: level
-            };
+  var position = null
+  for (i = 0; i < topScores.length; i++) {
+    if (!position) {
+      if (level >= topScores[i].level && points >= topScores[i].points) {
+        console.log(`Your position is ${i + 1}`)
+        position = i + 1;
 
-            const response = await fetch('https://office-invaders-default-rtdb.europe-west1.firebasedatabase.app/highscores.json', {
-              method: 'POST',
-              body: JSON.stringify(newRecord),
-              headers: {
-                'Content-Type': 'application/json',
-              },
-            }
-            )
-          }
-        }
+        const levelReached = document.querySelector(".level-reached");
+        levelReached.innerHTML = `Level reached: ${level}`;
+
+        const totalPoints = document.querySelector(".total-points");
+        totalPoints.innerHTML = `Total points: ${points}`;
+
+        const finalPosition = document.querySelector(".final-position");
+        finalPosition.innerHTML = `You got the position: ${position}`;
+
+        const topScorerForm = document.getElementById('game-over');
+        topScorerForm.classList.remove('hidden');
       }
     }
-    console.log(topScores)
-    console.log(`Player points: ${points}. Press enter to reload`)
   }
-  document.addEventListener("keydown", (e) => {
-    if (e.key == "Enter") {
-      location.reload();
-    }
-  })
 }
 
-function topScorer() {
-  const topScorer = document.getElementById('top-score-name');
+const submitName = async () => {
+  const topScorerForm = document.getElementById('game-over');
+  const topScorer = document.getElementById('player-name');
+
   playerName = topScorer.value;
+
+  topScorerForm.classList.add('hidden');
+
+  const newRecord = {
+    name: playerName,
+    points: points,
+    level: level
+  };
+
+  const response = await fetch('https://office-invaders-default-rtdb.europe-west1.firebasedatabase.app/highscores.json', {
+    method: 'POST',
+    body: JSON.stringify(newRecord),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  }
+  )
+  points = 0;
+  level = 0;
+  lives = 3;
+  gameover = false;
+  saveToLocalStorage();
+  location.reload();
 }
+
+// function topTen() {
+//   const topScorerForm = document.getElementById('high-scores');
+
+//   for (i = 0; i < 11; i++) {
+
+// }
