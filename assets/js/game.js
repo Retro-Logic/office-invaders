@@ -2,6 +2,7 @@ const gameBoard = document.querySelector("#game-board");
 const player = document.querySelector("#player");
 const scorePoints = document.querySelector("#point-score");
 const playerLives = document.querySelector("#player-lives");
+const gameLevel = document.querySelector("#player-level");
 
 let lives = 3;
 let points = 0;
@@ -16,9 +17,9 @@ let projectileList = [
 ];
 
 let enemyList = [
-  { class: "manager", life: 2 },
-  { class: "hr", life: 3 },
-  { class: "ceo", life: 5 },
+  { class: "manager", life: 2, points: 2 },
+  { class: "hr", life: 3, points: 3 },
+  { class: "ceo", life: 5, points: 5 },
 ];
 
 const calculateLives = () => {
@@ -26,25 +27,31 @@ const calculateLives = () => {
   return html.repeat(lives);
 };
 
+
 scorePoints.innerHTML = points;
 playerLives.innerHTML = calculateLives();
+gameLevel.innerHTML = level;
+
 
 function generateEnemies() {
-  setInterval(() => {
+  var speed = 2000 / level;
+  setTimeout(() => {
     const enemyType = enemyList[Math.floor(Math.random() * enemyList.length)];
     const enemy = document.createElement("div");
-  
+
     // set enemy component attributes
     enemy.classList.add(enemyType.class, "enemy");
     enemy.style.opacity = 1;
     enemy.dataset.life = enemyType.life;
-  
+    enemy.dataset.points = enemyType.points;
+
     enemy.style.gridColumnStart = Math.floor(Math.max(1, Math.random() * 13));
     enemy.style.gridRowStart = 1;
-  
+
     // add to board
     gameBoard.appendChild(enemy);
-  }, 2000 / level);
+    generateEnemies();
+  }, speed+750);
 }
 
 /**
@@ -57,14 +64,14 @@ function generateEnemies() {
 function moveEnemies() {
   setInterval(() => {
     const enemies = document.getElementsByClassName("enemy");
-  
+
     if (enemies !== undefined) {
       for (let i = 0; i < enemies.length; i++) {
         const enemy = enemies[i];
         const yPos = parseInt(
           window.getComputedStyle(enemy).getPropertyValue("grid-row-start")
         );
-  
+
         // check if reached bottom
         if (yPos > 12) {
           updateLife();
@@ -123,9 +130,15 @@ const handleCollision = (enemy, projectile) => {
   enemy.dataset.life = enemy.dataset["life"] - 1;
 
   if (parseInt(enemy.dataset["life"]) === 0) {
-    enemy.remove();
-    points += 1;
+    points += +enemy.dataset["points"];
     scorePoints.innerHTML = points;
+    enemy.remove();
+
+    // Increase game speed when points reach a treashold
+    if (points > level * 50) {
+      level++;
+      gameLevel.innerHTML = level;
+    }
   }
 
   switch (enemy.className.split(" ")[0]) {
