@@ -60,6 +60,8 @@ Under the photo PLAY button / button can also be inside of the picture.
 
 # Technologies used
 - [HTML5](https://en.wikipedia.org/wiki/HTML5)
+- [CSS3](https://en.wikipedia.org/wiki/CSS)
+- [JavaScript](https://en.wikipedia.org/wiki/JavaScript) 
  
 
   
