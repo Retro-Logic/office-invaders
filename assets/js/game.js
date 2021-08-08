@@ -16,6 +16,7 @@ let points;
 let level;
 let firstTime = true;
 let playing = true;
+let playerName = "";
 
 let projectileList = [
   { class: "mouse" },
@@ -167,7 +168,8 @@ const handleCollision = (enemy, projectile) => {
 
   if (parseInt(enemy.dataset["life"]) === 0) {
     kill.play();
-    points += parseInt(enemy.dataset["points"]);
+    points = points + parseInt(enemy.dataset["points"]);
+    console.log(typeof(points))
     scorePoints.innerHTML = points;
     saveToLocalStorage();
     enemy.remove();
@@ -288,22 +290,6 @@ generateProjectile = (xPos, yPos) => {
 
 
 const topScores = async () => {
-
-  const newRecord = {
-    name: "New Player",
-    points: points,
-    level: level
-  };
-
-  const response = await fetch('https://office-invaders-default-rtdb.europe-west1.firebasedatabase.app/highscores.json', {
-    method: 'POST',
-    body: JSON.stringify(newRecord),
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  }
-  )
-
   const table = await fetch(`https://office-invaders-default-rtdb.europe-west1.firebasedatabase.app/highscores.json`);
   const data = await table.json();
   if (data) {
@@ -314,7 +300,29 @@ const topScores = async () => {
       if (!position) {
         if (level >= topScores[i].level && points >= topScores[i].points) {
           console.log(`Your position is ${i + 1}`)
-          position = i+1;
+          position = i + 1;
+        }
+        if (position > 11) {
+          const topScorerForm = document.getElementById('top-scores-form');
+          topScorerForm.classList.remove('hidden');
+
+          if (playerName !== "") {
+            topScorerForm.classList.add('hidden');
+            const newRecord = {
+              name: playerName,
+              points: points,
+              level: level
+            };
+
+            const response = await fetch('https://office-invaders-default-rtdb.europe-west1.firebasedatabase.app/highscores.json', {
+              method: 'POST',
+              body: JSON.stringify(newRecord),
+              headers: {
+                'Content-Type': 'application/json',
+              },
+            }
+            )
+          }
         }
       }
     }
@@ -326,4 +334,9 @@ const topScores = async () => {
       location.reload();
     }
   })
+}
+
+function topScorer() {
+  const topScorer = document.getElementById('top-score-name');
+  playerName = topScorer.value;
 }

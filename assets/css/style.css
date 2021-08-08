@@ -296,7 +296,7 @@ footer > #socials {
     background: url("../images/coffee.png") no-repeat center top/contain;
 }
 
-#game-paused{
+#game-paused, #top-scores-form{
     position: absolute;
     top: 50%;
     left: 50%;
@@ -304,7 +304,12 @@ footer > #socials {
     text-align: center;
 }
 
-
+#top-scores-form{
+    width: 50vmin;
+    height: 50vmin;
+    background-color: #000;
+    color: #CCDCF5;
+}
 .hidden{
     display: none;
 }
