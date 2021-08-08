@@ -47,9 +47,11 @@ main {
     grid-column-gap: 1.5rem;
     background-color: #CCDCF5;
 }
+
 article {
     padding: 2rem;
 }
+
 footer {
     text-align: right;
     flex-shrink: 0;
@@ -59,6 +61,7 @@ header,footer {
     /* background-color: #85EB40; */
     background-color: #6C40EB;
 }
+
 h1 {
     /* font-family: 'Audiowide', cursive; */
     /* font-family: 'Black Ops One', cursive; */
@@ -77,6 +80,7 @@ h1 {
            -1px 1px 0 #000,
             1px 1px 0 #000;
 }
+
 h2, button, h3, h4 {
     /* font-family: 'VT323', monospace; */
     font-family: 'Press Start 2P', cursive;
@@ -92,6 +96,7 @@ a {
 footer a {
     color: #CCDCF5;
 }
+
 p {
     /* font-family: 'Changa', sans-serif; */
     /* font-family: 'Play', sans-serif; */
@@ -99,6 +104,7 @@ p {
     font-family: 'Exo 2', sans-serif;
     font-size: 1.2rem;
 }
+
 button {
     display: block;
     padding: 2rem;
@@ -106,6 +112,10 @@ button {
     width: 100%;
     border-bottom: 0.25rem solid black;
     background-color: #B6967C;
+}
+
+button:hover {
+    cursor: pointer;
 }
 
 #content {
@@ -129,7 +139,7 @@ button {
 }
 
 #game-area {
-    background-color: off-white;
+    background:url("../images/office_bg.png") no-repeat center center/cover;
     width: 100%;
     height: 100%;
     position: absolute;
@@ -174,10 +184,14 @@ button {
     align-self: end;
     grid-auto-flow: column;
     align-content: start;
-    justify-content: end;
+    justify-content: center;
     font-family: 'VT323', monospace;
     letter-spacing: 1px;
     font-size: 200%;
+}
+
+#socials a {
+    color: black;
 }
 
 .fa-facebook, .fa-github,

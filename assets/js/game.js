@@ -12,6 +12,7 @@ let lives = 3;
 let points = 0;
 let level = 1;
 let firstTime = true;
+let playing = true;
 
 let projectileList = [
   { class: "mouse" },
@@ -38,24 +39,26 @@ gameLevel.innerHTML = level;
 
 
 function generateEnemies() {
-  var speed = 2000 / level;
-  setTimeout(() => {
-    const enemyType = enemyList[Math.floor(Math.random() * enemyList.length)];
-    const enemy = document.createElement("div");
+  if (playing) {
+    var speed = 2000 / level;
+    setTimeout(() => {
+      const enemyType = enemyList[Math.floor(Math.random() * enemyList.length)];
+      const enemy = document.createElement("div");
 
-    // set enemy component attributes
-    enemy.classList.add(enemyType.class, "enemy");
-    enemy.style.opacity = 1;
-    enemy.dataset.life = enemyType.life;
-    enemy.dataset.points = enemyType.points;
+      // set enemy component attributes
+      enemy.classList.add(enemyType.class, "enemy");
+      enemy.style.opacity = 1;
+      enemy.dataset.life = enemyType.life;
+      enemy.dataset.points = enemyType.points;
 
-    enemy.style.gridColumnStart = Math.floor(Math.max(1, Math.random() * 13));
-    enemy.style.gridRowStart = 1;
+      enemy.style.gridColumnStart = Math.floor(Math.max(1, Math.random() * 13));
+      enemy.style.gridRowStart = 1;
 
-    // add to board
-    gameBoard.appendChild(enemy);
-    generateEnemies();
-  }, speed+750);
+      // add to board
+      gameBoard.appendChild(enemy);
+      generateEnemies();
+    }, speed + 750);
+  }
 }
 
 /**
@@ -66,25 +69,28 @@ function generateEnemies() {
  */
 
 function moveEnemies() {
-  setInterval(() => {
-    const enemies = document.getElementsByClassName("enemy");
+  if (playing) {
+    setTimeout(() => {
+      const enemies = document.getElementsByClassName("enemy");
 
-    if (enemies !== undefined) {
-      for (let i = 0; i < enemies.length; i++) {
-        const enemy = enemies[i];
-        const yPos = parseInt(
-          window.getComputedStyle(enemy).getPropertyValue("grid-row-start")
-        );
+      if (enemies !== undefined) {
+        for (let i = 0; i < enemies.length; i++) {
+          const enemy = enemies[i];
+          const yPos = parseInt(
+            window.getComputedStyle(enemy).getPropertyValue("grid-row-start")
+          );
 
-        // check if reached bottom
-        if (yPos > 12) {
-          updateLife();
-          enemy.remove();
+          // check if reached bottom
+          if (yPos > 12) {
+            updateLife();
+            enemy.remove();
+          }
+          enemy.style.gridRowStart = yPos + 1;
         }
-        enemy.style.gridRowStart = yPos + 1;
       }
-    }
-  }, 750);
+      moveEnemies();
+    }, 750);
+  }
 }
 
 function startGame() {
@@ -191,39 +197,51 @@ const shootEnemies = setInterval(() => {
 }, 50);
 
 document.addEventListener("keydown", (e) => {
-  let yPos = parseInt(
-    window.getComputedStyle(player).getPropertyValue("grid-row-start")
-  );
-  let xPos = parseInt(
-    window.getComputedStyle(player).getPropertyValue("grid-column-start")
-  );
-  switch (e.key) {
-    case 'Enter':
-      if (firstTime) {
-        startGame();
-        document.querySelector('.start-message').remove();
-        firstTime = false;
-      }
-      break;
-    case "ArrowLeft":
-      if (xPos > 0) {
-        player.style.gridColumnStart = xPos - 1;
-      }
-      break;
-    case "ArrowRight":
-      if (xPos < 13) {
-        player.style.gridColumnStart = xPos + 1;
-      }
-      break;
-    case "ArrowUp":
-      generateProjectile(xPos, yPos);
-      player.style.background =
-        'url("./assets/images/retro_developer_shooting.png") no-repeat center center/contain';
-      setTimeout(() => {
+  if (playing) {
+    let yPos = parseInt(
+      window.getComputedStyle(player).getPropertyValue("grid-row-start")
+    );
+    let xPos = parseInt(
+      window.getComputedStyle(player).getPropertyValue("grid-column-start")
+    );
+    switch (e.key) {
+      case 'Enter':
+        if (firstTime) {
+          startGame();
+          document.querySelector('.start-message').remove();
+          firstTime = false;
+        }
+        break;
+      case "ArrowLeft":
+        if (xPos > 0) {
+          player.style.gridColumnStart = xPos - 1;
+        }
+        break;
+      case "ArrowRight":
+        if (xPos < 13) {
+          player.style.gridColumnStart = xPos + 1;
+        }
+        break;
+      case "ArrowUp":
+        generateProjectile(xPos, yPos);
         player.style.background =
-          'url("./assets/images/retro_developer.png") no-repeat center center/contain';
-      }, 250);
-      break;
+          'url("./assets/images/retro_developer_shooting.png") no-repeat center center/contain';
+        setTimeout(() => {
+          player.style.background =
+            'url("./assets/images/retro_developer.png") no-repeat center center/contain';
+        }, 250);
+        break;
+    }
+  }
+  if (e.key === " ") {
+    playing = !playing;
+    if(playing){
+      gameSound.play();
+      generateEnemies();
+      moveEnemies();
+    }else{
+      gameSound.pause();
+    }
   }
 });
 
