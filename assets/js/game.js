@@ -4,14 +4,16 @@ const scorePoints = document.querySelector("#point-score");
 const playerLives = document.querySelector("#player-lives");
 const gameLevel = document.querySelector("#player-level");
 const storedScore = localStorage.getItem("points");
+const storedLevel = localStorage.getItem("level");
+const storedLives = localStorage.getItem("lives");
 
 const kill = new Audio("./assets/sounds/kill_enemy.wav");
 const throwing = new Audio("./assets/sounds/throw_projectile.wav");
 const gameSound = new Audio("./assets/sounds/soundtrack.mp3");
 
-let lives = 3;
+let lives;
 let points;
-let level = 1;
+let level;
 let firstTime = true;
 let playing = true;
 
@@ -34,17 +36,29 @@ window.onload = () => {
   } else {
     points = 0;
   }
+  if (localStorage.level) {
+    level = storedLevel;
+  } else {
+    level = 1;
+  }
+  if (localStorage.lives) {
+    lives = storedLives;
+  } else {
+    lives = 3;
+  }
   scorePoints.innerHTML = points;
   gameLevel.innerHTML = level;
+  document.getElementById('player-lives-' + lives).style.opacity = '0';
 }
 
 const saveToLocalStorage = () => {
   localStorage.setItem("points", points);
+  localStorage.setItem("level", level);
+  localStorage.setItem("lives", lives);
 }
 
 function generateEnemies() {
-
-  var speed = 2000 / level;
+  let speed = 2000 / level;
   const generate = setTimeout(() => {
     if (!playing) {
       clearInterval(generate)
@@ -110,6 +124,7 @@ const gameOver = () => {
   alert("Game Over 👎");
   playing = false;
   points = 0;
+  lives = 3;
   saveToLocalStorage();
   topScores();
 };
@@ -119,6 +134,7 @@ const updateLife = () => {
     gameOver();
   } else {
     lives -= 1;
+    saveToLocalStorage();
     document.getElementById('player-lives-' + lives).style.opacity = '0';
   }
 };
@@ -158,6 +174,7 @@ const handleCollision = (enemy, projectile) => {
     // Increase game speed when points reach a treshold
     if (points > level * 50) {
       level++;
+      saveToLocalStorage();
       gameLevel.innerHTML = level;
     }
   }
