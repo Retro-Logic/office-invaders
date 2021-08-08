@@ -93,13 +93,13 @@ During the development there were some issues where the character would not move
 
 ## Features
 
-- Home Page 
-- Storyline 
-- Credits
-- Play!
+- Home Page is easy to read and includes name of the game colored yellow to stand out and a pitch just below the title. We can see the main character and one of the 'bad guys' you need to find against. Navigation bar is on the left handside and has easy to read font. Social media Icons can be seen in the bottom left corner. Home Page is simple and easy to navigate. There are no distraction and no scrolling.
+- Storyline, How to Play and Credits - all three have same style and are self explanatory. Each wil open in its own container and have the same font style.
+- Play! - when user clicks on it voard game will open.
 
 
-  ## Code
+ ## Code
+ Code used was inspired by this tutorial of [The Snake Game](https://www.youtube.com/watch?v=QTcIXok9wNY&amp;t=873s)
 
 # Deployment
 
