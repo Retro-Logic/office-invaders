@@ -33,7 +33,6 @@ body {
     src: url(../fonts/BNMachine.ttf);
 }
 
-
 header {
     text-align: center;
     text-transform: uppercase;
@@ -48,6 +47,7 @@ main {
     flex: 1 auto;
     padding: 3rem;
     display: grid;
+    align-content: center;
     grid-template-columns: 30% 70%;
     grid-template-rows: 2(1fr);
     grid-column-gap: 1.5rem;
@@ -63,7 +63,6 @@ footer {
     flex-shrink: 0;
     display: grid;
     place-content: center center;
-    height: 10%;
     padding: 1rem;
 }
 
@@ -137,10 +136,17 @@ button#return-btn {
     margin-top: 2rem;
 }
 
-a#home-btn {
-    color: #CCDCF5;
+#home-btn {
+    display: grid;
+    align-self: start;
+    color: #000;
 }
-a#home-btn:hover {
+
+#home-btn:visited {
+    color: #000;
+}
+
+#home-btn:hover {
     color: #85EB40;
 }
 
@@ -166,7 +172,6 @@ a#home-btn:hover {
     justify-content: space-around;
     align-items: center;
 }
-
 
 #game-area {
     background-color: #6C40EB;
