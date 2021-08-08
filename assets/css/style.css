@@ -65,7 +65,8 @@ body {
     font-size: 200%;
 }
 
-.fa-facebook, .fa-github {
+.fa-facebook, .fa-github,
+.fa-youtube-square {
     padding-right: 1rem;
 }
 
