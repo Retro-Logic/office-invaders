@@ -128,7 +128,7 @@ const gameOver = () => {
   lives = 3;
   saveToLocalStorage();
   topScores();
-  location.reload();
+  window.location.href = "index.html";
 };
 
 const updateLife = () => {
