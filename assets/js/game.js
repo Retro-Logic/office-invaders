@@ -25,99 +25,130 @@ scorePoints.innerHTML = points;
 playerLives.innerHTML = calculateLives();
 
 const generateEnemies = setInterval(() => {
+  const enemyType = enemyList[Math.floor(Math.random() * enemyList.length)];
   const enemy = document.createElement("div");
-  currentEnemy = enemyList[Math.floor(Math.random() * enemyList.length)];
-  enemy.classList.add(currentEnemy.class, "enemy");
+
+  // set enemy component attributes
+  enemy.classList.add(enemyType.class, "enemy");
   enemy.style.opacity = 1;
-  // enemy.classList.add("enemy");
-  //defining the life of the enemy
-  enemy.dataset.life = currentEnemy.life;
-  let xPos = parseInt(
-    window.getComputedStyle(enemy).getPropertyValue("grid-column-start")
-  );
-  let yPos = parseInt(
-    window.getComputedStyle(enemy).getPropertyValue("grid-row-start")
-  );
+  enemy.dataset.life = enemyType.life;
+
   enemy.style.gridColumnStart = Math.floor(Math.max(1, Math.random() * 13));
   enemy.style.gridRowStart = 1;
+
+  // add to board
   gameBoard.appendChild(enemy);
 }, 2000 / level);
 
+const gameOver = () => {
+  console.log("Game Over 👎");
+  // clearInterval(moveEnemies);
+};
+
+const updateLife = () => {
+  if (lives < 1) {
+    gameOver();
+  } else {
+    lives -= 1;
+    playerLives.innerHTML = calculateLives();
+    console.log(`lives left: ${lives}`);
+  }
+};
+
+/**
+ * Loops every 3/4 second
+ * Gets all enemy components
+ * Gets y position and moves down one
+ * Remove component if outside boundaries
+ */
 const moveEnemies = setInterval(() => {
   const enemies = document.getElementsByClassName("enemy");
 
   if (enemies !== undefined) {
     for (let i = 0; i < enemies.length; i++) {
-      let enemy = enemies[i];
-      let yPos = parseInt(
+      const enemy = enemies[i];
+      const yPos = parseInt(
         window.getComputedStyle(enemy).getPropertyValue("grid-row-start")
       );
+
+      // check if reached bottom
       if (yPos > 12) {
-        if (lives < 1) {
-          // alert("Game Over");
-          console.log("Game Over 👎");
-          // clearInterval(moveEnemies);
-        } else {
-          lives -= 1;
-          playerLives.innerHTML = calculateLives();
-        }
+        updateLife();
         enemy.remove();
-        console.log(`lives left: ${lives}`);
-        // alert(`lives left: ${lives}`);
-        // }
       }
       enemy.style.gridRowStart = yPos + 1;
     }
   }
 }, 750);
 
-const moveProjectiles = setInterval(() => {
+/**
+ * @param component
+ * get components position on y axis
+ * update Y positon moving up 1
+ * Remove component if outside boundaries
+ */
+const updatePosY = (component) => {
+  const yPos = parseInt(
+    window.getComputedStyle(component).getPropertyValue("grid-row-start")
+  );
+  component.style.gridRowStart = yPos - 1;
+  if (yPos <= 1) {
+    component.remove();
+  }
+};
+
+/**
+ * Removes life from enemy component
+ * Remove enemy if no more life left
+ * Else, decrement opacity of enemy type
+ * Remove projectile
+ * Update score
+ */
+const handleCollision = (enemy, projectile) => {
+  enemy.dataset.life = enemy.dataset["life"] - 1;
+  if (enemy.dataset["life"] == 0) {
+    enemy.parentElement.removeChild(enemy);
+  }
+  switch (enemy.className.split(" ")[0]) {
+    case "manager":
+      enemy.style.opacity -= 0.3;
+    case "hr":
+      enemy.style.opacity -= 0.22;
+    case "ceo":
+      enemy.style.opacity -= 0.15;
+  }
+
+  projectile.parentElement.removeChild(projectile);
+
+  points += 1;
+  scorePoints.innerHTML = points;
+};
+
+/**
+ * Loops every half second
+ * Gets all enemy components and projectile components
+ * Loops projectiles and updates Y position
+ * Check if new position collides with any enemy components
+ * Calls handleCollision() if true
+ */
+const shootEnemies = setInterval(() => {
   const projectiles = document.getElementsByClassName("projectile");
+  const enemies = document.getElementsByClassName("enemy");
+
   if (projectiles !== undefined) {
     for (let i = 0; i < projectiles.length; i++) {
       const projectile = projectiles[i];
-      const yPos = parseInt(
-        window.getComputedStyle(projectile).getPropertyValue("grid-row-start")
-      );
-      console.log(projectile.style.gridColumnStart);
-      projectile.style.gridRowStart = yPos - 1;
-      if (yPos <= 1) {
-        projectile.remove();
-      }
-      const enemies = document.getElementsByClassName("enemy");
-      for (let j = 0; j < enemies.length; j++) {
-        let enemy = enemies[j];
-        if (enemy != undefined) {
-          //Condition to check whether the enemy and the projectile are at the same position..!
-          //If so,then we have to destroy that enemy
+      updatePosY(projectile);
+
+      if (enemies != undefined) {
+        for (let j = 0; j < enemies.length; j++) {
+          const enemy = enemies[j];
+
           if (
             projectile.style.gridRowStart === enemy.style.gridRowStart &&
             projectile.style.gridColumnStart === enemy.style.gridColumnStart
           ) {
-            // remove on life of the enemy and remove projectile
-            console.log(enemy.style);
-
-            enemy.dataset.life = enemy.dataset["life"] - 1;
-
-            // Reduce opacity of enemy
-            switch (enemy.className.split(" ")[0]) {
-              case "manager":
-                enemy.style.opacity -= 0.4;
-              case "hr":
-                enemy.style.opacity -= 0.3;
-              case "ceo":
-                enemy.style.opacity -= 0.2;
-            }
-
-            projectile.parentElement.removeChild(projectile);
-            // check if enemy has any life left, if zero remove enemy
-            if (enemy.dataset["life"] == 0) {
-              enemy.parentElement.removeChild(enemy);
-            }
-
-            points += 1;
-            //Scoreboard
-            scorePoints.innerHTML = points;
+            handleCollision(enemy, projectile);
           }
         }
       }
