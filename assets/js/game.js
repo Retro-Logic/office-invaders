@@ -368,7 +368,7 @@ const topTen = async () => {
     if (e.key === "Enter") {
       highScores.classList.add('hidden')
       points = 0;
-      level = 0;
+      level = 1;
       lives = 3;
       gameover = false;
       saveToLocalStorage();
