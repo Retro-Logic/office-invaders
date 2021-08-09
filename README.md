@@ -54,8 +54,9 @@ Icons
 
 ![image](https://user-images.githubusercontent.com/87389388/128640102-5fabc00a-bcb2-424c-84bc-8d50fa312963.png)
 
-- Implemented palette consits of 5 colors; #85EB40 / #F5DF7E / #B6967C / #CCDCF5 / #6C40EB. Colors that are used match retro game style from the 90's.
-- Styling - Squared box with the bold line on the bottom were applied to make navigation separated. Buttons are clickable and will lead the user to each section on the page.
+- Implemented palette consits of 5 colors: #85EB40 / #F5DF7E / #B6967C / #CCDCF5 / #6C40EB. Colors that are used match retro game style from the 90's.
+- Styling - Squared box with the bold line on the bottom were applied to make navigation separated. Buttons are clickable and will lead the user to each section on the page. Play button is highlighted in green to be visible and easy to find to start the game.
+![image](https://user-images.githubusercontent.com/87389388/128705346-cf67dc13-ac6e-40cb-bf89-8c48ffe125af.png)
 
 ## Wireframes
 ![image](https://user-images.githubusercontent.com/87389388/128642541-9c87b78c-983d-4cd6-8169-112b6f54cf9a.png)
@@ -87,14 +88,18 @@ All wireframes are created with [Balsamiq](https://balsamiq.com/) during the Sco
 
 # Testing
 
-During the development there were some issues where the character would not move the way we would like so the team tested this and understood main issues which needed to be corrected for the game to run smoothly. Game is tested on different Web browsers.
+During the development there were some issues where the character would not move the way we would like so the team tested this and understood main issues which needed to be corrected for the game to run smoothly. Game is tested on these Web browsers: [Mozilla Firefox](https://www.mozilla.org/en-US/firefox/), [Google Chrome](https://www.google.com/intl/en_ie/chrome/), [Microsoft Edge](https://microsoftedgewelcome.microsoft.com/en-gb?form=MA13DW).
 
 There were some errors after validation of HTML, CSS and JavaScript that are fixed.
 
-HTML was validated with [W3 Validator](https://validator.w3.org/)
+HTML was validated with [W3 Validator](https://validator.w3.org/) Example of the error and issues fixed.
 ![image](https://user-images.githubusercontent.com/87389388/128700496-669428a9-99f3-47a9-8c44-e7633b2322fd.png)
-CSS was validates with [Jigsaw W3 validator](https://jigsaw.w3.org/css-validator/)
+![image](https://user-images.githubusercontent.com/87389388/128703143-64f4f10f-b182-4793-8b94-c3637ca46331.png)
+
+
+CSS was validated with [Jigsaw W3 validator](https://jigsaw.w3.org/css-validator/) and the issue with @import we were able to ignore.
 ![image](https://user-images.githubusercontent.com/87389388/128702047-0c23bd42-b772-4a00-b304-7422d59f0f1a.png)
+![image](https://user-images.githubusercontent.com/87389388/128704863-2fef929e-377f-4876-a882-e3d900272236.png)
 
 
 
