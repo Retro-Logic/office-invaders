@@ -1,6 +1,6 @@
 # Introduction
 
-![image](https://user-images.githubusercontent.com/87389388/128639996-13e08429-c483-41cb-80ee-47aa632c69fa.png)
+![image](https://www.dropbox.com/s/ok3uiqzr7d4wujk/Office_Invaders_Mockup_techsini_v3.png?raw=1)
 Office Invaders game is a project created by Retro Logic team for the purpose of hackaton Retro Game challenge by Code Institute. It is reincarnation of 'Space Invaders' game but gives contemporary and relevant meaning to the story. The game is designed to attract mass audience but mainly people who understand 'office life' and cannot wait for that shorthand to show 5 o’clock. This is a game in which employee can finally end the office tyranny and start living again without commuting and loosing precious time.
 
 You can view live game on this [link](https://retro-logic.github.io/office-invaders/).
@@ -112,6 +112,28 @@ Code used was inspired by couple of tutorial:
 - [HTML5 Canvas and and JavaScript Game Tutorial](https://www.youtube.com/watch?v=eI9idPTT0c4)
 
 # Deployment
+
+## Github Repository
+
+The project was stored on Github using the following steps.
+
+1.  We created an organization called Retro Logic - [Our account](https://github.com/Retro-Logic)
+
+2.  We created a public repository for the project - [Office Invaders](https://github.com/Retro-Logic/office-invaders)
+
+## Github Pages
+
+The project was deployed to GitHub Pages using the following steps.
+
+1.  Log in to Github and located the [Github Repository](https://github.com/Retro-Logic/office-invaders)
+
+2.  At the top of the Repository, click the "Settings" Button on the menu.
+
+3.  Scroll down the Settings page until you locate the "GitHub Pages" Section.
+
+4.  Under "Source", click the dropdown called "None" and select "main".
+
+5.  Scroll back down through the page to locate the now published [site link](https://retro-logic.github.io/office-invaders/) in the "GitHub Pages" section.
 
 # Credits
 

@@ -34,15 +34,37 @@
             </div>
         </div>
         <div id="game-board">
+            <h2 class="start-message">Press Enter To Fight</h2>
+            <div id="player"></div>
             <div id="game-paused" class="hidden">
                 <h1>GAME PAUSED</h1>
                 <p><em>Press "r" to return</em></p>
             </div>
-            <h2 class="start-message">Press Enter To Fight</h2>
-            <div id="player"></div>
+            <div id="game-over" class="hidden">
+                <h3>GAME OVER</h3>
+                <p class="level-reached"></p>
+                <p class="total-points">s</p>
+                <p class="final-position">dadsa</p>
+                <input id="player-name" type="text" name="name" placeholder="Add your name">
+                <div>
+                    <button onclick="submitName()">Confirm</button>
+                </div>
+            </div>
+            <div id="high-scores" class="hidden">
+                <h3>HIGH SCORES</h3>
+                <table id="top-ten">
+                    <tr>
+                        <th>Pos.</th>
+                        <th>Name</th>
+                        <th>Level</th>
+                        <th>Points</th>
+                    </tr>
+                </table>
+                <p><em>Press "Enter" to play again</em></p>
+            </div>
         </div>
         <div id="socials">
-            <a href="https://www.youtube.com" aria-label="Go to YouTube page" target="_blank" rel="noopener""><i class="
+            <a href="https://www.youtube.com" aria-label="Go to YouTube page" target="_blank" rel="noopener"><i class="
                 fab fa-youtube-square"></i></a>
             <a href="http://facebook.com" aria-label="Go to Facebook page" target="_blank" rel="noopener"><i
                     class="fab fa-facebook"></i></a>

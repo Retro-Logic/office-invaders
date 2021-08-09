@@ -8,6 +8,7 @@ const storedLevel = localStorage.getItem("level");
 const storedLives = localStorage.getItem("lives");
 
 const kill = new Audio("./assets/sounds/kill_enemy.wav");
+const damage = new Audio("./assets/sounds/damage.wav");
 const throwing = new Audio("./assets/sounds/throw_projectile.wav");
 const gameSound = new Audio("./assets/sounds/soundtrack.mp3");
 
@@ -16,6 +17,8 @@ let points;
 let level;
 let firstTime = true;
 let playing = true;
+let gameover = false;
+let playerName = "";
 
 let projectileList = [
   { class: "mouse" },
@@ -32,17 +35,17 @@ let enemyList = [
 
 window.onload = () => {
   if (localStorage.points) {
-    points = storedScore;
+    points = parseInt(storedScore);
   } else {
     points = 0;
   }
   if (localStorage.level) {
-    level = storedLevel;
+    level = parseInt(storedLevel);
   } else {
     level = 1;
   }
   if (localStorage.lives) {
-    lives = storedLives;
+    lives = parseInt(storedLives);
   } else {
     lives = 3;
   }
@@ -121,12 +124,10 @@ function startGame() {
 }
 
 const gameOver = () => {
-  alert("Game Over 👎");
   playing = false;
-  points = 0;
-  lives = 3;
-  saveToLocalStorage();
-  topScores();
+  gameover = true;
+  gameOverHandler();
+  // window.location.href = "index.html";
 };
 
 const updateLife = () => {
@@ -134,6 +135,7 @@ const updateLife = () => {
     gameOver();
   } else {
     lives -= 1;
+    damage.play();
     saveToLocalStorage();
     document.getElementById('player-lives-' + lives).style.opacity = '0';
   }
@@ -164,10 +166,9 @@ const updatePosY = (component) => {
  */
 const handleCollision = (enemy, projectile) => {
   enemy.dataset.life = enemy.dataset["life"] - 1;
-
   if (parseInt(enemy.dataset["life"]) === 0) {
     kill.play();
-    points += parseInt(enemy.dataset["points"]);
+    points = points + parseInt(enemy.dataset["points"]);
     scorePoints.innerHTML = points;
     saveToLocalStorage();
     enemy.remove();
@@ -178,7 +179,6 @@ const handleCollision = (enemy, projectile) => {
       gameLevel.innerHTML = level;
     }
   }
-
   switch (enemy.className.split(" ")[0]) {
     case "manager":
       enemy.style.opacity -= 0.3;
@@ -187,7 +187,6 @@ const handleCollision = (enemy, projectile) => {
     case "ceo":
       enemy.style.opacity -= 0.15;
   }
-
   projectile.remove();
 };
 
@@ -201,12 +200,10 @@ const handleCollision = (enemy, projectile) => {
 const shootEnemies = setInterval(() => {
   const projectiles = document.getElementsByClassName("projectile");
   const enemies = document.getElementsByClassName("enemy");
-
   if (projectiles !== undefined) {
     for (let i = 0; i < projectiles.length; i++) {
       const projectile = projectiles[i];
       updatePosY(projectile);
-
       if (enemies != undefined) {
         for (let j = 0; j < enemies.length; j++) {
           const enemy = enemies[j];
@@ -260,14 +257,14 @@ document.addEventListener("keydown", (e) => {
     }
   }
 
-  if (e.key === " ") {
+  if (!gameover && e.key === " ") {
     const gamePaused = document.getElementById('game-paused');
     gamePaused.classList.remove('hidden');
     playing = false;
     gameSound.pause();
   }
 
-  if (!playing && e.key === "r") {
+  if (!gameover && !playing && e.key === "r") {
     const gamePaused = document.getElementById('game-paused');
     gamePaused.classList.add('hidden');
     playing = true;
@@ -275,6 +272,7 @@ document.addEventListener("keydown", (e) => {
     gameSound.play();
   }
 });
+
 
 generateProjectile = (xPos, yPos) => {
   throwing.play();
@@ -287,10 +285,46 @@ generateProjectile = (xPos, yPos) => {
 };
 
 
-const topScores = async () => {
+// Get data and check which position the player got
+// according to the level and points achieved.
+// Game over info is updated with the last game played
+const gameOverHandler = async () => {
+  const table = await fetch(`https://office-invaders-default-rtdb.europe-west1.firebasedatabase.app/highscores.json`);
+  const data = await table.json();
+  const scores = Object.values(data)
+  const topScores = scores.sort((a, b) => { return b.level - a.level || b.points - a.points })
+  const levelReached = document.querySelector(".level-reached");
+  const totalPoints = document.querySelector(".total-points");
+  const finalPosition = document.querySelector(".final-position");
+  const topScorerForm = document.getElementById('game-over');
+  var position = 0;
+
+  for (i = 0; i < topScores.length; i++) {
+    if (level >= topScores[i].level && points >= topScores[i].points) {
+      position = i + 1;
+    }
+  }
+
+  if (position === 0) {
+    position = topScores.length + 1;
+  }
+
+  levelReached.innerHTML = `Level reached: ${level}`;
+  totalPoints.innerHTML = `Total points: ${points}`;
+  finalPosition.innerHTML = `You got the position: ${position}`;
+  topScorerForm.classList.remove('hidden');
+}
+
+// After submiting the name data is storage in a firabase database
+// It calls a function to show high scores
+
+const submitName = async () => {
+  const topScorerForm = document.getElementById('game-over');
+  const topScorer = document.getElementById('player-name');
+  playerName = topScorer.value;
 
   const newRecord = {
-    name: "New Player",
+    name: playerName,
     points: points,
     level: level
   };
@@ -301,28 +335,47 @@ const topScores = async () => {
     headers: {
       'Content-Type': 'application/json',
     },
-  }
-  )
+  });
 
+  topScorerForm.classList.add('hidden');
+  topTen();
+}
+
+
+// Top ten player are shown based on level and after poitns achieved
+// Highscores info is updated
+// This is the end of the game, the player can restart it again
+
+const topTen = async () => {
   const table = await fetch(`https://office-invaders-default-rtdb.europe-west1.firebasedatabase.app/highscores.json`);
   const data = await table.json();
-  if (data) {
-    const scores = Object.values(data)
-    const topScores = scores.sort((a, b) => { return b.level - a.level || b.points - a.points })
-    var position = null
-    for (i = 0; i < topScores.length; i++) {
-      if (!position) {
-        if (level >= topScores[i].level && points >= topScores[i].points) {
-          console.log(`Your position is ${i + 1}`)
-          position = i+1;
-        }
-      }
+  const scores = Object.values(data)
+  const leaders = scores.sort((a, b) => { return b.level - a.level || b.points - a.points })
+  const topTen = document.getElementById('top-ten');
+  const highScores = document.getElementById('high-scores');
+
+  for (i = 0; i < leaders.length; i++) {
+    if (i < 10) {
+      const player = document.createElement('tr')
+      player.innerHTML = `
+        <td>${i + 1}.</td>
+        <td>${leaders[i].name}</td>
+        <td>${leaders[i].level}</td>
+        <td>${leaders[i].points}</td>`
+      topTen.appendChild(player)
     }
-    console.log(topScores)
-    console.log(`Player points: ${points}. Press enter to reload`)
   }
+
+  highScores.classList.remove('hidden')
+
   document.addEventListener("keydown", (e) => {
-    if (e.key == "Enter") {
+    if (e.key === "Enter") {
+      highScores.classList.add('hidden')
+      points = 0;
+      level = 1;
+      lives = 3;
+      gameover = false;
+      saveToLocalStorage();
       location.reload();
     }
   })

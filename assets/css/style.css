@@ -33,7 +33,6 @@ body {
     src: url(../fonts/BNMachine.ttf);
 }
 
-
 header {
     text-align: center;
     text-transform: uppercase;
@@ -48,6 +47,7 @@ main {
     flex: 1 auto;
     padding: 3rem;
     display: grid;
+    align-content: center;
     grid-template-columns: 30% 70%;
     grid-template-rows: 2(1fr);
     grid-column-gap: 1.5rem;
@@ -63,7 +63,6 @@ footer {
     flex-shrink: 0;
     display: grid;
     place-content: center center;
-    height: 10%;
     padding: 1rem;
 }
 
@@ -137,8 +136,13 @@ button#return-btn {
     margin-top: 2rem;
 }
 
+#home-btn {
+    display: grid;
+    align-self: start;
+    color: #000;
+}
 
-#home-btn:hover, #home-btn:visited {
+#home-btn:visited {
     color: #000;
 }
 
@@ -169,7 +173,6 @@ button#return-btn {
     align-items: center;
 }
 
-
 #game-area {
     background-color: #6C40EB;
     background:url("../images/office_bg.png") no-repeat center center/cover;
@@ -192,6 +195,10 @@ button#return-btn {
     /* font-family: 'VT323', monospace; */
     color: black;
     letter-spacing: 1px;
+}
+
+#score-board h3 {
+    margin-bottom: 0;
 }
 
 #game-board {
@@ -298,7 +305,7 @@ footer > #socials {
     background: url("../images/coffee.png") no-repeat center top/contain;
 }
 
-#game-paused{
+#game-paused, #game-over, #high-scores{
     position: absolute;
     top: 50%;
     left: 50%;
@@ -306,6 +313,45 @@ footer > #socials {
     text-align: center;
 }
 
+#game-over, #high-scores{
+    width: 50vmin;
+    height: 50vmin;
+    background-color:black;
+    color: #CCDCF5;
+}
+
+#game-over h3{
+    margin-top: 3rem;
+}
+
+#game-over p{
+    margin-top: 1rem;
+}
+
+#game-over button {
+    margin-top: 2rem;
+}
+
+#game-over input {
+    margin-top: 2.5rem;
+    width: 75%;
+    height: 2rem;
+    background-color: #CCDCF5;
+    color: black;
+}
+
+#high-scores h3 {
+    margin-top: 2rem;
+}
+
+#top-ten{
+    margin: 1rem auto;
+    width: 90%;
+}
+
+#top-ten th{
+    margin: 0.5rem auto;
+}
 
 .hidden{
     display: none;
