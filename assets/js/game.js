@@ -124,7 +124,6 @@ function startGame() {
 }
 
 const gameOver = () => {
-  alert("Game Over 👎");
   playing = false;
   gameover = true;
   gameOverHandler();
