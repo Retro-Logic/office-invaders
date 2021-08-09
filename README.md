@@ -115,7 +115,7 @@ CSS was validated with [Jigsaw W3 validator](https://jigsaw.w3.org/css-validator
 ## Features
 
 - Home Page is easy to read and includes name of the game coloured yellow to stand out and a pitch just below the title. We can see the main character and one of the 'bad guys' you need to fight against. Navigation bar is on the left handside and has easy to read font. Social media Icons can be seen in the bottom left corner. Home Page is simple and easy to navigate. There are no distractions and no scrolling.
-- Storyline, How to Play and Credits - all three have the same style and are self explanatory. Each wil open in its own container and have the same font style.
+- Storyline, How to Play and Credits - all three have the same style and are self explanatory. Each will open in its own container and have the same font style.
 - Play! - when user clicks on it board game will open.
 
 ## Code
