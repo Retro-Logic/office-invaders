@@ -89,7 +89,12 @@ All wireframes are created with [Balsamiq](https://balsamiq.com/) during the Sco
 
 During the development there were some issues where the character would not move the way we would like so the team tested this and understood main issues which needed to be corrected for the game to run smoothly. Game is tested on different Web browsers.
 
-**_run our html, css and js files from validators _** and add to README.MD
+There were some errors after validation of HTML, CSS and JavaScript that are fixed.
+
+HTML was validated with [W3 Validator](https://validator.w3.org/)
+![image](https://user-images.githubusercontent.com/87389388/128700496-669428a9-99f3-47a9-8c44-e7633b2322fd.png)
+
+
 
 ## User stories
 
