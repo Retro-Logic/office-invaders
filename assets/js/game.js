@@ -11,6 +11,8 @@ const kill = new Audio("./assets/sounds/kill_enemy.wav");
 const damage = new Audio("./assets/sounds/damage.wav");
 const throwing = new Audio("./assets/sounds/throw_projectile.wav");
 const gameSound = new Audio("./assets/sounds/soundtrack.mp3");
+const gameOverSound = new Audio("./assets/sounds/game_over.mp3");
+gameSound.loop = true;
 
 let lives;
 let points;
@@ -124,6 +126,8 @@ function startGame() {
 }
 
 const gameOver = () => {
+  gameSound.pause();
+  gameOverSound.play();
   playing = false;
   gameover = true;
   gameOverHandler();
