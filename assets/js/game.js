@@ -19,7 +19,6 @@ let firstTime = true;
 let playing = true;
 let gameover = false;
 let playerName = "";
-let topScores = [];
 
 let projectileList = [
   { class: "mouse" },
@@ -275,6 +274,7 @@ document.addEventListener("keydown", (e) => {
   }
 });
 
+
 generateProjectile = (xPos, yPos) => {
   throwing.play();
   const projectile = document.createElement("div");
@@ -289,35 +289,27 @@ generateProjectile = (xPos, yPos) => {
 // Get data and check which position the player got
 // according to the level and points achieved.
 // Game over info is updated with the last game played
-
 const gameOverHandler = async () => {
   const table = await fetch(`https://office-invaders-default-rtdb.europe-west1.firebasedatabase.app/highscores.json`);
   const data = await table.json();
-  if (data) {
-    const scores = Object.values(data)
-    topScores = scores.sort((a, b) => { return b.level - a.level || b.points - a.points })
-  }
-
-  var position = null
+  const scores = Object.values(data)
+  const topScores = scores.sort((a, b) => { return b.level - a.level || b.points - a.points })
+  const levelReached = document.querySelector(".level-reached");
+  const totalPoints = document.querySelector(".total-points");
+  const finalPosition = document.querySelector(".final-position");
+  const topScorerForm = document.getElementById('game-over');
+  var position = 0;
+  
   for (i = 0; i < topScores.length; i++) {
-    if (!position) {
-      if (level >= topScores[i].level && points >= topScores[i].points) {
-        position = i + 1;
-
-        const levelReached = document.querySelector(".level-reached");
-        levelReached.innerHTML = `Level reached: ${level}`;
-
-        const totalPoints = document.querySelector(".total-points");
-        totalPoints.innerHTML = `Total points: ${points}`;
-
-        const finalPosition = document.querySelector(".final-position");
-        finalPosition.innerHTML = `You got the position: ${position}`;
-
-        const topScorerForm = document.getElementById('game-over');
-        topScorerForm.classList.remove('hidden');
-      }
+    if (level >= topScores[i].level && points >= topScores[i].points) {
+      position = i + 1;
     }
   }
+ 
+  levelReached.innerHTML = `Level reached: ${level}`;
+  totalPoints.innerHTML = `Total points: ${points}`;
+  finalPosition.innerHTML = `You got the position: ${position}`;
+  topScorerForm.classList.remove('hidden');
 }
 
 // After submiting the name data is storage in a firabase database
@@ -326,10 +318,7 @@ const gameOverHandler = async () => {
 const submitName = async () => {
   const topScorerForm = document.getElementById('game-over');
   const topScorer = document.getElementById('player-name');
-
   playerName = topScorer.value;
-
-  topScorerForm.classList.add('hidden');
 
   const newRecord = {
     name: playerName,
@@ -343,8 +332,9 @@ const submitName = async () => {
     headers: {
       'Content-Type': 'application/json',
     },
-  }
-  )
+  });
+
+  topScorerForm.classList.add('hidden');
   topTen();
 }
 
@@ -356,23 +346,23 @@ const submitName = async () => {
 const topTen = async () => {
   const table = await fetch(`https://office-invaders-default-rtdb.europe-west1.firebasedatabase.app/highscores.json`);
   const data = await table.json();
-  if (data) {
-    const scores = Object.values(data)
-    topScores = scores.sort((a, b) => { return b.level - a.level || b.points - a.points })
-  }
+  const scores = Object.values(data)
+  const leaders = scores.sort((a, b) => { return b.level - a.level || b.points - a.points })
   const topTen = document.getElementById('top-ten');
+  const highScores = document.getElementById('high-scores');
 
-  for (i = 0; i < 10; i++) {
-    const player = document.createElement('tr')
-    player.innerHTML = `
-      <td>${i + 1}.</td>
-      <td>${topScores[i].name}</td>
-      <td>${topScores[i].level}</td>
-      <td>${topScores[i].points}</td>`
-    topTen.appendChild(player)
+  for (i = 0; i < leaders.length; i++) {
+    if (i < 10) {
+      const player = document.createElement('tr')
+      player.innerHTML = `
+        <td>${i + 1}.</td>
+        <td>${leaders[i].name}</td>
+        <td>${leaders[i].level}</td>
+        <td>${leaders[i].points}</td>`
+      topTen.appendChild(player)
+    }
   }
 
-  const highScores = document.getElementById('high-scores');
   highScores.classList.remove('hidden')
 
   document.addEventListener("keydown", (e) => {
