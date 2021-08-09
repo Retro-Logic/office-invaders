@@ -55,7 +55,7 @@ Icons
 ![image](https://user-images.githubusercontent.com/87389388/128640102-5fabc00a-bcb2-424c-84bc-8d50fa312963.png)
 
 - Implemented palette consits of 5 colors: #85EB40 / #F5DF7E / #B6967C / #CCDCF5 / #6C40EB. Colors that are used match retro game style from the 90's.
-- Styling - Squared box with the bold line on the bottom were applied to make navigation separated. Buttons are clickable and will lead the user to each section on the page. Play button is highlighted in green to be visible and easy to find to start the game.
+- Styling - Squared box with the bold line on the bottom were applied to make navigation separated. Buttons are clickable and will lead the user to each section on the page. Play button is highlighted to be visible immediately when the user lands on the page.
 ![image](https://user-images.githubusercontent.com/87389388/128705346-cf67dc13-ac6e-40cb-bf89-8c48ffe125af.png)
 
 ## Wireframes
