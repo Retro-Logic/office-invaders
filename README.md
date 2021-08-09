@@ -93,6 +93,8 @@ There were some errors after validation of HTML, CSS and JavaScript that are fix
 
 HTML was validated with [W3 Validator](https://validator.w3.org/)
 ![image](https://user-images.githubusercontent.com/87389388/128700496-669428a9-99f3-47a9-8c44-e7633b2322fd.png)
+CSS was validates with [Jigsaw W3 validator](https://jigsaw.w3.org/css-validator/)
+![image](https://user-images.githubusercontent.com/87389388/128702047-0c23bd42-b772-4a00-b304-7422d59f0f1a.png)
 
 
 
