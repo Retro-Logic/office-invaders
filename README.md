@@ -100,10 +100,10 @@ Some example of the issues and testing we did:
 
 Game is tested on these Web browsers: [Mozilla Firefox](https://www.mozilla.org/en-US/firefox/), [Google Chrome](https://www.google.com/intl/en_ie/chrome/), [Microsoft Edge](https://microsoftedgewelcome.microsoft.com/en-gb?form=MA13DW).
 
-HTML was validated with [W3 Validator](https://validator.w3.org/) and errors were fixed.
-
-CSS was validated with [Jigsaw W3 validator](https://jigsaw.w3.org/css-validator/) and the issue with @import we were able to ignore.
+- [HTML5](https://en.wikipedia.org/wiki/HTML5) was validated with [W3 Validator](https://validator.w3.org/).
+- [CSS3](https://en.wikipedia.org/wiki/CSS)CSS was validated with [Jigsaw W3 validator](https://jigsaw.w3.org/css-validator/) and the issue with @import we were able to ignore.
 ![image](https://user-images.githubusercontent.com/87389388/128704863-2fef929e-377f-4876-a882-e3d900272236.png)
+- [JavaScript](https://en.wikipedia.org/wiki/JavaScript) was tested with [JSHint](https://jshint.com/)
 
 
 ## User stories
