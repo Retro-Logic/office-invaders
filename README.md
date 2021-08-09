@@ -54,7 +54,7 @@ Icons
 
 ![image](https://user-images.githubusercontent.com/87389388/128640102-5fabc00a-bcb2-424c-84bc-8d50fa312963.png)
 
-- Implemented palette consits of 5 colors; #85EB40 / #F5DF7E / #B6967C / #CCDCF5 / #6C40EB. Colors that are used match retro game style from the 90's.
+- Implemented palette consits of 5 colors: #85EB40 / #F5DF7E / #B6967C / #CCDCF5 / #6C40EB. Colors that are used match retro game style from the 90's.
 - Styling - Squared box with the bold line on the bottom were applied to make navigation separated. Buttons are clickable and will lead the user to each section on the page.
 
 ## Wireframes
