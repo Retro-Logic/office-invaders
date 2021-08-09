@@ -55,7 +55,7 @@ Icons
 ![image](https://user-images.githubusercontent.com/87389388/128640102-5fabc00a-bcb2-424c-84bc-8d50fa312963.png)
 
 - Implemented palette consits of 5 colors: #85EB40 / #F5DF7E / #B6967C / #CCDCF5 / #6C40EB. Colors that are used match retro game style from the 90's.
-- Styling - Squared box with the bold line on the bottom were applied to make navigation separated. Buttons are clickable and will lead the user to each section on the page. Play button is highlighted in green to be visible and easy to find to start the game.
+- Styling - Squared box with the bold line on the bottom were applied to make navigation separated. Buttons are clickable and will lead the user to each section on the page. Play button is highlighted to be visible immediately when the user lands on the page.
 ![image](https://user-images.githubusercontent.com/87389388/128705346-cf67dc13-ac6e-40cb-bf89-8c48ffe125af.png)
 
 ## Wireframes
@@ -65,9 +65,7 @@ Icons
 All wireframes are created with [Balsamiq](https://balsamiq.com/) during the Scope Plane part of the design and planning process for this project. It consists of 6 pages.
 
 - First three pages are three prototypes of how the main page should look like.
-  All three include:
-- Navigation bar which consists of the Main Menu : Storyline / How to Play / Credits / Sound on/off.
-
+  All three include navigation bar which consists of the Main Menu : Storyline / How to Play / Credits / Sound on/off.
 - CREDITS - Consist of the Information about the game, how it was developed and inspiration for the theme.
 - SOUND ON/OFF - There will be an audio implemented and will be muted when the page loads. User will be able to turn on or turn off the sound.
   In the middle of the page we have name of the game OFFICE INVADERS.
