@@ -328,11 +328,11 @@ footer > #socials {
     margin-top: 1rem;
 }
 
-#game-over button{
+#game-over button {
     margin-top: 2rem;
 }
 
-#game-over input{
+#game-over input {
     margin-top: 2.5rem;
     width: 75%;
     height: 2rem;
@@ -340,6 +340,18 @@ footer > #socials {
     color: black;
 }
 
+#high-scores h3 {
+    margin-top: 2rem;
+}
+
+#top-ten{
+    margin: 1rem auto;
+    width: 90%;
+}
+
+#top-ten th{
+    margin: 0.5rem auto;
+}
 
 .hidden{
     display: none;
