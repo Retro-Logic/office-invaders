@@ -87,7 +87,7 @@ All wireframes are created with [Balsamiq](https://balsamiq.com/) during the Sco
 
 # Testing
 
-During the development there were some issues where the character would not move the way we would like so the team tested this and understood main issues which needed to be corrected for the game to run smoothly. Game is tested on different Web browsers.
+During the development there were some issues where the character would not move the way we would like so the team tested this and understood main issues which needed to be corrected for the game to run smoothly. Game is tested on these Web browsers: [Mozilla Firefox](https://www.mozilla.org/en-US/firefox/), [Google Chrome](https://www.google.com/intl/en_ie/chrome/), [Microsoft Edge](https://microsoftedgewelcome.microsoft.com/en-gb?form=MA13DW).
 
 There were some errors after validation of HTML, CSS and JavaScript that are fixed.
 
