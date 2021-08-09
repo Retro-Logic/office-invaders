@@ -128,7 +128,6 @@ aside hr {
 aside button, section button {
     display: block;
     width: 100%;
-    height: 5rem;
     box-sizing: border-box;
     margin-bottom: 1rem;
     border-bottom: 0.25rem solid black;
@@ -137,8 +136,7 @@ aside button, section button {
 
 aside button a, section button a {
     display: block;
-    width: 100%;
-    height: 100%;
+    padding: 2rem 0;
 }
 
 section button {
