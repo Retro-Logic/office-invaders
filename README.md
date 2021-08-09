@@ -90,13 +90,9 @@ During the development there were some issues where the character would not move
 
 There were some errors after validation of HTML, CSS and JavaScript that are fixed.
 
-HTML was validated with [W3 Validator](https://validator.w3.org/) Example of the error and issues fixed.
-![image](https://user-images.githubusercontent.com/87389388/128700496-669428a9-99f3-47a9-8c44-e7633b2322fd.png)
-![image](https://user-images.githubusercontent.com/87389388/128703143-64f4f10f-b182-4793-8b94-c3637ca46331.png)
-
+HTML was validated with [W3 Validator](https://validator.w3.org/) Errors were fixed.
 
 CSS was validated with [Jigsaw W3 validator](https://jigsaw.w3.org/css-validator/) and the issue with @import we were able to ignore.
-![image](https://user-images.githubusercontent.com/87389388/128702047-0c23bd42-b772-4a00-b304-7422d59f0f1a.png)
 ![image](https://user-images.githubusercontent.com/87389388/128704863-2fef929e-377f-4876-a882-e3d900272236.png)
 
 
