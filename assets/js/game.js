@@ -298,13 +298,17 @@ const gameOverHandler = async () => {
   const finalPosition = document.querySelector(".final-position");
   const topScorerForm = document.getElementById('game-over');
   var position = 0;
-  
+
   for (i = 0; i < topScores.length; i++) {
     if (level >= topScores[i].level && points >= topScores[i].points) {
       position = i + 1;
     }
   }
- 
+
+  if (position === 0) {
+    position = topScores.length + 1;
+  }
+
   levelReached.innerHTML = `Level reached: ${level}`;
   totalPoints.innerHTML = `Total points: ${points}`;
   finalPosition.innerHTML = `You got the position: ${position}`;
