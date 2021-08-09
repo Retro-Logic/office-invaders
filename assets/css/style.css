@@ -87,7 +87,8 @@ h1 {
 }
 
 h2, button, h3, h4 {
-    font-family: 'Press Start 2P', cursive;
+    font-family: 'Press Start 2P', monospace;
+    line-height: 1.5rem;
 }
 
 h4 {
@@ -112,7 +113,18 @@ p, article > ul {
     font-size: 1.2rem;
 }
 
-button {
+aside {
+    grid-area: 1/1/3/2;
+}
+
+aside hr {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    display:none;
+    width: 100%;
+    margin-bottom: 2rem;
+}
+
+aside button, article button {
     display: block;
     width: 100%;
     height: 5rem;
@@ -122,19 +134,24 @@ button {
     background-color: #B6967C;
 }
 
-button:hover {
+article button {
+    margin-top: 2rem;
+}
+
+aside button:hover, article button:hover {
     cursor: pointer;
     font-weight: bolder;
     border-bottom: 0.4rem solid black;
 }
 
-button#play-btn {
+aside button#play-btn {
     background-color: #85EB40;
 }
 
-button#return-btn {
+aside button#return-btn {
     margin-top: 2rem;
 }
+
 
 #home-btn {
     display: grid;
@@ -150,7 +167,7 @@ button#return-btn {
     color: #CCDCF5;
 }
 
-#content {
+section#content {
     grid-area: 1/2/3/3;
 }
 
@@ -158,11 +175,7 @@ button#return-btn {
     list-style-type: none;
 }
 
-#content > article {
-    position: relative;
-}
-
-#game-subtitle {
+h2#game-subtitle {
     color: #CCDCF5;
     font-size: 1.2rem;
 }
@@ -191,7 +204,7 @@ button#return-btn {
     grid-auto-flow: column;
     align-content: end;
     justify-content: space-around;
-    font-family: 'Press Start 2P', cursive;
+    font-family: 'Press Start 2P', monospace;
     /* font-family: 'VT323', monospace; */
     color: black;
     letter-spacing: 1px;
@@ -367,6 +380,42 @@ footer > #socials {
 }
 
 
-@media screen {
+/* @media only screen and (min-width: 992px) {
     
+}
+@media only screen and (max-width: 992px) {
+    
+}
+@media only screen and (max-width: 575px) {
+    
+} */
+@media only screen and (max-width: 767px) {
+    main {
+        grid-column-gap: 1rem;
+        padding: 2rem
+    }
+    .hero-character {
+        height: 15em;
+        width: auto;
+    }
+    section#content {
+        grid-area: 1/1/2/3;
+    }
+    aside {
+        grid-area: 2/1/3/3;
+        padding: 2rem;
+        padding-top: 1rem;
+    }
+    aside hr {
+        display:block;
+    }    
+    article#hero-image {
+        padding: 2rem;
+    }
+    article#hero-image h4 {
+        font-size: 1.5rem;
+    }
+    h2#game-subtitle {
+        font-size: 1rem;
+    }    
 }
