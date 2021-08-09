@@ -66,7 +66,7 @@ All wireframes are created with [Balsamiq](https://balsamiq.com/) during the Sco
 
 - First three pages are three prototypes of how the main page should look like.
   All three include navigation bar which consists of the Main Menu : Storyline / How to Play / Credits / Sound on/off.
-- CREDITS - Consist of the Information about the game, how it was developed and inspiration for the theme.
+- CREDITS - Consist of the names of people who created this game.
 - SOUND ON/OFF - There will be an audio implemented and will be muted when the page loads. User will be able to turn on or turn off the sound.
   In the middle of the page we have name of the game OFFICE INVADERS.
 - PLAY button - Will be added, user will click on it and the game will start.
@@ -75,7 +75,7 @@ All wireframes are created with [Balsamiq](https://balsamiq.com/) during the Sco
 - Fifth wireframe consists of instructions on how to play the game, what arrow keys to use to move around and which key to press to shoot projectiles into the enemies.
 - Sixth wireframe includes credits to all the people who were part of this project.
 
-- Second Wireframe is the one team decided to go ahead with. Social Media Icons were positioned to the center. Font and further Styling has been added.
+- Second Wireframe is the one team decided to go ahead with. Social Media Icons were positioned to the center. Font and further Styling has been added. Sound on/off will be implemented in future upgrades of the game
 
 # Languages used
 
