@@ -65,9 +65,7 @@ Icons
 All wireframes are created with [Balsamiq](https://balsamiq.com/) during the Scope Plane part of the design and planning process for this project. It consists of 6 pages.
 
 - First three pages are three prototypes of how the main page should look like.
-  All three include:
-- Navigation bar which consists of the Main Menu : Storyline / How to Play / Credits / Sound on/off.
-
+  All three include navigation bar which consists of the Main Menu : Storyline / How to Play / Credits / Sound on/off.
 - CREDITS - Consist of the Information about the game, how it was developed and inspiration for the theme.
 - SOUND ON/OFF - There will be an audio implemented and will be muted when the page loads. User will be able to turn on or turn off the sound.
   In the middle of the page we have name of the game OFFICE INVADERS.
