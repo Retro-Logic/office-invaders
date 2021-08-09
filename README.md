@@ -1,7 +1,7 @@
 # Introduction
 
 ![image](https://www.dropbox.com/s/ok3uiqzr7d4wujk/Office_Invaders_Mockup_techsini_v3.png?raw=1)
-Office Invaders game is a project created by Retro Logic team for the purpose of hackaton Retro Game challenge by Code Institute. It is reincarnation of 'Space Invaders' game but gives contemporary and relevant meaning to the story. The game is designed to attract mass audience but mainly people who understand 'office life' and cannot wait for that shorthand to show 5 o’clock. This is a game in which employee can finally end the office tyranny and start living again without commuting and loosing precious time.
+Office Invaders game is a project created by Retro Logic team for the purpose of hackaton Retro Game challenge by Code Institute. Blast from the past 'Space Invaders' gave us inspiration to create a game and give it contemporary and relevant meaning to the story. The game is designed to attract mass audience but mainly people who understand 'office life' and cannot wait for that shorthand to show 5 o’clock. This is a game in which employee can finally end the office tyranny and start living again without commuting and loosing precious time.
 
 You can view live game on this [link](https://retro-logic.github.io/office-invaders/).
 
