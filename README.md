@@ -103,14 +103,14 @@ CSS was validated with [Jigsaw W3 validator](https://jigsaw.w3.org/css-validator
 
 ## User stories
 
-- As a user I would like to see multiplatyer option as well.
+- As a user I would like to see multiplayer option as well.
 - End user goal: Playing the game with friends and family.
-- Business goal: Implementing new features and multiplayer options to the game.
+- Business goal: Implementing new features and multiplayer option to the game.
 
 ## Features
 
-- Home Page is easy to read and includes name of the game colored yellow to stand out and a pitch just below the title. We can see the main character and one of the 'bad guys' you need to find against. Navigation bar is on the left handside and has easy to read font. Social media Icons can be seen in the bottom left corner. Home Page is simple and easy to navigate. There are no distraction and no scrolling.
-- Storyline, How to Play and Credits - all three have same style and are self explanatory. Each wil open in its own container and have the same font style.
+- Home Page is easy to read and includes name of the game coloured yellow to stand out and a pitch just below the title. We can see the main character and one of the 'bad guys' you need to fight against. Navigation bar is on the left handside and has easy to read font. Social media Icons can be seen in the bottom left corner. Home Page is simple and easy to navigate. There are no distractions and no scrolling.
+- Storyline, How to Play and Credits - all three have the same style and are self explanatory. Each wil open in its own container and have the same font style.
 - Play! - when user clicks on it board game will open.
 
 ## Code
