@@ -83,6 +83,7 @@ All wireframes are created with [Balsamiq](https://balsamiq.com/) during the Sco
 - [HTML5](https://en.wikipedia.org/wiki/HTML5)
 - [CSS3](https://en.wikipedia.org/wiki/CSS)
 - [JavaScript](https://en.wikipedia.org/wiki/JavaScript)
+- [Firebase](https://firebase.google.com/) - Used to add highscores functionality to the game. It's being used in test mode which means that it does not follow authentication rules and database is vunarable to post and update requests. Database security can be implemented in future releases which may require user log in.
 
 # Testing
 
