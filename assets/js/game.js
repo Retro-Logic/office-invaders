@@ -34,37 +34,46 @@ let enemyList = [
 ];
 
 window.onload = () => {
-  if (localStorage.points) {
-    points = parseInt(storedScore);
-  } else {
-    points = 0;
-  }
-  if (localStorage.level) {
-    level = parseInt(storedLevel);
+  if (localStorage.points || localStorage.lives || localStorage.level) {
+    if (
+      confirm("Do you want to want to continue with your last session?") ===
+      true
+    ) {
+      if (localStorage.points) {
+        points = parseInt(storedScore);
+      }
+      if (localStorage.level) {
+        level = parseInt(storedLevel);
+      }
+      if (localStorage.lives) {
+        lives = parseInt(storedLives);
+      }
+    } else {
+      level = 1;
+      lives = 3;
+      points = 0;
+    }
   } else {
     level = 1;
-  }
-  if (localStorage.lives) {
-    lives = parseInt(storedLives);
-  } else {
     lives = 3;
+    points = 0;
   }
   scorePoints.innerHTML = points;
   gameLevel.innerHTML = level;
-  document.getElementById('player-lives-' + lives).style.opacity = '0';
-}
+  document.getElementById("player-lives-" + lives).style.opacity = "0";
+};
 
 const saveToLocalStorage = () => {
   localStorage.setItem("points", points);
   localStorage.setItem("level", level);
   localStorage.setItem("lives", lives);
-}
+};
 
 function generateEnemies() {
   let speed = 2000 / level;
   const generate = setTimeout(() => {
     if (!playing) {
-      clearInterval(generate)
+      clearTimeOut(generateEnemies);
     } else {
       const enemyType = enemyList[Math.floor(Math.random() * enemyList.length)];
       const enemy = document.createElement("div");
@@ -94,7 +103,7 @@ function generateEnemies() {
 function moveEnemies() {
   const move = setTimeout(() => {
     if (!playing) {
-      clearInterval(move)
+      clearTimeout(moveEnemies);
     } else {
       const enemies = document.getElementsByClassName("enemy");
       if (enemies !== undefined) {
@@ -137,7 +146,7 @@ const updateLife = () => {
     lives -= 1;
     damage.play();
     saveToLocalStorage();
-    document.getElementById('player-lives-' + lives).style.opacity = '0';
+    document.getElementById("player-lives-" + lives).style.opacity = "0";
   }
 };
 
@@ -228,10 +237,10 @@ document.addEventListener("keydown", (e) => {
       window.getComputedStyle(player).getPropertyValue("grid-column-start")
     );
     switch (e.key) {
-      case 'Enter':
+      case "Enter":
         if (firstTime) {
           startGame();
-          document.querySelector('.start-message').remove();
+          document.querySelector(".start-message").remove();
           firstTime = false;
         }
         break;
@@ -258,45 +267,48 @@ document.addEventListener("keydown", (e) => {
   }
 
   if (!gameover && e.key === " ") {
-    const gamePaused = document.getElementById('game-paused');
-    gamePaused.classList.remove('hidden');
+    const gamePaused = document.getElementById("game-paused");
+    gamePaused.classList.remove("hidden");
     playing = false;
     gameSound.pause();
   }
 
   if (!gameover && !playing && e.key === "r") {
-    const gamePaused = document.getElementById('game-paused');
-    gamePaused.classList.add('hidden');
+    const gamePaused = document.getElementById("game-paused");
+    gamePaused.classList.add("hidden");
     playing = true;
     startGame();
     gameSound.play();
   }
 });
 
-
 generateProjectile = (xPos, yPos) => {
   throwing.play();
   const projectile = document.createElement("div");
-  currentProjectile = projectileList[Math.floor(Math.random() * projectileList.length)];
+  currentProjectile =
+    projectileList[Math.floor(Math.random() * projectileList.length)];
   projectile.classList.add(currentProjectile.class, "projectile");
   projectile.style.gridRowStart = yPos;
   projectile.style.gridColumnStart = xPos;
   gameBoard.appendChild(projectile);
 };
 
-
 // Get data and check which position the player got
 // according to the level and points achieved.
 // Game over info is updated with the last game played
 const gameOverHandler = async () => {
-  const table = await fetch(`https://office-invaders-default-rtdb.europe-west1.firebasedatabase.app/highscores.json`);
+  const table = await fetch(
+    `https://office-invaders-default-rtdb.europe-west1.firebasedatabase.app/highscores.json`
+  );
   const data = await table.json();
-  const scores = Object.values(data)
-  const topScores = scores.sort((a, b) => { return b.level - a.level || b.points - a.points })
+  const scores = Object.values(data);
+  const topScores = scores.sort((a, b) => {
+    return b.level - a.level || b.points - a.points;
+  });
   const levelReached = document.querySelector(".level-reached");
   const totalPoints = document.querySelector(".total-points");
   const finalPosition = document.querySelector(".final-position");
-  const topScorerForm = document.getElementById('game-over');
+  const topScorerForm = document.getElementById("game-over");
   var position = 0;
 
   for (i = 0; i < topScores.length; i++) {
@@ -312,71 +324,77 @@ const gameOverHandler = async () => {
   levelReached.innerHTML = `Level reached: ${level}`;
   totalPoints.innerHTML = `Total points: ${points}`;
   finalPosition.innerHTML = `You got the position: ${position}`;
-  topScorerForm.classList.remove('hidden');
-}
+  topScorerForm.classList.remove("hidden");
+};
 
 // After submiting the name data is storage in a firabase database
 // It calls a function to show high scores
 
 const submitName = async () => {
-  const topScorerForm = document.getElementById('game-over');
-  const topScorer = document.getElementById('player-name');
+  const topScorerForm = document.getElementById("game-over");
+  const topScorer = document.getElementById("player-name");
   playerName = topScorer.value;
 
   const newRecord = {
     name: playerName,
     points: points,
-    level: level
+    level: level,
   };
 
-  const response = await fetch('https://office-invaders-default-rtdb.europe-west1.firebasedatabase.app/highscores.json', {
-    method: 'POST',
-    body: JSON.stringify(newRecord),
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  });
+  const response = await fetch(
+    "https://office-invaders-default-rtdb.europe-west1.firebasedatabase.app/highscores.json",
+    {
+      method: "POST",
+      body: JSON.stringify(newRecord),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }
+  );
 
-  topScorerForm.classList.add('hidden');
+  topScorerForm.classList.add("hidden");
   topTen();
-}
-
+};
 
 // Top ten player are shown based on level and after poitns achieved
 // Highscores info is updated
 // This is the end of the game, the player can restart it again
 
 const topTen = async () => {
-  const table = await fetch(`https://office-invaders-default-rtdb.europe-west1.firebasedatabase.app/highscores.json`);
+  const table = await fetch(
+    `https://office-invaders-default-rtdb.europe-west1.firebasedatabase.app/highscores.json`
+  );
   const data = await table.json();
-  const scores = Object.values(data)
-  const leaders = scores.sort((a, b) => { return b.level - a.level || b.points - a.points })
-  const topTen = document.getElementById('top-ten');
-  const highScores = document.getElementById('high-scores');
+  const scores = Object.values(data);
+  const leaders = scores.sort((a, b) => {
+    return b.level - a.level || b.points - a.points;
+  });
+  const topTen = document.getElementById("top-ten");
+  const highScores = document.getElementById("high-scores");
 
   for (i = 0; i < leaders.length; i++) {
     if (i < 10) {
-      const player = document.createElement('tr')
+      const player = document.createElement("tr");
       player.innerHTML = `
         <td>${i + 1}.</td>
         <td>${leaders[i].name}</td>
         <td>${leaders[i].level}</td>
-        <td>${leaders[i].points}</td>`
-      topTen.appendChild(player)
+        <td>${leaders[i].points}</td>`;
+      topTen.appendChild(player);
     }
   }
 
-  highScores.classList.remove('hidden')
+  highScores.classList.remove("hidden");
 
   document.addEventListener("keydown", (e) => {
     if (e.key === "Enter") {
-      highScores.classList.add('hidden')
+      highScores.classList.add("hidden");
       points = 0;
       level = 1;
       lives = 3;
       gameover = false;
-      saveToLocalStorage();
+      localStorage.clear();
       location.reload();
     }
-  })
-}
+  });
+};
