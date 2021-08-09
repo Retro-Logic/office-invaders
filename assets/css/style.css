@@ -49,12 +49,12 @@ main {
     display: grid;
     align-content: center;
     grid-template-columns: 30% 70%;
-    grid-template-rows: repeat(2, 1fr);
+    grid-template-rows: 2(1fr);
     grid-column-gap: 1.5rem;
     background-color: #CCDCF5;
 }
 
-article {
+section {
     padding: 0 2rem;
 }
 
@@ -109,7 +109,7 @@ footer a {
 }
 
 
-p, article > ul {
+p, section > ul {
     font-family: 'Play', sans-serif;
     font-size: 1.2rem;
 }
@@ -125,7 +125,7 @@ aside hr {
     margin-bottom: 2rem;
 }
 
-aside button, article button {
+aside button, section button {
     display: block;
     width: 100%;
     height: 5rem;
@@ -135,11 +135,17 @@ aside button, article button {
     background-color: #B6967C;
 }
 
-article button {
+aside button a, section button a {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+section button {
     margin-top: 2rem;
 }
 
-aside button:hover, article button:hover {
+aside button:hover, section button:hover {
     cursor: pointer;
     font-weight: bolder;
     border-bottom: 0.4rem solid black;
@@ -172,7 +178,7 @@ section#content {
     grid-area: 1/2/3/3;
 }
 
-#content > article > ul {
+#content > section > ul {
     list-style-type: none;
 }
 
@@ -416,10 +422,10 @@ footer > #socials {
     aside hr {
         display:block;
     }    
-    article#hero-image {
+    section#hero-image {
         padding: 2rem;
     }
-    article#hero-image h4 {
+    section#hero-image h4 {
         font-size: 1.5rem;
     }
     h2#game-subtitle {
