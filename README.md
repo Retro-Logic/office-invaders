@@ -91,7 +91,7 @@ During the development there were some issues where the character would not move
 
 There were some errors after validation of HTML, CSS and JavaScript that are fixed.
 
-HTML was validated with [W3 Validator](https://validator.w3.org/) Some issues we were able to ignore and some that needed to be corrected were fixed.
+HTML was validated with [W3 Validator](https://validator.w3.org/) Example of the error and issues fixed.
 ![image](https://user-images.githubusercontent.com/87389388/128700496-669428a9-99f3-47a9-8c44-e7633b2322fd.png)
 ![image](https://user-images.githubusercontent.com/87389388/128703143-64f4f10f-b182-4793-8b94-c3637ca46331.png)
 
