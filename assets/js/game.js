@@ -1,7 +1,6 @@
 const gameBoard = document.querySelector("#game-board");
 const player = document.querySelector("#player");
 const scorePoints = document.querySelector("#point-score");
-const playerLives = document.querySelector("#player-lives");
 const gameLevel = document.querySelector("#player-level");
 const storedScore = localStorage.getItem("points");
 const storedLevel = localStorage.getItem("level");
@@ -75,7 +74,7 @@ function generateEnemies() {
   let speed = 2000 / level;
   const generate = setTimeout(() => {
     if (!playing) {
-      clearTimeOut(generateEnemies);
+      clearTimeout(generate);
     } else {
       const enemyType = enemyList[Math.floor(Math.random() * enemyList.length)];
       const enemy = document.createElement("div");
@@ -105,7 +104,7 @@ function generateEnemies() {
 function moveEnemies() {
   const move = setTimeout(() => {
     if (!playing) {
-      clearTimeout(moveEnemies);
+      clearTimeout(move);
     } else {
       const enemies = document.getElementsByClassName("enemy");
       if (enemies !== undefined) {
@@ -178,10 +177,10 @@ const updatePosY = (component) => {
  * Update score
  */
 const handleCollision = (enemy, projectile) => {
-  enemy.dataset.life = enemy.dataset["life"] - 1;
-  if (parseInt(enemy.dataset["life"]) === 0) {
+  enemy.dataset.life = enemy.dataset.life - 1;
+  if (parseInt(enemy.dataset.life) === 0) {
     kill.play();
-    points = points + parseInt(enemy.dataset["points"]);
+    points = points + parseInt(enemy.dataset.points);
     scorePoints.innerHTML = points;
     saveToLocalStorage();
     enemy.remove();
@@ -195,10 +194,13 @@ const handleCollision = (enemy, projectile) => {
   switch (enemy.className.split(" ")[0]) {
     case "manager":
       enemy.style.opacity -= 0.3;
+    break;
     case "hr":
       enemy.style.opacity -= 0.22;
+    break;
     case "ceo":
       enemy.style.opacity -= 0.15;
+    break;
   }
   projectile.remove();
 };
@@ -286,10 +288,10 @@ document.addEventListener("keydown", (e) => {
   }
 });
 
-generateProjectile = (xPos, yPos) => {
+const generateProjectile = (xPos, yPos) => {
   throwing.play();
   const projectile = document.createElement("div");
-  currentProjectile =
+  var currentProjectile =
     projectileList[Math.floor(Math.random() * projectileList.length)];
   projectile.classList.add(currentProjectile.class, "projectile");
   projectile.style.gridRowStart = yPos;
@@ -315,7 +317,7 @@ const gameOverHandler = async () => {
   const topScorerForm = document.getElementById("game-over");
   var position = 0;
 
-  for (i = 0; i < topScores.length; i++) {
+  for (var i = 0; i < topScores.length; i++) {
     if (level >= topScores[i].level && points >= topScores[i].points) {
       position = i + 1;
     }
@@ -345,7 +347,7 @@ const submitName = async () => {
     level: level,
   };
 
-  const response = await fetch(
+  await fetch(
     "https://office-invaders-default-rtdb.europe-west1.firebasedatabase.app/highscores.json",
     {
       method: "POST",
@@ -376,7 +378,7 @@ const topTen = async () => {
   const topTen = document.getElementById("top-ten");
   const highScores = document.getElementById("high-scores");
 
-  for (i = 0; i < leaders.length; i++) {
+  for (var i = 0; i < leaders.length; i++) {
     if (i < 10) {
       const player = document.createElement("tr");
       player.innerHTML = `

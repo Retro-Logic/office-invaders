@@ -66,7 +66,7 @@ All wireframes are created with [Balsamiq](https://balsamiq.com/) during the Sco
 
 - First three pages are three prototypes of how the main page should look like.
   All three include navigation bar which consists of the Main Menu : Storyline / How to Play / Credits / Sound on/off.
-- CREDITS - Consist of the Information about the game, how it was developed and inspiration for the theme.
+- CREDITS - Consist of the names of people who created this game.
 - SOUND ON/OFF - There will be an audio implemented and will be muted when the page loads. User will be able to turn on or turn off the sound.
   In the middle of the page we have name of the game OFFICE INVADERS.
 - PLAY button - Will be added, user will click on it and the game will start.
@@ -75,7 +75,7 @@ All wireframes are created with [Balsamiq](https://balsamiq.com/) during the Sco
 - Fifth wireframe consists of instructions on how to play the game, what arrow keys to use to move around and which key to press to shoot projectiles into the enemies.
 - Sixth wireframe includes credits to all the people who were part of this project.
 
-- Second Wireframe is the one team decided to go ahead with. Social Media Icons were positioned to the center. Font and further Styling has been added.
+- Second Wireframe is the one team decided to go ahead with. Social Media Icons were positioned to the center. Font and further Styling has been added. Sound on/off will be implemented in future upgrades of the game
 
 # Languages used
 
@@ -86,32 +86,37 @@ All wireframes are created with [Balsamiq](https://balsamiq.com/) during the Sco
 
 # Testing
 
-During the development there were some issues where the character would not move the way we would like so the team tested this and understood main issues which needed to be corrected for the game to run smoothly. Game is tested on these Web browsers: [Mozilla Firefox](https://www.mozilla.org/en-US/firefox/), [Google Chrome](https://www.google.com/intl/en_ie/chrome/), [Microsoft Edge](https://microsoftedgewelcome.microsoft.com/en-gb?form=MA13DW).
+During the development the team did lot of testing and corrections for the game to run smoothly. 
+Some example of the issues and testing we did:
+- Link on the [YouTube](https://www.youtube.com/) icon did not work.
+- Home button did not lead to the main page. 
+- Character would not move the way we would like and it would not raise the hand to shoot.
+- Change of character's facial expression when shooting.
+- Whenever the game was paused one extra enemy would fall down. 
+- Background was too big and was not complementing the game so it had to be resized.
+- Color palette scheme testing.
+- Implementing sounds and adjusting the sound volume.
+- Making the game responsive on smaller devices.
 
-There were some errors after validation of HTML, CSS and JavaScript that are fixed.
+Game is tested on these Web browsers: [Mozilla Firefox](https://www.mozilla.org/en-US/firefox/), [Google Chrome](https://www.google.com/intl/en_ie/chrome/), [Microsoft Edge](https://microsoftedgewelcome.microsoft.com/en-gb?form=MA13DW).
 
-HTML was validated with [W3 Validator](https://validator.w3.org/) Example of the error and issues fixed.
-![image](https://user-images.githubusercontent.com/87389388/128700496-669428a9-99f3-47a9-8c44-e7633b2322fd.png)
-![image](https://user-images.githubusercontent.com/87389388/128703143-64f4f10f-b182-4793-8b94-c3637ca46331.png)
-
+HTML was validated with [W3 Validator](https://validator.w3.org/) and errors were fixed.
 
 CSS was validated with [Jigsaw W3 validator](https://jigsaw.w3.org/css-validator/) and the issue with @import we were able to ignore.
-![image](https://user-images.githubusercontent.com/87389388/128702047-0c23bd42-b772-4a00-b304-7422d59f0f1a.png)
 ![image](https://user-images.githubusercontent.com/87389388/128704863-2fef929e-377f-4876-a882-e3d900272236.png)
-
 
 
 ## User stories
 
-- As a user I would like to see multiplatyer option as well.
+- As a user I would like to see multiplayer option as well.
 - End user goal: Playing the game with friends and family.
-- Business goal: Implementing new features and multiplayer options to the game.
+- Business goal: Implementing new features and multiplayer option to the game.
 
 ## Features
 
-- Home Page is easy to read and includes name of the game colored yellow to stand out and a pitch just below the title. We can see the main character and one of the 'bad guys' you need to find against. Navigation bar is on the left handside and has easy to read font. Social media Icons can be seen in the bottom left corner. Home Page is simple and easy to navigate. There are no distraction and no scrolling.
-- Storyline, How to Play and Credits - all three have same style and are self explanatory. Each wil open in its own container and have the same font style.
-- Play! - when user clicks on it board game will open.
+- Home Page is easy to read and includes name of the game coloured yellow to stand out and a pitch just below the title. We can see the main character and one of the 'bad guys' you need to fight against. Navigation bar is on the left handside and has easy to read font. Social media Icons can be seen in the bottom left corner. Home Page is simple and easy to navigate. There are no distractions and no scrolling.
+- Storyline, How to Play and Credits - all three have the same style and are self explanatory. Each will open in its own container and have the same font style.
+- Play! - when user clicks on this button board game will open.
 
 ## Code
 
