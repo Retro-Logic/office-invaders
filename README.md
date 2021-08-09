@@ -156,7 +156,7 @@ The project was deployed to GitHub Pages using the following steps.
 - Content and Media - Storytelling sculpter David Bowers.
 - Image source:
   - [Shutterstock](https://www.shutterstock.com/home) and [Pngtree](https://pngtree.com/) for characters.
-  - [Pixilart](https://www.pixilart.com/) To edit and create pixeled images.
+  - [Pixilart](https://www.pixilart.com/) to edit and create pixeled images.
 - Videos as inspiration for the game:
   - [How to code the snake game in JavaScript](https://www.youtube.com/watch?v=QTcIXok9wNY&t=873s)
   - [Space Invaders in JavaScript](https://www.youtube.com/watch?v=3Nz4Yp7Y_uA)
