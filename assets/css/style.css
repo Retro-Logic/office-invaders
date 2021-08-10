@@ -14,6 +14,7 @@
     padding: 0;
     border: 0;
     outline: 0;
+    /* border: 1px solid red; */
 }
 
 html {
@@ -44,9 +45,9 @@ main {
     padding: 3rem;
     display: grid;
     align-content: center;
-    grid-template-columns: 30% 70%;
+    grid-template-columns: 28% 68%;
     grid-template-rows: repeat(2,1fr);
-    grid-column-gap: 1.5rem;
+    grid-column-gap: 4%;
     background-color: #CCDCF5;
 }
 
@@ -186,7 +187,6 @@ section button {
 div#content {
     grid-area: 1/2/3/3;
     align-self: center;
-    padding: 0 2rem;
 }
 
 #content > section > ul {
@@ -200,8 +200,17 @@ h2#game-subtitle {
 
 #hero-image {
     display: flex;
-    justify-content: space-around;
     align-items: center;
+}
+
+#hero-image h4 {
+    flex:1;
+    text-align: center;
+}
+
+#hero-image .hero-character {
+    height: 20rem;
+    width: auto;
 }
 
 #game-area {
@@ -307,11 +316,6 @@ footer > #socials {
     z-index:1;
 }
 
-.hero-character {
-    height: 20rem;
-    width: auto;
-}
-
 .enemy {
     grid-row-end: span 2;
     grid-column-end: span 1;
@@ -398,6 +402,10 @@ footer > #socials {
 }
 
 
+
+/* ***** MEDIA QUERIES ***** */
+
+/* Height */
 @media only screen and (max-height: 450px) {
     div.score-title h3 {
         font-size: 0.7rem;
@@ -406,51 +414,108 @@ footer > #socials {
         font-size: 0.7rem;
         line-height: 1.3rem;
     }
-    div#score-board {
-        margin-top: 0.5rem;
-    }
 }
-@media only screen and (min-height:450px ) and (max-height: 750px) {
+@media only screen and (min-height:451px ) and (max-height: 750px) {
     div.score-title h3 {
         font-size: 1rem;
     }
+}
+
+@media only screen and (max-height: 750px) {
     div#score-board {
         margin-top: 0.5rem;
     }
 }
 
+/* Width */
+@media only screen and (max-width: 350px) {
+    header h1 {
+        font-size: 2.8rem;
+    }
+    section#hero-image h4 {
+        font-size: 1rem;
+    }
+    #hero-image .hero-character {
+        height: 8rem;
+    }
+}
 
-@media only screen and (min-width: 576px) and (max-width: 767px) {
-    .hero-character {
+@media only screen and (min-width: 351px) and (max-width: 450px) {
+    section#hero-image h4 {
+        font-size: 1.4rem;
+    }
+    #hero-image .hero-character {
+        height: 11rem;
+    }
+}
+
+@media only screen and (min-width: 451px) and (max-width: 550px) {
+    section#hero-image h4 {
+        font-size: 1.7rem;
+    }
+    #hero-image .hero-character {
+        height: 14rem;
+    }
+}
+
+@media only screen and (min-width: 550px) and (max-width: 650px) {
+    section#hero-image h4 {
+        font-size: 2.25rem;
+    }
+    #hero-image .hero-character {
         height: 18rem;
+    }
+}
+
+@media only screen and (max-width: 650px) {
+    main {
+        padding: 3rem 2rem;
+    }
+    div#content {
+        margin-bottom: 1rem;
+    }
+    aside hr {
+        margin-bottom: 1rem;
     }
 }
 
 @media only screen and (max-width: 767px) {
     main {
-        grid-column-gap: 1rem;
-        padding: 2rem
+        grid-template-rows: repeat(2,auto);
     }
     div#content {
         grid-area: 1/1/2/3;
     }
     aside {
         grid-area: 2/1/3/3;
-        padding: 2rem;
-        padding-top: 1rem;
     }
     aside hr {
         display:block;
     }    
-    section#hero-image {
-        padding: 2rem;
-    }
-    section#hero-image h4 {
-        font-size: 1.5rem;
-    }
     h2#game-subtitle {
         font-size: 1rem;
     }    
+}
+
+@media only screen and (min-width: 768px) and (max-width: 850px) {
+    section#hero-image h4 {
+        font-size: 2.1rem;
+    }
+    #hero-image .hero-character {
+        height: 17rem;
+    } 
+}
+
+@media only screen and (min-width: 1200px) {
+    main {
+        padding: 3rem 6rem;
+    }
+    section#hero-image h4 {
+        font-size: 3rem;
+    }
+    #hero-image .hero-character {
+        height: 24rem;
+    } 
 }
 
 
