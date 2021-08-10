@@ -34,24 +34,23 @@
             </div>
         </div>
         <div id="game-board">
-            <div class="start-message"><h2>Press Enter To Fight</h2></div>
+            <div id="game-start" class="game-msg"><h2>Press <span>Enter</span> To Fight</h2></div>
             <div id="player"></div>
-            <div id="game-paused" class="hidden">
-                <h1>GAME PAUSED</h1>
+            <div id="game-paused" class="hidden game-msg">
+                <h2>GAME PAUSED</h2>
                 <p><em>Press "r" to return</em></p>
             </div>
-            <div id="game-over" class="hidden">
-                <h3>GAME OVER</h3>
-                <p class="level-reached"></p>
-                <p class="total-points">s</p>
-                <p class="final-position">dadsa</p>
+            <div id="game-over" class="hidden game-msg">
+                <h2>GAME OVER</h2>
+                    <p class="level-reached"></p>
+                    <p class="total-points"></p>
+                    <p class="final-position"></p>
                 <input id="player-name" type="text" name="name" placeholder="Add your name">
-                <div>
-                    <button onclick="submitName()">Confirm</button>
-                </div>
+                <button onclick="submitName()">Confirm</button>
             </div>
-            <div id="high-scores" class="hidden">
-                <h3>HIGH SCORES</h3>
+            
+            <div id="high-scores" class="hidden game-msg">
+                <h2>HIGH SCORES</h2>
                 <table id="top-ten">
                     <tr>
                         <th>Pos.</th>
@@ -75,18 +74,7 @@
         </div>
     </section>
 
-    <div id="confirm-popup" class="hidden">
-        <div class="popup-section" id="popup-header">
-            <h2>Game in Session!</h2>
-        </div>
-        <div class="popup-section" id="popup-header">
-            <p>You have an unfinished game in your session, do you wish to continue with it?</p>
-        </div>
-        <div class="popup-section" id="popup-footer">
-            <button class="popup-btn" id="true-btn">Yes</button>
-            <button class="popup-btn" id="false-btn">No, restart new game</button>
-        </div>
-    </div>
+    
 
     <script src="https://kit.fontawesome.com/08022ae364.js" crossorigin="anonymous"></script>
     <script src="assets/js/game.js"></script>

@@ -148,6 +148,10 @@ aside button a, section button a {
     color: #000;
 }
 
+aside button a, section button a, #game-over button {
+    padding: 2rem 0;
+}
+
 aside button a:hover, section button a:hover {
     font-weight: bolder;
     color: #000;
@@ -166,6 +170,18 @@ section button {
     margin-top: 2rem;
 }
 
+table#top-ten {
+    margin-bottom: 1rem;
+}
+#top-ten th {
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+#top-ten th, #top-ten td {
+    text-align: center;
+    font-family: 'Play', sans-serif;;
+}
 
 #home-btn {
     /* display: grid;
@@ -243,7 +259,7 @@ h2#game-subtitle {
 
 #game-board {
     background-color: #B6967C;
-    outline: 2px solid black;
+    outline: 2px solid #000;
     width: 100vmin;
     height: calc(100vmin - 20%);
     display: grid;
@@ -253,6 +269,7 @@ h2#game-subtitle {
     transform: translate(-50%, -50%);
     grid-template-columns: repeat(13, 1fr);
     grid-template-rows: repeat(14, 1fr);
+    /* transition: background-color 1s ease-out; */
 }
 
 #socials {
@@ -288,23 +305,29 @@ footer > #socials {
     padding-right: 1rem;
 }
 
-.start-message {
-    grid-row-start: 6;
-    grid-row-end: span 3;
+.game-msg {
+    grid-row-start: 1;
+    grid-row-end: span 14;
     grid-column-start: 4;
     grid-column-end: span 7;
-    display: table;
-    /* align-content: center; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
-.start-message > h2 {
-    font-family: 'Press Start 2P', monospace;
-    letter-spacing: 2px;
-    font-size: 1.5rem;
+.game-msg h2, .game-msg p {
     text-align: center;
+}
+.game-msg h2 {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 1.5rem;
     line-height: 2.5rem;
-    display: table-cell;
-    vertical-align: middle;
+    letter-spacing: 2px;
+}
+
+.game-msg h2 span {
+    text-transform: uppercase;
 }
 
 #player {
@@ -349,58 +372,46 @@ footer > #socials {
     background: url("../images/coffee.png") no-repeat center top/contain;
 }
 
-#game-paused, #game-over, #high-scores{
+/* #game-paused, #game-over, #high-scores{
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     text-align: center;
-}
+} */
 
 #game-over, #high-scores{
-    width: 50vmin;
-    height: 50vmin;
-    background-color:black;
     color: #CCDCF5;
 }
 
-#game-over h3{
-    margin-top: 3rem;
-}
-
-#game-over p{
-    margin-top: 1rem;
-}
-
 #game-over button {
-    margin-top: 2rem;
+    margin: 0;
+    padding: 1rem 0;
 }
 
 #game-over input {
-    margin-top: 2.5rem;
-    width: 75%;
-    height: 2rem;
+    text-align: center;
+    font-size: 1rem;
+    font-family: "Play", sans-serif;
+    margin: 2rem 0rem;
+    width: 100%;
+    padding: 1rem;
     background-color: #CCDCF5;
     color: black;
 }
 
-#high-scores h3 {
-    margin-top: 2rem;
-}
-
-#top-ten{
+/* #top-ten{
     margin: 1rem auto;
     width: 90%;
-}
+} */
 
-#top-ten th{
+/* #top-ten th{
     margin: 0.5rem auto;
-}
+} */
 
 .hidden{
     display: none;
 }
-
 
 
 /* ***** MEDIA QUERIES ***** */
@@ -410,21 +421,49 @@ footer > #socials {
     div.score-title h3 {
         font-size: 0.7rem;
     }
-    div.start-message h2 {
+    div#start-game h2 {
         font-size: 0.7rem;
         line-height: 1.3rem;
     }
+    div.game-msg#game-over {
+        overflow-y: scroll;
+        justify-content: flex-start;
+    }
+    #game-over button, #game-over input  {
+        width: 70%;
+    }
+    div.game-msg#game-over {
+        grid-row-start: 3;
+        grid-row-end: span 10;
+        grid-column-start: 2;
+        grid-column-end: span 11;
+    }
 }
-@media only screen and (min-height:451px ) and (max-height: 750px) {
+@media only screen and (min-height:451px ) and (max-height: 650px) {
     div.score-title h3 {
         font-size: 1rem;
     }
 }
 
-@media only screen and (max-height: 750px) {
+@media only screen and (max-height: 650px) {
     div#score-board {
         margin-top: 0.5rem;
     }
+    div.game-msg#high-scores {
+        overflow-y: scroll;
+        justify-content: flex-start;
+    }
+    #game-over input  {
+        margin: 1.5rem 0rem;
+    }
+    div.game-msg#high-scores {
+        grid-row-start: 3;
+        grid-row-end: span 10;
+        grid-column-start: 2;
+        grid-column-end: span 11;
+    }
+
+
 }
 
 /* Width */
@@ -518,41 +557,3 @@ footer > #socials {
     } 
 }
 
-
-#confirm-popup {
-    position: absolute;
-    top: 1.5rem;
-    left: 50%;
-    transform: translate(-50%, 0);
-    height: auto;
-    max-width: 800px;
-    background-color: black;
-    color: #CCDCF5;
-}
-.popup-section {
-    padding: 1.5rem;
-}
-/* #popup-header {
-} */
-
-.popup-section#popup-footer {
-    display: flex;
-    justify-content: flex-end;
-}
-
-.popup-btn {
-    height: 3rem;
-    border-radius: 3px;
-    padding: 0 2rem;
-    box-sizing: content-box;
-    margin-left: 0.8rem;
-}
-#false-btn {
-    background-color:#6C40EB;
-    color: #CCDCF5;
-    
-}
-#true-btn {
-    background-color: #CCDCF5;
-    color: #000;
-}

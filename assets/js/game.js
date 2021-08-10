@@ -2,7 +2,7 @@ const gameBoard = document.querySelector("#game-board");
 const player = document.querySelector("#player");
 const scorePoints = document.querySelector("#point-score");
 const gameLevel = document.querySelector("#player-level");
-const confirmPopup = document.querySelector("#confirm-popup");
+const gamePaused = document.getElementById("game-paused");
 const storedScore = localStorage.getItem("points");
 const storedLevel = localStorage.getItem("level");
 const storedLives = localStorage.getItem("lives");
@@ -51,6 +51,7 @@ window.onload = () => {
       if (localStorage.lives) {
         lives = parseInt(storedLives);
       }
+      document.getElementById(`player-lives-${lives}`).style.opacity = "0";
     } else {
       level = 1;
       lives = 3;
@@ -63,10 +64,7 @@ window.onload = () => {
   }
   scorePoints.innerHTML = points;
   gameLevel.innerHTML = level;
-  document.getElementById("player-lives-" + lives).style.opacity = "0";
 };
-
-// true - btn;
 
 const saveToLocalStorage = () => {
   localStorage.setItem("points", points);
@@ -74,26 +72,33 @@ const saveToLocalStorage = () => {
   localStorage.setItem("lives", lives);
 };
 
+/**
+ * Called after 3/4 second
+ * Create a new div element and add class to it randomly selected from enemy list
+ * set style and other attributes related to the object
+ * Add to gameboard markup
+ */
 function generateEnemies() {
-  let speed = 2000 / level;
+  const speed = 2000 / level;
   const generate = setTimeout(() => {
     if (!playing) {
       clearTimeout(generate);
     } else {
+      const newEnemy = document.createElement("div");
       const enemyType = enemyList[Math.floor(Math.random() * enemyList.length)];
-      const enemy = document.createElement("div");
 
       // set enemy component attributes
-      enemy.classList.add(enemyType.class, "enemy");
-      enemy.style.opacity = 1;
-      enemy.dataset.life = enemyType.life;
-      enemy.dataset.points = enemyType.points;
-
-      enemy.style.gridColumnStart = Math.floor(Math.max(1, Math.random() * 13));
-      enemy.style.gridRowStart = 1;
+      newEnemy.classList.add(enemyType.class, "enemy");
+      newEnemy.dataset.life = enemyType.life;
+      newEnemy.dataset.points = enemyType.points;
+      newEnemy.style.opacity = 1;
+      newEnemy.style.gridColumnStart = Math.floor(
+        Math.max(1, Math.random() * 13)
+      );
+      newEnemy.style.gridRowStart = 1;
 
       // add to board
-      gameBoard.appendChild(enemy);
+      gameBoard.appendChild(newEnemy);
       generateEnemies();
     }
   }, speed + 750);
@@ -114,16 +119,7 @@ function moveEnemies() {
       if (enemies !== undefined) {
         for (let i = 0; i < enemies.length; i++) {
           const enemy = enemies[i];
-          const yPos = parseInt(
-            window.getComputedStyle(enemy).getPropertyValue("grid-row-start")
-          );
-
-          // check if reached bottom
-          if (yPos > 12) {
-            updateLife();
-            enemy.remove();
-          }
-          enemy.style.gridRowStart = yPos + 1;
+          updatePosY(enemy);
         }
       }
       moveEnemies();
@@ -143,7 +139,6 @@ const gameOver = () => {
   playing = false;
   gameover = true;
   gameOverHandler();
-  // window.location.href = "index.html";
 };
 
 const updateLife = () => {
@@ -153,24 +148,42 @@ const updateLife = () => {
     lives -= 1;
     damage.play();
     saveToLocalStorage();
-    document.getElementById("player-lives-" + lives).style.opacity = "0";
+    document.getElementById(`player-lives-${lives}`).style.opacity = "0";
   }
 };
 
 /**
- * @param component
+ * @param component (projectiles)
  * get components position on y axis
  * update Y positon moving up 1
  * Remove component if outside boundaries
  */
 const updatePosY = (component) => {
+  const componentType = component.classList[0];
   const yPos = parseInt(
     window.getComputedStyle(component).getPropertyValue("grid-row-start")
   );
-  component.style.gridRowStart = yPos - 1;
-  if (yPos <= 1) {
-    component.remove();
-  }
+  if (
+    componentType === "ceo" ||
+    componentType === "manager" ||
+    componentType === "hr"
+  ) {
+    component.style.gridRowStart = yPos + 1;
+    if (yPos > 12) {
+      updateLife();
+      component.remove();
+    }
+  } else if (
+    componentType === "mouse" ||
+    componentType === "keyboard" ||
+    componentType === "computer" ||
+    componentType === "coffee"
+  ) {
+    component.style.gridRowStart = yPos - 1;
+    if (yPos <= 1) {
+      component.remove();
+    }
+  } else return;
 };
 
 /**
@@ -195,7 +208,7 @@ const handleCollision = (enemy, projectile) => {
       gameLevel.innerHTML = level;
     }
   }
-  switch (enemy.className.split(" ")[0]) {
+  switch (enemy.classList[0]) {
     case "manager":
       enemy.style.opacity -= 0.3;
       break;
@@ -250,7 +263,7 @@ document.addEventListener("keydown", (e) => {
       case "Enter":
         if (firstTime) {
           startGame();
-          document.querySelector(".start-message").remove();
+          document.querySelector("#game-start").remove();
           firstTime = false;
         }
         break;
@@ -277,7 +290,6 @@ document.addEventListener("keydown", (e) => {
   }
 
   if (!gameover && e.key === " ") {
-    const gamePaused = document.getElementById("game-paused");
     gamePaused.classList.remove("hidden");
     playing = false;
     gameSound.pause();
@@ -294,13 +306,13 @@ document.addEventListener("keydown", (e) => {
 
 const generateProjectile = (xPos, yPos) => {
   throwing.play();
-  const projectile = document.createElement("div");
-  var currentProjectile =
+  const newProjectile = document.createElement("div");
+  const projectileType =
     projectileList[Math.floor(Math.random() * projectileList.length)];
-  projectile.classList.add(currentProjectile.class, "projectile");
-  projectile.style.gridRowStart = yPos;
-  projectile.style.gridColumnStart = xPos;
-  gameBoard.appendChild(projectile);
+  newProjectile.classList.add(projectileType.class, "projectile");
+  newProjectile.style.gridRowStart = yPos;
+  newProjectile.style.gridColumnStart = xPos;
+  gameBoard.appendChild(newProjectile);
 };
 
 // Get data and check which position the player got
@@ -319,9 +331,22 @@ const gameOverHandler = async () => {
   const totalPoints = document.querySelector(".total-points");
   const finalPosition = document.querySelector(".final-position");
   const topScorerForm = document.getElementById("game-over");
-  var position = 0;
 
-  for (var i = 0; i < topScores.length; i++) {
+  // Transition
+  gameBoard.style.background = "#000";
+  // Remove Enemies
+  const enemies = document.getElementsByClassName("enemy");
+  const enemiesQty = enemies.length;
+  if (enemies !== undefined) {
+    for (let i = 0; i < enemiesQty; i++) {
+      const enemy = enemies[0];
+      enemy.remove();
+    }
+    player.remove();
+  }
+
+  let position = 0;
+  for (let i = 0; i < topScores.length; i++) {
     if (level >= topScores[i].level && points >= topScores[i].points) {
       position = i + 1;
     }
@@ -335,6 +360,13 @@ const gameOverHandler = async () => {
   totalPoints.innerHTML = `Total points: ${points}`;
   finalPosition.innerHTML = `You got the position: ${position}`;
   topScorerForm.classList.remove("hidden");
+
+  // setTimeout(() => {
+  //   levelReached.innerHTML = `Level reached: ${level}`;
+  //   totalPoints.innerHTML = `Total points: ${points}`;
+  //   finalPosition.innerHTML = `You got the' position: ${position}`;
+  //   topScorerForm.classList.remove("hidden");
+  // }, 1000);
 };
 
 // After submiting the name data is storage in a firabase database
@@ -382,7 +414,7 @@ const topTen = async () => {
   const topTen = document.getElementById("top-ten");
   const highScores = document.getElementById("high-scores");
 
-  for (var i = 0; i < leaders.length; i++) {
+  for (let i = 0; i < leaders.length; i++) {
     if (i < 10) {
       const player = document.createElement("tr");
       player.innerHTML = `
