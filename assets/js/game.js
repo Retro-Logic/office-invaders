@@ -2,6 +2,7 @@ const gameBoard = document.querySelector("#game-board");
 const player = document.querySelector("#player");
 const scorePoints = document.querySelector("#point-score");
 const gameLevel = document.querySelector("#player-level");
+const confirmPopup = document.querySelector("#confirm-popup");
 const storedScore = localStorage.getItem("points");
 const storedLevel = localStorage.getItem("level");
 const storedLives = localStorage.getItem("lives");
@@ -36,6 +37,7 @@ let enemyList = [
 
 window.onload = () => {
   if (localStorage.points || localStorage.lives || localStorage.level) {
+    // confirmPopup.classList.remove("hidden");
     if (
       confirm("Do you want to want to continue with your last session?") ===
       true
@@ -63,6 +65,8 @@ window.onload = () => {
   gameLevel.innerHTML = level;
   document.getElementById("player-lives-" + lives).style.opacity = "0";
 };
+
+true - btn;
 
 const saveToLocalStorage = () => {
   localStorage.setItem("points", points);
@@ -194,13 +198,13 @@ const handleCollision = (enemy, projectile) => {
   switch (enemy.className.split(" ")[0]) {
     case "manager":
       enemy.style.opacity -= 0.3;
-    break;
+      break;
     case "hr":
       enemy.style.opacity -= 0.22;
-    break;
+      break;
     case "ceo":
       enemy.style.opacity -= 0.15;
-    break;
+      break;
   }
   projectile.remove();
 };
