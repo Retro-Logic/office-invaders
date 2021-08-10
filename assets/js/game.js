@@ -66,7 +66,7 @@ window.onload = () => {
   document.getElementById("player-lives-" + lives).style.opacity = "0";
 };
 
-true - btn;
+// true - btn;
 
 const saveToLocalStorage = () => {
   localStorage.setItem("points", points);
