@@ -1,13 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?&family=Play&family=Press+Start+2P&family=VT323&display=swap');
 
-/* {
-    color: #85EB40;
-    color: #F5DF7E;
-    color: #B6967C;
-    color: #CCDCF5;
-    color: #6C40EB;
-} */
-
 *, ::before, ::after {
     box-sizing: border-box;
     margin: 0;
@@ -166,6 +158,7 @@ aside button#return-btn {
     margin-top: 2rem;
 }
 
+<<<<<<< HEAD
 section button {
     margin-top: 2rem;
 }
@@ -183,9 +176,9 @@ table#top-ten {
     font-family: 'Play', sans-serif;;
 }
 
+=======
+>>>>>>> e19bb3ae2efdbdad901e6affc6764e401a37f920
 #home-btn {
-    /* display: grid;
-    align-self: start; */
     position: fixed;
     top: 1.5rem;
     left: 1.5rem; 
@@ -248,7 +241,6 @@ h2#game-subtitle {
     align-content: end;
     justify-content: space-around;
     font-family: 'Press Start 2P', monospace;
-    /* font-family: 'VT323', monospace; */
     color: black;
     letter-spacing: 1px;
 }
@@ -421,8 +413,8 @@ footer > #socials {
     div.score-title h3 {
         font-size: 0.7rem;
     }
-    div#start-game h2 {
-        font-size: 0.7rem;
+    div.game-msg#game-start h2 {
+        font-size: 1rem;
         line-height: 1.3rem;
     }
     div.game-msg#game-over {

@@ -1,6 +1,6 @@
 # Introduction
 
-![image](https://www.dropbox.com/s/ok3uiqzr7d4wujk/Office_Invaders_Mockup_techsini_v3.png?raw=1)
+![image](https://www.dropbox.com/s/3n4uzvi6olokngy/Office_Invaders_Mockup.png?raw=1)
 Office Invaders game is a project created by Retro Logic team for the purpose of hackaton Retro Game challenge by Code Institute. Blast from the past 'Space Invaders' gave us inspiration to create a game and give it contemporary and relevant meaning to the story. The game is designed to attract mass audience but mainly people who understand 'office life' and cannot wait for that shorthand to show 5 o’clock. This is a game in which employee can finally end the office tyranny and start living again without commuting and loosing precious time.
 
 You can view live game on this [link](https://retro-logic.github.io/office-invaders/).
@@ -44,7 +44,7 @@ User goals are:
 
 Font choices
 
-- Primary font used for navigation on the page is [Press Start 2P](https://fonts.google.com/specimen/Press+Start+2P). It is used in all areas as it is easy to read and complements retro game very well. Same font was used in all other sections to keep the same style.
+- Primary font used for navigation on the page is [Press Start 2P](https://fonts.google.com/specimen/Press+Start+2P). It is used in all areas as it is easy to read and complements retro game very well. Same font was used in all other sections to keep the same style. For the main heading [BN Machine](https://www.dafont.com/bn-machine.font) font was used.
 
 Icons
 
@@ -56,6 +56,7 @@ Icons
 
 - Implemented palette consits of 5 colors: #85EB40 / #F5DF7E / #B6967C / #CCDCF5 / #6C40EB. Colors that are used match retro game style from the 90's.
 - Styling - Squared box with the bold line on the bottom were applied to make navigation separated. Buttons are clickable and will lead the user to each section on the page. Play button is highlighted to be visible immediately when the user lands on the page.
+
 ![image](https://user-images.githubusercontent.com/87389388/128705346-cf67dc13-ac6e-40cb-bf89-8c48ffe125af.png)
 
 ## Wireframes
@@ -102,7 +103,6 @@ Game is tested on these Web browsers: [Mozilla Firefox](https://www.mozilla.org/
 
 - [HTML5](https://en.wikipedia.org/wiki/HTML5) was validated with [W3 Validator](https://validator.w3.org/).
 - [CSS3](https://en.wikipedia.org/wiki/CSS)CSS was validated with [Jigsaw W3 validator](https://jigsaw.w3.org/css-validator/) and the issue with @import we were able to ignore.
-![image](https://user-images.githubusercontent.com/87389388/128704863-2fef929e-377f-4876-a882-e3d900272236.png)
 - [JavaScript](https://en.wikipedia.org/wiki/JavaScript) was tested with [JSHint](https://jshint.com/).
 
 

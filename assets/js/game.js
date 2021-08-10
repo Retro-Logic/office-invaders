@@ -1,3 +1,5 @@
+/* jshint esversion: 8 */
+
 const gameBoard = document.querySelector("#game-board");
 const player = document.querySelector("#player");
 const scorePoints = document.querySelector("#point-score");
@@ -440,3 +442,4 @@ const topTen = async () => {
     }
   });
 };
+
