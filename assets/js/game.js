@@ -4,7 +4,9 @@ const gameBoard = document.querySelector("#game-board");
 const player = document.querySelector("#player");
 const scorePoints = document.querySelector("#point-score");
 const gameLevel = document.querySelector("#player-level");
+const playerLives = document.querySelector("#player-lives");
 const gamePaused = document.getElementById("game-paused");
+const htmlString = '<i class="fas fa-heart"></i>';
 const storedScore = localStorage.getItem("points");
 const storedLevel = localStorage.getItem("level");
 const storedLives = localStorage.getItem("lives");
@@ -53,19 +55,20 @@ window.addEventListener("DOMContentLoaded", (e) => {
       if (localStorage.lives) {
         lives = parseInt(storedLives);
       }
-      document.getElementById(`player-lives-${lives}`).style.opacity = "0";
     } else {
+      localStorage.clear();
       level = 1;
       lives = 3;
       points = 0;
     }
   } else {
+    points = 0;
     level = 1;
     lives = 3;
-    points = 0;
   }
   scorePoints.innerHTML = points;
   gameLevel.innerHTML = level;
+  playerLives.innerHTML = htmlString.repeat(lives);
 });
 
 const saveToLocalStorage = () => {
@@ -150,7 +153,7 @@ const updateLife = () => {
     lives -= 1;
     damage.play();
     saveToLocalStorage();
-    document.getElementById(`player-lives-${lives}`).style.opacity = "0";
+    playerLives.innerHTML = htmlString.repeat(lives);
   }
 };
 
@@ -351,7 +354,7 @@ const gameOverHandler = async () => {
   let position = topScores.length;
   for (let i = 0; i < topScores.length; i++) {
     if (level >= topScores[i].level && points >= topScores[i].points) {
-      position = Math.min(position,i + 1);
+      position = Math.min(position, i + 1);
     }
   }
 
@@ -359,13 +362,6 @@ const gameOverHandler = async () => {
   totalPoints.innerHTML = `Total points: ${points}`;
   finalPosition.innerHTML = `You got the position: ${position}`;
   topScorerForm.classList.remove("hidden");
-
-  // setTimeout(() => {
-  //   levelReached.innerHTML = `Level reached: ${level}`;
-  //   totalPoints.innerHTML = `Total points: ${points}`;
-  //   finalPosition.innerHTML = `You got the' position: ${position}`;
-  //   topScorerForm.classList.remove("hidden");
-  // }, 1000);
 };
 
 // After submiting the name data is storage in a firabase database

@@ -13,7 +13,7 @@
     <title>Office Invaders</title>
     <!-- CSS LINK -->
     <link rel="stylesheet" href="assets/css/style.css">
-    
+
     <!-- SCRIPT -->
     <script defer src="https://kit.fontawesome.com/08022ae364.js" crossorigin="anonymous"></script>
     <script defer src="assets/js/game.js"></script>
@@ -30,15 +30,13 @@
                 <h3>level: <span id="player-level">1</span></h3>
             </div>
             <div class="score-title">
-                <h3>
-                    lives: <span id="player-lives-0"><i class="fas fa-heart"></i></span>
-                    <span id="player-lives-1"><i class="fas fa-heart"></i></span>
-                    <span id="player-lives-2"><i class="fas fa-heart"></i></span>
-                </h3>
+                <h3>lives: <span id="player-lives"><span></h3>
             </div>
         </div>
         <div id="game-board">
-            <div id="game-start" class="game-msg"><h2>Press <span>Enter</span> To Fight</h2></div>
+            <div id="game-start" class="game-msg">
+                <h2>Press <span>Enter</span> To Fight</h2>
+            </div>
             <div id="player"></div>
             <div id="game-paused" class="hidden game-msg">
                 <h2>GAME PAUSED</h2>
@@ -46,13 +44,13 @@
             </div>
             <div id="game-over" class="hidden game-msg">
                 <h2>GAME OVER</h2>
-                    <p class="level-reached"></p>
-                    <p class="total-points"></p>
-                    <p class="final-position"></p>
+                <p class="level-reached"></p>
+                <p class="total-points"></p>
+                <p class="final-position"></p>
                 <input id="player-name" type="text" name="name" placeholder="Add your name">
                 <button onclick="submitName()">Confirm</button>
             </div>
-            
+
             <div id="high-scores" class="hidden game-msg">
                 <h2>HIGH SCORES</h2>
                 <table id="top-ten">
@@ -81,5 +79,3 @@
 </body>
 
 </html>
-
-
