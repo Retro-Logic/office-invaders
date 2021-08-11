@@ -457,6 +457,12 @@ footer > #socials {
     #hero-image .hero-character {
         height: 8rem;
     }
+    div#score-board {
+        grid-template-columns: 70%;
+    }
+    div#score-board h3 {
+        font-size: 0.8rem;
+    }
 }
 
 @media only screen and (min-width: 351px) and (max-width: 450px) {
@@ -512,8 +518,24 @@ footer > #socials {
         display:block;
     }    
     h2#game-subtitle {
+        font-size: 0.8rem;
+    }
+    div#score-board {
+        /* height: auto; */
+        width: 100%;
+        grid-template-columns: 65%;
+        grid-template-rows: repeat(3, auto);
+        align-content: unset;
+        justify-self: unset;
+        justify-content: end;
+        padding: 1rem;
+    }
+    div.score-title h3 {
         font-size: 1rem;
-    }    
+    }
+    div#game-board {
+        height: 100vmin;
+    }
 }
 
 @media only screen and (min-width: 768px) and (max-width: 850px) {
@@ -522,7 +544,10 @@ footer > #socials {
     }
     #hero-image .hero-character {
         height: 17rem;
-    } 
+    }
+    div#score-board {
+        margin-top: 17%;
+    }
 }
 
 @media only screen and (min-width: 1200px) {
