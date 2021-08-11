@@ -347,15 +347,12 @@ const gameOverHandler = async () => {
     player.remove();
   }
 
-  let position = 0;
+  let position = topScores.length;
   for (let i = 0; i < topScores.length; i++) {
+    console.log(level,points,position)
     if (level >= topScores[i].level && points >= topScores[i].points) {
-      position = i + 1;
+      position = Math.min(position,i + 1);
     }
-  }
-
-  if (position === 0) {
-    position = topScores.length + 1;
   }
 
   levelReached.innerHTML = `Level reached: ${level}`;
