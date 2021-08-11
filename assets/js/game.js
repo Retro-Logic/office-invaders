@@ -321,6 +321,7 @@ const generateProjectile = (xPos, yPos) => {
 // according to the level and points achieved.
 // Game over info is updated with the last game played
 const gameOverHandler = async () => {
+  localStorage.clear();
   const table = await fetch(
     `https://office-invaders-default-rtdb.europe-west1.firebasedatabase.app/highscores.json`
   );
@@ -349,7 +350,6 @@ const gameOverHandler = async () => {
 
   let position = topScores.length;
   for (let i = 0; i < topScores.length; i++) {
-    console.log(level,points,position)
     if (level >= topScores[i].level && points >= topScores[i].points) {
       position = Math.min(position,i + 1);
     }
@@ -434,7 +434,6 @@ const topTen = async () => {
       level = 1;
       lives = 3;
       gameover = false;
-      localStorage.clear();
       location.reload();
     }
   });
