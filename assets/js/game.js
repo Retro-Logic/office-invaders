@@ -37,7 +37,7 @@ let enemyList = [
   { class: "ceo", life: 5, points: 5 },
 ];
 
-window.onload = () => {
+window.addEventListener("DOMContentLoaded", (e) => {
   if (localStorage.points || localStorage.lives || localStorage.level) {
     // confirmPopup.classList.remove("hidden");
     if (
@@ -66,7 +66,7 @@ window.onload = () => {
   }
   scorePoints.innerHTML = points;
   gameLevel.innerHTML = level;
-};
+});
 
 const saveToLocalStorage = () => {
   localStorage.setItem("points", points);
@@ -442,4 +442,3 @@ const topTen = async () => {
     }
   });
 };
-
